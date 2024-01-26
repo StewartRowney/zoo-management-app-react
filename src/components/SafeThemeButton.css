@@ -1,0 +1,21 @@
+.safe-button {
+    padding: 10px 20px;
+    margin-left: 40px;
+    margin-top: 0px;
+    margin-right: 10px;
+    font-size: 20px;
+    background-color: #2b967f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around
+  }
+  
+  .safe-button:hover {
+    background-color: #1d8f13; 
+  }
