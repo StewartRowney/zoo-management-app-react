@@ -9,8 +9,8 @@ function SidebarComponent() {
   const { collapseSidebar } = useProSidebar();
 
   return (
-    <div id="app" style={({ height: "100vh" }, { display: "flex", flexDirection: "row-reverse"  })}>
-      <Sidebar rtl={true} style={{ height: "100vh" }}>
+    <div id="app" style={( { display: "flex", flexDirection: "row-reverse"  })}>
+      <Sidebar rtl={true}>
         <Menu>
           <MenuItem
             icon={<MenuOutlinedIcon />}
