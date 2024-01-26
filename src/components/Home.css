@@ -26,7 +26,7 @@ html, body{
 
   .slogan {
     color: #494949;
-    font-family: "Jost-SemiBold", Helvetica;
+    font-family: "Jost-SemiBold", Helvetica, sans-serif;
     font-size: 1vw;
     font-weight: 600;
     letter-spacing: 0;
@@ -36,7 +36,7 @@ html, body{
 
   h1 {
     color: #0B6623;
-    font-family: "Jost-ExtraBold", Helvetica;
+    font-family: "Jost-SemiBold", Helvetica, sans-serif;
     font-size: 3vw;
     font-weight: 800;
     letter-spacing: 0;
@@ -47,8 +47,8 @@ html, body{
   .button {
     position: absolute;
     color: #FFFFFF;
-    background-color: #0B6623;;
-    font-family: "Inter-Regular", Helvetica;
+    background-color: #0B6623;
+    font-family: "Inter-Regular", Helvetica, sans-serif;
     font-size: 1vw;
     font-weight: 400;
     letter-spacing: 0;
@@ -65,7 +65,7 @@ html, body{
 
   .text-wrapper-2 {
     color: #494949;
-    font-family: "Jost-ExtraLight", Helvetica;
+    font-family: "Jost-SemiBold", Helvetica, sans-serif;
     font-size: 1vw;
     font-weight: 200;
     letter-spacing: 0;
@@ -74,7 +74,7 @@ html, body{
 
   .text-wrapper-3 {
     color: #494949;
-    font-family: "Jost-Regular", Helvetica;
+    font-family: "Jost-SemiBold", Helvetica, sans-serif;
     font-size: 1.25vw;
     font-weight: 400;
     letter-spacing: 0;
