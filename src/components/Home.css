@@ -1,203 +1,82 @@
-.frame {
-    background-color: #E1FAE8;
-    display: flex;
+* { padding: 0; margin: 0; }
+html, body{
+    min-height: 100% !important;
+    height: 100%;
+    background: #E1FAE8;
+}
+
+.background {
+    display: block;
     flex-direction: row;
     justify-content: center;
-    width: 100%;
-  }
-  .frame .overlap-wrapper {
-    background-color: #E1FAE8;
-    height: 1080px;
-    overflow: hidden;
-    width: 1920px;
-  }
-  .frame .overlap {
-    height: 1921px;
-    position: relative;
-    top: -406px;
-    width: 1938px;
-  }
-  .frame .overlap-group {
     background-image: url(../media/webbootcamphotoshop.png);
     width: 100%;
-    height: 50vw;
-    min-width: 400px;
+    height: 50.4vw;
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
   }
-  .frame .webbootcamphotoshop {
-    height: 1080px;
-    left: 0;
-    object-fit: cover;
+
+  .header {
     position: absolute;
-    top: 406px;
-    width: 1821px;
+    bottom: 10vw;
+    left: 2vw;
+    display: block;
   }
-  .frame .rectangle {
-    background-color: #0B6623;
-    height: 132px;
-    left: 902px;
-    position: absolute;
-    top: 895px;
-    transform: rotate(89.39deg);
-    width: 1920px;
-  }
-  .frame .text-wrapper {
-    color: #DBD2C4;
-    font-family: "Inter-Regular", Helvetica;
-    font-size: 24px;
-    font-weight: 400;
-    left: 1815px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 740px;
-    width: 102px;
-  }
-  .frame .img {
-    height: 100px;
-    left: 22px;
-    position: absolute;
-    top: 1234px;
-    width: 100px;
-  }
-  .frame .text {
-    color: #DBD2C4;
-    font-family: "Inter-Regular", Helvetica;
-    font-size: 24px;
-    font-weight: 400;
-    left: 1815px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 884px;
-    width: 101px;
-  }
-  .frame .z-o-o-m-a-n-a-g-e-m {
-    color: #DBD2C4;
-    font-family: "Inter-Regular", Helvetica;
-    font-size: 24px;
-    font-weight: 400;
-    left: 1852px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: center;
-    top: 886px;
-    transform: rotate(-0.39deg);
-  }
-  .frame .image {
-    height: 63px;
-    left: 1825px;
-    object-fit: cover;
-    position: absolute;
-    top: 445px;
-    width: 63px;
-  }
-  .frame .ellipse {
-    background-color: #d9d9d940;
-    border-radius: 53px;
-    height: 106px;
-    left: 1804px;
-    position: absolute;
-    top: 423px;
-    width: 106px;
-  }
-  .frame .div {
-    color: #0B6623;
-    font-family: "Jost-ExtraBold", Helvetica;
-    font-size: 64px;
-    font-weight: 800;
-    left: 43px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 1127px;
-    width: 680px;
-  }
-  .frame .the-best-zoo {
+
+  .slogan {
     color: #494949;
     font-family: "Jost-SemiBold", Helvetica;
-    font-size: 24px;
+    font-size: 1vw;
     font-weight: 600;
-    left: 43px;
     letter-spacing: 0;
     line-height: normal;
-    position: absolute;
-    top: 1061px;
-    width: 429px;
+    width: 40vw;
   }
-  .frame .text-wrapper-2 {
-    color: #000000;
-    font-family: "Jost-ExtraLight", Helvetica;
-    font-size: 24px;
-    font-weight: 200;
-    left: 1446px;
+
+  h1 {
+    color: #0B6623;
+    font-family: "Jost-ExtraBold", Helvetica;
+    font-size: 3vw;
+    font-weight: 800;
     letter-spacing: 0;
     line-height: normal;
-    position: absolute;
-    top: 1362px;
+    width: 40vw;
   }
-  .frame .text-wrapper-3 {
-    color: #000000;
-    font-family: "Jost-Regular", Helvetica;
-    font-size: 32px;
-    font-weight: 400;
-    left: 1444px;
-    letter-spacing: 0;
-    line-height: normal;
+
+  .button {
     position: absolute;
-    top: 1400px;
-  }
-  .frame .button {
-    height: 61px;
-    left: 43px;
-    position: absolute;
-    top: 1222px;
-    width: 327px;
-  }
-  .frame .p {
     color: #FFFFFF;
+    background-color: #0B6623;;
     font-family: "Inter-Regular", Helvetica;
-    font-size: 24px;
+    font-size: 1vw;
     font-weight: 400;
-    left: 83px;
     letter-spacing: 0;
     line-height: normal;
-    position: absolute;
-    top: 1235px;
-    white-space: nowrap;
-    width: 321px;
+    padding: 0.5vw 1vw;
   }
-  .frame .text-wrapper-4 {
-    color: #DBD2C4;
-    font-family: "Inter-Regular", Helvetica;
-    font-size: 24px;
-    font-weight: 400;
-    left: 1832px;
+
+  .socials {
+    position: absolute;
+    bottom: 1vw;
+    right: 3vw;
+    display: block;
+  }
+
+  .text-wrapper-2 {
+    color: #494949;
+    font-family: "Jost-ExtraLight", Helvetica;
+    font-size: 1vw;
+    font-weight: 200;
     letter-spacing: 0;
     line-height: normal;
-    position: absolute;
-    top: 669px;
-    width: 82px;
   }
-  .frame .text-wrapper-5 {
-    color: #DBD2C4;
-    font-family: "Inter-Regular", Helvetica;
-    font-size: 24px;
+
+  .text-wrapper-3 {
+    color: #494949;
+    font-family: "Jost-Regular", Helvetica;
+    font-size: 1.25vw;
     font-weight: 400;
-    left: 1825px;
     letter-spacing: 0;
     line-height: normal;
-    position: absolute;
-    top: 598px;
-    width: 82px;
-  }
-  .frame .button-2 {
-    height: 44px;
-    left: 1289px;
-    position: absolute;
-    top: 1578px;
-    width: 155px;
   }
