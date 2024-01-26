@@ -5,6 +5,7 @@ import ContactPage from "./pages/ContactPage";
 import NoPage from "./pages/NoPage";
 import ZoosPage from "./pages/ZoosPage";
 import SidebarComponent from "./components/Sidebar";
+import Animal from "./pages/AnimalPage";
 
 
 export default function App() {
@@ -13,15 +14,16 @@ export default function App() {
  
   <>
   <SidebarComponent></SidebarComponent>
-  <section>
+ 
     <Routes>
-    <Route path="/" element={<HomePage />}>
+    <Route path="/" element={<HomePage />}/>
       <Route path="contact" element={<ContactPage />} />
       <Route path="zoos" element={<ZoosPage />}/>
+      <Route path="animals" element={<Animal />}/>
       <Route path="*" element={<NoPage />} />
-    </Route>
   </Routes>
-  </section>
+  
+ 
   </>
   );
 }

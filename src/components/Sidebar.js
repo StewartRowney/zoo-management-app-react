@@ -9,7 +9,7 @@ function SidebarComponent() {
   const { collapseSidebar } = useProSidebar();
 
   return (
-    <div id="app" style={( { display: "flex", flexDirection: "row-reverse"  })}>
+    <div id="app" style={( { display: "flex", flexDirection: "row-reverse", position: 'relative'  })}>
       <Sidebar rtl={true}>
         <Menu>
           <MenuItem
