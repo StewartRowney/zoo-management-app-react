@@ -12,12 +12,10 @@ export default function App() {
   
   <BrowserRouter>
     <Routes>
-    <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="contact" element={<Contact />} />
       <Route path="zoos" element={<Zoos />}/>
       <Route path="*" element={<NoPage />} />
-    </Route>
   </Routes>
 </BrowserRouter>
 
