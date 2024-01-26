@@ -8,17 +8,12 @@ const Home = () => {
         <div className="overlap-wrapper">
           <div className="overlap">
             <div className="overlap-group">
-              {/* <img className="webbootcamphotoshop" alt="Webbootcamphotoshop" src="webbootcamphotoshop.png" /> */}
               <div className="rectangle" />
               <div className="text-wrapper">Animals</div>
               <img className="img" alt="Rectangle" src="rectangle-6.svg" />
               <div className="text">{""}</div>
-              <div className="z-o-o-m-a-n-a-g-e-m">
-                Z<br />O<br />O<br />
-                <br />M<br />A<br />N<br />A<br />G<br />E<br />M<br />E<br />N<br /> T <br />
-                <br />A<br />P<br />P
-              </div>
-              <img className="image" alt="Image" src="lion_3898345.png" />
+              
+              <img className="image" alt="Imagelion" src="lion_3898345.png" />
               <div className="ellipse" />
               <div className="div">BUG BUSTERS ZOO</div>
               <p className="the-best-zoo">
