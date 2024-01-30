@@ -3,12 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./AnimalPage.css";
 import "../components/AnimalButton";
 import AnimalButton from "../components/AnimalButton";
+import { Sidebar } from "react-pro-sidebar";
 //import "./animation.css";
 //import runAnimations, { allLinks, allFunctions } from "./scripts";
 const Animal = () => {
   
   return (
-    <div className="parent-div">
+    <div className="parent-div"style={{display:"flex", flexDirection:"row"}}>
       <div className="frame-3-1-20" id="id-31228">
         <div className="rectangle-1-1-112" id="id-15316"></div>
         <div className="amphibians-1-1344" id="id-15318">
@@ -109,6 +110,7 @@ const Animal = () => {
           </div>
         </div>
       </div>
+      <Sidebar/>
     </div>
   );
 };
