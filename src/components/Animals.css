@@ -29,12 +29,34 @@
     width: fit-content;
 }
 
+.animal-row {
+    text-align: center;
+}
+
 .animal-category {
-    width: 20vw;
-    height: 200px;
+    width: fit-content;
+    height: fit-content;
     background-color: #0B6623;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    margin: 2vw;
+    display: inline-block;
+    padding: 1vw;
+}
+
+.animal-image {
+  display: block;
+  flex-direction: row;
+  justify-content: center;
+  width: 21vw;
+  height: 13vw;
+  position: relative;
+  margin: auto;
+}
+
+.animal-category-heading {
+  font-size: 2vw;
+  font-weight: 400;
+  margin-top: 1vw;
+  color: #E1FAE8;
 }
 
 

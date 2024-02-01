@@ -1,5 +1,11 @@
 import "./Animals.css";
 import AnimalButton from "./AnimalButton";
+import amphibian from "../media/amphibian.jpg"
+import mammal from "../media/mammal.jpg"
+import reptile from "../media/reptile.jpg"
+import fish from "../media/fish.jpg"
+import insect from "../media/insect.jpg"
+import bird from "../media/bird.jpg"
 
 const Animals = () => {
     return (
@@ -7,10 +13,33 @@ const Animals = () => {
         <div className="animal-header">
             <h1 className="animal-h1">EXPLORE THE ANIMAL KINGDOM</h1>
         </div>
-        <div>
-            <div className="animal-category"></div>
-            <div className="animal-category"></div>
-            <div className="animal-category"></div>
+        <div className="animal-row">
+            <div className="animal-category">
+              <img src={amphibian} alt="Amphibian" className="animal-image"></img>
+              <h2 className="animal-category-heading">Amphibians</h2>
+            </div>
+            <div className="animal-category">
+              <img src={mammal} alt="Mammal" className="animal-image"></img>
+              <h2 className="animal-category-heading">Mammals</h2>
+            </div>
+            <div className="animal-category">
+              <img src={reptile} alt="Reptile" className="animal-image"></img>
+              <h2 className="animal-category-heading">Reptiles</h2>
+            </div>
+        </div>
+        <div className="animal-row">
+            <div className="animal-category">
+              <img src={bird} alt="Bird" className="animal-image"></img>
+              <h2 className="animal-category-heading">Birds</h2>
+            </div>
+            <div className="animal-category">
+              <img src={insect} alt="Insect" className="animal-image"></img>
+              <h2 className="animal-category-heading">Insects</h2>
+            </div>
+            <div className="animal-category">
+              <img src={fish} alt="Fish" className="animal-image"></img>
+              <h2 className="animal-category-heading">Fish</h2>
+            </div>
         </div>
     </div>
     )
