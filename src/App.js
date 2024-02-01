@@ -5,6 +5,7 @@ import ContactPage from "./pages/ContactPage";
 import NoPage from "./pages/NoPage";
 import ZoosPage from "./pages/ZoosPage";
 import AnimalPage from "./pages/AnimalPage";
+import ReptilePage from './pages/Reptile';
 
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="contact" element={<ContactPage />} />
         <Route path="zoos" element={<ZoosPage />}/>
         <Route path="animals" element={<AnimalPage />}/>
+        <Route path="reptile" element={<ReptilePage />}/>
         <Route path="*" element={<NoPage />} />
       </Routes>
   </div>
