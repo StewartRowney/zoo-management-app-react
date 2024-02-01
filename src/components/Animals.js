@@ -15,11 +15,11 @@ const Animals = () => {
             <h1 className="animal-h1">EXPLORE THE ANIMAL KINGDOM</h1>
         </div>
         <div className="animal-row">
-            <Link className="animal-category" to={"/"}>
+            <Link className="animal-category" to={"/animals/amphibians"}>
               <img src={amphibian} alt="Amphibian" className="animal-image"></img>
               <h2 className="animal-category-heading">Amphibians</h2>
             </Link>
-            <Link className="animal-category" to={"/"}>
+            <Link className="animal-category" to={""}>
               <img src={mammal} alt="Mammal" className="animal-image"></img>
               <h2 className="animal-category-heading">Mammals</h2>
             </Link>
