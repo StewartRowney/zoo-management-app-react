@@ -3,12 +3,10 @@ import facebook from "../media/facebook-02.svg";
 import insta from "../media/instagram.svg";
 import twitter from "../media/new-twitter.svg";
 import github from "../media/github.svg";
-import SidebarComponent from './Sidebar';
 
 
 const Home = () => {
     return (
-      <div style={{display:"flex", flexDirection:"row"}}>
         <div className='background'>
           <div className='header'>
           <p className="slogan">
@@ -16,7 +14,7 @@ const Home = () => {
               <br />
               for your Zoos in the UK and World.
             </p>
-            <h1>BUG BUSTERS ZOO</h1>
+            <h1 className='home-h1'>BUG BUSTERS ZOO</h1>
             <button className="button">Click to see our story</button>
           </div>
           <div className="socials">
@@ -29,11 +27,7 @@ const Home = () => {
             <p className="text-wrapper-2">www.bustingbugszoo.com</p>
             <p className="text-wrapper-3">Follow Us For Less!</p>
           </div>
-        </div>
-      <SidebarComponent></SidebarComponent>
-      </div>
-      
-    
+        </div>     
     );
   };
 
