@@ -6,6 +6,7 @@ import Contact from "./pages/ContactPage";
 import NoPage from "./pages/NoPage";
 import Zoos from "./pages/ZoosPage";
 import Animal from "./pages/AnimalPage";
+import Amphibians from './pages/AmphibianPage';
 
 export default function App() {
 
@@ -17,7 +18,11 @@ export default function App() {
       <Route path="contact" element={<Contact />} />
       <Route path="zoos" element={<Zoos />}/>
       <Route path="*" element={<NoPage />} />
-      <Route path="animals" element={<Animal />} />
+      <Route path="animals" element={<Animal />}>
+        
+        </Route>
+        <Route path="animals/amphibians" element={<Amphibians/>} />
+        
   </Routes>
 </BrowserRouter>
 

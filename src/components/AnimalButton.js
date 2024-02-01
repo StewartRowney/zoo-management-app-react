@@ -1,8 +1,10 @@
 import './SafeThemeButton.css';
+import { Link } from 'react-router-dom';
+
 
 const AnimalButton = (props) => {
     return (
-        <button className='safe-button' onClick={props.onClick}> {props.label} </button>
+        <Link className='safe-button' to={props.link} onClick={props.onClick} > {props.label} </Link>
     )
 }
 export default AnimalButton;

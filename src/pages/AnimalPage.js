@@ -12,7 +12,7 @@ const Animal = () => {
       <div className="frame-3-1-20" id="id-31228">
         <div className="rectangle-1-1-112" id="id-15316"></div>
         <div className="amphibians-1-1344" id="id-15318">
-          <AnimalButton label="Amphibians"> Amphibians </AnimalButton>
+          <AnimalButton link= "/animals/amphibians" label="Amphibians"> Amphibians </AnimalButton>
         </div>
         <div className="birds-1-948" id="id-31205">
         <AnimalButton label="Birds"> Birds </AnimalButton>
