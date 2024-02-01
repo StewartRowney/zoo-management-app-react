@@ -35,7 +35,7 @@ html, body{
   width: 40vw;
 }
 
-h1 {
+.home-h1 {
   color: #0B6623;
   font-family: "Jost-SemiBold", Helvetica, sans-serif;
   font-size: 3vw;

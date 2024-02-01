@@ -1,25 +1,24 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/LayoutPage";
-import Home from "./pages/HomePage";
-import Contact from "./pages/ContactPage";
+import {Routes, Route} from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import ContactPage from "./pages/ContactPage";
 import NoPage from "./pages/NoPage";
-import Zoos from "./pages/ZoosPage";
-import Animal from "./pages/AnimalPage";
+import ZoosPage from "./pages/ZoosPage";
+import AnimalPage from "./pages/AnimalPage";
+
 
 export default function App() {
 
   return (
-  
-  <BrowserRouter>
-    <Routes>
-      <Route index element={<Home />} />
-      <Route path="contact" element={<Contact />} />
-      <Route path="zoos" element={<Zoos />}/>
-      <Route path="*" element={<NoPage />} />
-      <Route path="animals" element={<Animal />} />
-  </Routes>
-</BrowserRouter>
-
+ 
+  <div>
+      <Routes>
+        <Route path="/" element={<HomePage />}/>
+        <Route path="contact" element={<ContactPage />} />
+        <Route path="zoos" element={<ZoosPage />}/>
+        <Route path="animals" element={<AnimalPage />}/>
+        <Route path="*" element={<NoPage />} />
+      </Routes>
+  </div>
   );
 }
