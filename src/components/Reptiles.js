@@ -1,7 +1,6 @@
-import SidebarComponent from "../components/Sidebar";
+import "./Animals.css"
 import { useEffect, useState} from "react";
 import Listbox from "../components/Listbox";
-
 
 const ReptilePage = () =>{
 
@@ -16,17 +15,18 @@ const ReptilePage = () =>{
           .catch(error => console.error('Error fetching amphibians:', error));
       }, []);
 
-    return (
-        <div className="page">
-          <h1 className='home-h1'>Reptile</h1>
-          {reptiles.map(reptile => (
-  <Listbox key={reptile.id} title={reptile.name} animal={reptile} />
-
-))}
-          <SidebarComponent/>
+      return(
+        <div className="animal-background">
+            <div className="animal-header">
+                <h1 className="animal-h1">Reptiles</h1>
+            </div>
+            <div className="animal-row">
+                {reptiles.map(reptile => (<Listbox key={reptile.id} title={reptile.name} animal={reptile} />))}
+            </div>
         </div>
-        
       );
-    };
     
+
+}
+
 export default ReptilePage;

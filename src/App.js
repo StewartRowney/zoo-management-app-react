@@ -5,7 +5,7 @@ import ContactPage from "./pages/ContactPage";
 import NoPage from "./pages/NoPage";
 import ZoosPage from "./pages/ZoosPage";
 import AnimalPage from "./pages/AnimalPage";
-import ReptilePage from './pages/Reptile';
+import ReptilePage from './pages/ReptilePage';
 
 
 export default function App() {
