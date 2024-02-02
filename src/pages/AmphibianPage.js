@@ -1,32 +1,14 @@
-import { useEffect, useState} from "react"
-import Listbox from "../components/Listbox";
+import Amphibians from "../components/Amphibians";
+import SidebarComponent from "../components/Sidebar";
+import "./Page.css"
 
-const Amphibians = () => {
-
-    const [amphibians, setAmphibians] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:8080/amphibians')
-          .then(response => response.json())
-          .then(data => {
-            console.log(data);
-            setAmphibians(data)})
-          .catch(error => console.error('Error fetching amphibians:', error));
-      }, []);
-
-      //const boxFields = [];
-
-return(
-<div>
-        <h1>Amphibians</h1>
-        <br/><button>Add Amphibian</button>
-         {amphibians.map(amphibian => (
-  <Listbox key={amphibian.id} title={amphibian.name} animal={amphibian} />
-
-))}
-        
-      </div>
-    );
+const AmphibianPage = () => {
+  return(
+    <div className="page">
+      <Amphibians/>
+      <SidebarComponent/>      
+    </div>
+  );
 }
 
-export default Amphibians;
+export default AmphibianPage;
