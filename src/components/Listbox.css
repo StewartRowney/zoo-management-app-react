@@ -1,0 +1,26 @@
+.box {
+  width: 80%;
+  height: 2vw;
+  background-color: #0a4d5e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: height 0.5s;
+  margin-top: 0.5vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.extended {
+  height: auto; 
+  display: flex;
+  flex-direction: column; 
+}
+
+.extended-content {
+  margin-top: 10px;
+  font-size: large;  padding-left: 10px; /* Add padding to match the main box */
+  color: white;
+}
