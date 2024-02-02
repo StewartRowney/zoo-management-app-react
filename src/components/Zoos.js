@@ -1,6 +1,5 @@
 import { useEffect, useState} from "react"
 import './Zoo.css';
-import SidebarComponent from "./Sidebar";
 
 const Zoos = () => {
     const [zoos, setZoos] = useState([]);
@@ -13,7 +12,7 @@ const Zoos = () => {
     }, []);
   
     return (
-      <div style={{display:"flex", flexDirection:"row"}}>
+      
         <div>
           <h2>Zoos</h2>
           <ul>
@@ -22,8 +21,7 @@ const Zoos = () => {
             ))}
           </ul>
         </div>
-        <SidebarComponent/>
-      </div>
+      
     );
   }
   
