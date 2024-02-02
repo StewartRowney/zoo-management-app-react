@@ -19,9 +19,9 @@ export default function App() {
         <Route path="contact" element={<ContactPage />} />
         <Route path="zoos" element={<ZoosPage />}/>
         <Route path="animals" element={<AnimalPage />}/>
-        <Route path="reptile" element={<ReptilePage />}/>
-        <Route path="*" element={<NoPage />} />
+        <Route path="animals/reptiles" element={<ReptilePage />}/>
         <Route path="animals/amphibians" element={<AmphibianPage/>}/>
+        <Route path="*" element={<NoPage />} />
       </Routes>
   </div>
   );
