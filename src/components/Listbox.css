@@ -1,6 +1,6 @@
 .box {
   width: 80%;
-  height: 50px;
+  height: 2vw;
   background-color: #0a4d5e;
   color: white;
   display: flex;
@@ -8,8 +8,9 @@
   justify-content: center;
   cursor: pointer;
   transition: height 0.5s;
-  padding: 20px;
-  margin-bottom: 20px;
+  margin-top: 0.5vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .extended {
