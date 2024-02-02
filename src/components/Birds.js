@@ -65,7 +65,7 @@ const handleFormSubmit = async (formData) => {
                   />
                 )}
                 <div className="animal-row">
-                    ̥{birds.map(bird => (
+                    {birds.map(bird => (
                         <Listbox key={bird.id} animal={bird} animals={birds} setAnimals={setBirds} animalType={'birds'}/>
                     ))}
                 </div>
