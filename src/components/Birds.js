@@ -12,27 +12,7 @@ const Birds = () => {
         nocturnal: ''
       };
 
-    const handleFormSubmit = (formData) => {
-        fetch('http://localhost:8080/birds', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log('Success:', data);
-              setShowForm(false); 
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
-            console.log('Submitting form for Birds:', formData);
-        };        
-   
-
-    useEffect(() => {
+      useEffect(() => {
         fetch('http://localhost:8080/birds')
             .then(response => response.json())
             .then(data => {
@@ -41,6 +21,35 @@ const Birds = () => {
             })
             .catch(error => console.error('Error fetching birds:', error));
     }, []);
+
+const handleFormSubmit = async (formData) => {
+  try {
+    const response = await fetch('http://localhost:8080/birds', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to submit form: ${response.status} ${response.statusText}`);
+    }
+
+    const updatedDataResponse = await fetch('http://localhost:8080/birds');
+    if (!updatedDataResponse.ok) {
+      throw new Error(`Failed to fetch updated data: ${updatedDataResponse.status} ${updatedDataResponse.statusText}`);
+    }
+
+    const updatedData = await updatedDataResponse.json();
+    setBirds(updatedData); 
+
+    console.log('Form submitted successfully');
+    setShowForm(false); 
+  } catch (error) {
+    console.error('Error submitting form:', error);
+  }
+};  
 
     return (      
             <div className="animal-background">
@@ -65,5 +74,6 @@ const Birds = () => {
             </div>
     );
 
-};                 
+};       
+
 export default Birds; 

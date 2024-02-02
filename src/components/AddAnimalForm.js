@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import ZooDropdown from './ZooDropdown';
 
+
 const AddAnimalForm = ({ animalType, onSubmit, specificFields }) => {
+
+
+
   const [formData, setFormData] = useState({
+    zoo: {
+        id: '', 
+      },
     name: '',
     speciesName: '',
     birthDate: '',
@@ -11,10 +18,14 @@ const AddAnimalForm = ({ animalType, onSubmit, specificFields }) => {
     foodType: '',
     extraInformation: '',
     ...specificFields,
-    zoo: {
-        id: '', 
-      },
   });
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    const isValid = formData.name !== '' && formData.zoo.id !== '';
+    setIsFormValid(isValid);
+  }, [formData]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +38,9 @@ const AddAnimalForm = ({ animalType, onSubmit, specificFields }) => {
   const handleSubmit = () => {
     onSubmit(formData);
     setFormData({
+        zoo: {
+            id: '', 
+          },
         name: '',
         speciesName: '',
         birthDate: '',
@@ -35,20 +49,27 @@ const AddAnimalForm = ({ animalType, onSubmit, specificFields }) => {
         foodType: '',
         extraInformation: '',
         ...specificFields,
-        zoo: {
-            id: '', 
-          },
     });
   };
 
   const handleZooChange = (selectedZooId) => {
     setFormData((prevData) => ({
+        ...prevData,
       zoo: {
-        id: selectedZooId,
         ...prevData.zoo,
+        id: selectedZooId,
       },
     }));
   };
+
+  const capitalizeFirstLetter = (string) => {
+    const spacedString = string.replace(/([a-z])([A-Z])/g, '$1 $2');
+  
+    const titleCaseString = spacedString.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  
+    return titleCaseString;
+  };
+
 
   return (
     <div className="form-modal">
@@ -77,19 +98,18 @@ const AddAnimalForm = ({ animalType, onSubmit, specificFields }) => {
 
         {Object.keys(specificFields).map((fieldName) => (
           <div key={fieldName}>
-            <label>{fieldName}:</label>
-            <input
-              type="text"
-              name={fieldName}
-              value={formData[fieldName]}
-              onChange={handleInputChange}
-            />
+            <label>{capitalizeFirstLetter(fieldName)}:</label>
+                <select name={fieldName} value={formData[fieldName]} onChange={handleInputChange}>
+                <option value="">Select...</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+                </select>
           </div>
         ))}
         
         <ZooDropdown selectedZoo={formData.zoo.id} onZooChange={handleZooChange} />
 
-        <button type="button" onClick={handleSubmit}>
+        <button type="submit" disabled={!isFormValid} onClick={handleSubmit}>
           Submit
         </button>
       </form>
