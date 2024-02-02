@@ -1,10 +1,4 @@
-* { padding: 0; margin: 0; }
-html, body{
-    height: 100%;
-    background: #E1FAE8;
-    min-width: 400px;
-    min-height: 250px;
-}
+
 
 .background {
   display: block;
@@ -45,7 +39,7 @@ html, body{
   width: 40vw;
 }
 
-.button {
+.home-button {
   position: absolute;
   color: #FFFFFF;
   background-color: #0B6623;
