@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const ZooFormComponentSimple = () => {
+const ZooFormComponentSimple = ({onSubmit}) => {
 
     const [inputs, setInputs] = useState({
         name: '',
@@ -33,6 +33,7 @@ const ZooFormComponentSimple = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        onSubmit(inputs)
         setInputs({
             name: '',
             location: '',
