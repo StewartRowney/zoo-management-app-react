@@ -39,6 +39,14 @@ const AddZooForm = () => {
     }
   }, [formState, submittedData, reset]);
 
+  useEffect(() => {
+    setError("zooName", {
+      types: {
+        required: "This is required",
+      },
+    })
+  }, [setError])
+
   console.log("isSubmitSuccessful", isSubmitSuccessful);
 
     return (
@@ -46,8 +54,10 @@ const AddZooForm = () => {
             <div>
                 <label>Name of Zoo</label>
                 <br></br>
-                <input type="text" placeholder="e.g. Cheshire Zoo" {...register("zooName", { required: "Zoo name is a required field" })} />
-                <p>{errors.zooName?.}</p>
+                <input type="text" placeholder="e.g. Cheshire Zoo" {...register("zooName")} />
+                {errors.zooName && errors.zooName.types && (
+        <p>{errors.zooName.types.required}</p>
+      )}
             </div>
             <div>
                 <br></br>
