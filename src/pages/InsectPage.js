@@ -1,28 +1,14 @@
-import { useEffect, useState } from "react";
-import Listbox from "../components/Listbox";
+import Insects from "../components/Insects"; 
+import SidebarComponent from "../components/Sidebar";
+import "./Page.css";
 
-const Insects = () => {
-  const [insects, setInsects] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:8080/insects')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setInsects(data);
-      })
-      .catch(error => console.error('Error fetching insects:', error));
-  }, []);
-
+const InsectsPage = () => { 
   return (
-    <div>
-      <h1>Insects</h1>
-      <br/><button>Add Insect</button>
-      {insects.map(insect => (
-        <Listbox key={insect.id} title={insect.name} animal={insect} />
-      ))}
+    <div className="page">
+      <Insects /> 
+      <SidebarComponent />
     </div>
   );
 }
 
-export default Insects;
+export default InsectsPage; 

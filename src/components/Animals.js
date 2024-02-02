@@ -19,7 +19,7 @@ const Animals = () => {
               <img src={amphibian} alt="Amphibian" className="animal-image"></img>
               <h2 className="animal-category-heading">Amphibians</h2>
             </Link>
-            <Link className="animal-category" to={""}>
+            <Link className="animal-category" to={"/animals/mammals"}>
               <img src={mammal} alt="Mammal" className="animal-image"></img>
               <h2 className="animal-category-heading">Mammals</h2>
             </Link>
@@ -29,15 +29,15 @@ const Animals = () => {
             </Link>
         </div>
         <div className="animal-row">
-            <Link className="animal-category" to={"/"}>
+            <Link className="animal-category" to={"/animals/birds"}>
               <img src={bird} alt="Bird" className="animal-image"></img>
               <h2 className="animal-category-heading">Birds</h2>
             </Link>
-            <Link className="animal-category" to={"/"}>
+            <Link className="animal-category" to={"/animals/insects"}>
               <img src={insect} alt="Insect" className="animal-image"></img>
               <h2 className="animal-category-heading">Insects</h2>
             </Link>
-            <Link className="animal-category" to={"/"}>
+            <Link className="animal-category" to={"/animals/fishes"}>
               <img src={fish} alt="Fish" className="animal-image"></img>
               <h2 className="animal-category-heading">Fish</h2>
             </Link>
