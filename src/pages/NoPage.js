@@ -1,5 +1,14 @@
+import NoPageComponent from "../components/NoPageComponent";
+import SidebarComponent from "../components/Sidebar";
+import "./Page.css"
+
 const NoPage = () => {
-    return <h1>You've fucked up, go back!</h1>;
+  return (
+    <div className='page'>
+      <NoPageComponent/>
+      <SidebarComponent/>
+    </div>
+  )
   };
   
   export default NoPage;
