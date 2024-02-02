@@ -21,7 +21,7 @@ const Mammals = () => {
       </div>
       <div className="animal-row">
         {mammals.map(mammal => (
-          <Listbox key={mammal.id} title={mammal.name} animal={mammal} />
+          <Listbox key={mammal.id} animal={mammal} animals={mammals} setAnimals={setMammals} animalType={'mammals'}/>
         ))}
       </div>
     </div>

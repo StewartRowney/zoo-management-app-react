@@ -23,7 +23,7 @@ const Animals = () => {
               <img src={mammal} alt="Mammal" className="animal-image"></img>
               <h2 className="animal-category-heading">Mammals</h2>
             </Link>
-            <Link className="animal-category" to={"/"}>
+            <Link className="animal-category" to={"/animals/reptiles"}>
               <img src={reptile} alt="Reptile" className="animal-image"></img>
               <h2 className="animal-category-heading">Reptiles</h2>
             </Link>

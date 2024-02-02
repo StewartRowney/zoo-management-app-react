@@ -21,7 +21,7 @@ const Amphibians = () => {
             <h1 className="animal-h1">Amphibians</h1>
         </div>
         <div className="animal-row">
-            {amphibians.map(amphibian => (<Listbox key={amphibian.id} animal={amphibian} animals={amphibians} setAnimals={setAmphibians} animalType='amphibian'/>))}
+            {amphibians.map(amphibian => (<Listbox key={amphibian.id} animal={amphibian} animals={amphibians} setAnimals={setAmphibians} animalType='amphibians'/>))}
         </div>
     </div>
   );

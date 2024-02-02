@@ -21,7 +21,8 @@ const Reptiles = () =>{
                 <h1 className="animal-h1">Reptiles</h1>
             </div>
             <div className="animal-row">
-                {reptiles.map(reptile => (<Listbox key={reptile.id} title={reptile.name} animal={reptile} />))}
+                {reptiles.map(reptile => (
+                  <Listbox key={reptile.id}  animal={reptile} animals={reptiles} setAnimals={setReptiles} animalType={'reptiles'}/>))}
             </div>
         </div>
       );
