@@ -2,12 +2,12 @@ import "./Animals.css"
 import { useEffect, useState} from "react";
 import Listbox from "../components/Listbox";
 
-const ReptilePage = () =>{
+const Reptiles = () =>{
 
     const [reptiles, setReptiles] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/reptile')
+        fetch('http://localhost:8080/reptiles')
           .then(response => response.json())
           .then(data => {
             console.log(data);
@@ -29,4 +29,4 @@ const ReptilePage = () =>{
 
 }
 
-export default ReptilePage;
+export default Reptiles;
