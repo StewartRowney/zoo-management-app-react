@@ -15,11 +15,11 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
   };
 
   const deleteItem = () => {
-    fetch('http://localhost:8080/' + animalType + 's/' + animal.id, {method: 'DELETE'})
+    fetch('http://localhost:8080/' + animalType + '/' + animal.id, {method: 'DELETE'})
         .then(() => {
           console.log(animal.name + " deleted");
           setAnimals(animals.filter(item => item !== animal));})
-        .catch(error => console.error('Error deleting ' + animalType + ':', error));
+        .catch(error => console.error('Error deleting ' + animal.name + ':', error));
   };
 
   const updateItem = () => {

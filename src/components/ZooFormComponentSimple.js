@@ -1,8 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ZooFormComponentSimple = () => {
 
-    const [inputs, setInputs] = useState({})
+    const [inputs, setInputs] = useState({
+        name: '',
+        location: '',
+        description: '',
+        capacity: '',
+        price: '',
+        dateOpened: '',
+      });
+
+      const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    const isValid = 
+    inputs.name !== ''
+    && inputs.location !== ''
+    && inputs.description !== ''
+    && inputs.capacity !== ''
+    && inputs.price !== ''
+    && inputs.dateOpened !== '';
+    
+    setIsFormValid(isValid);
+  }, [inputs]);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -12,11 +33,19 @@ const ZooFormComponentSimple = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setInputs({
+            name: '',
+            location: '',
+            description: '',
+            capacity: '',
+            price: '',
+            dateOpened: '',
+          });
         alert("Zoo submitted");
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form>
             <div>
             <label>Enter the name of you Zoo:
                 <br></br>
@@ -92,7 +121,9 @@ const ZooFormComponentSimple = () => {
             </label>
             </div>
             <br></br>
-            <input type="submit" />
+            <button type="submit" disabled={!isFormValid} onClick={handleSubmit}>
+          Submit
+        </button>
         </form>
     )
 
