@@ -19,6 +19,7 @@ const Amphibians = () => {
 return(
 <div>
         <h1>Amphibians</h1>
+        <br/><button>Add Amphibian</button>
          {amphibians.map(amphibian => (
   <Listbox key={amphibian.id} title={amphibian.name} animal={amphibian} />
 
