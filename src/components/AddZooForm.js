@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const AddZooForm = () => {
 
-    const { control, register, handleSubmit, reset, formState, formState: { errors, isSubmitSuccessful } } 
+    const { control, register, handleSubmit, reset, setError, formState, formState: { errors, isSubmitSuccessful } } 
     = useForm({ defaultValues: { 
         zooName: "",
         location: "",
@@ -47,6 +47,7 @@ const AddZooForm = () => {
                 <label>Name of Zoo</label>
                 <br></br>
                 <input type="text" placeholder="e.g. Cheshire Zoo" {...register("zooName", { required: "Zoo name is a required field" })} />
+                <p>{errors.zooName?.}</p>
             </div>
             <div>
                 <br></br>
@@ -65,7 +66,15 @@ const AddZooForm = () => {
                 <br></br>
                 <label>Average ticket price</label>
                 <br></br>
-                <input type="number" placeholder="e.g. 12.21" {...register("ticketPrice", { required: "Average Ticket Price is a required field" })} />
+                <input type="number" placeholder="e.g. 12.21" {...register("ticketPrice", { 
+                    required: "Average Ticket Price is a required field",
+                    pattern: {
+                        value: /^\d+(,\d{1,2})?$/,
+                        message: "invalid price format"
+                      }
+                    })} />
+
+
                 {/* <Controller
                     control={control}
                     name="price"
