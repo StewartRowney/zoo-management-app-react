@@ -13,6 +13,7 @@ const AddZooForm = () => {
         location: "",
         visitorCapacity: "",
         ticketPrice: "",
+        startDate: ""
     } });
 
     const [cleared, setCleared] = useState(false);
@@ -27,7 +28,6 @@ const AddZooForm = () => {
             const timeout = setTimeout(() => {
                 setCleared(false);
             }, 1500);
-
             return () => clearTimeout(timeout);
         }
         return () => { };
@@ -116,7 +116,7 @@ const AddZooForm = () => {
                     render={({ field }) =>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker
-                                label="Basic date picker"
+                                label="Date Zoo Opened"
                                 slotProps={{
                                     field: { clearable: true, onClear: () => setCleared(true) },
                                 }} />
@@ -131,7 +131,7 @@ const AddZooForm = () => {
             <div>
                 <br></br>
                 <input type="Submit" />
-      <input type="reset" value="Reset Form" />
+                <input type="reset" value="Reset Form" />
             </div>
         </form>
     );

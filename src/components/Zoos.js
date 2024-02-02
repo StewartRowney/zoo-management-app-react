@@ -1,5 +1,6 @@
 import { useEffect, useState} from "react"
 import './Zoo.css';
+import './Animals.css';
 
 const Zoos = () => {
     const [zoos, setZoos] = useState([]);
@@ -13,7 +14,7 @@ const Zoos = () => {
   
     return (
       
-        <div>
+        <div className="animal-background">
           <h2>Zoos</h2>
           <ul>
             {zoos.map(zoo => (
