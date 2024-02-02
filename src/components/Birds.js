@@ -57,17 +57,16 @@ const handleFormSubmit = async (formData) => {
                     <h1 className="animal-h1">Birds</h1>
                 </div>
                 <button onClick={() => setShowForm(true)}>Add Bird</button>
-
-      {showForm && (
-        <AddAnimalForm
-          animalType="Birds"
-          specificFields={birdSpecificFields}
-          onSubmit={handleFormSubmit}
-        />
-      )}
+                {showForm && (
+                  <AddAnimalForm
+                    animalType="Birds"
+                    specificFields={birdSpecificFields}
+                    onSubmit={handleFormSubmit}
+                  />
+                )}
                 <div className="animal-row">
-                          {birds.map(bird => (
-                        <Listbox key={bird.id} title={bird.name} animal={bird} />
+                    ̥{birds.map(bird => (
+                        <Listbox key={bird.id} animal={bird} animals={birds} setAnimals={setBirds} animalType={'birds'}/>
                     ))}
                 </div>
 
