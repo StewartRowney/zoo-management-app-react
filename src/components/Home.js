@@ -15,7 +15,7 @@ const Home = () => {
               for your Zoos in the UK and World.
             </p>
             <h1 className='home-h1'>BUG BUSTERS ZOO</h1>
-            <button className="button">Click to see our story</button>
+            <button className="home-button">Click to see our story</button>
           </div>
           <div className="socials">
             <div>
