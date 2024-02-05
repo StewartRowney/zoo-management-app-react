@@ -2,12 +2,14 @@ import "./Animals.css"
 import { useEffect, useState} from "react";
 import Listbox from "../components/Listbox";
 import AddAnimalForm from "./AddAnimalForm";
+import getAllItems from "../apis/getApis";
 
 
 const Reptiles = () =>{
 
     const [reptiles, setReptiles] = useState([]);
     const [showForm, setShowForm] = useState(false);
+    const animalType = 'reptiles';
 
     const reptileSpecificFields = {
       hasShell: '',
@@ -16,42 +18,8 @@ const Reptiles = () =>{
     };
 
     useEffect(() => {
-        fetch('http://localhost:8080/reptiles')
-          .then(response => response.json())
-          .then(data => {
-            console.log(data);
-            setReptiles(data)})
-          .catch(error => console.error('Error fetching reptiles:', error));
+        getAllItems(animalType, setReptiles)
       }, []);
-
-      const handleFormSubmit = async (formData) => {
-        try {
-          const response = await fetch('http://localhost:8080/reptiles', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-          });
-      
-          if (!response.ok) {
-            throw new Error(`Failed to submit form: ${response.status} ${response.statusText}`);
-          }
-      
-          const updatedDataResponse = await fetch('http://localhost:8080/reptiles');
-          if (!updatedDataResponse.ok) {
-            throw new Error(`Failed to fetch updated data: ${updatedDataResponse.status} ${updatedDataResponse.statusText}`);
-          }
-      
-          const updatedData = await updatedDataResponse.json();
-          setReptiles(updatedData); 
-      
-          console.log('Form submitted successfully');
-          setShowForm(false); 
-        } catch (error) {
-          console.error('Error submitting form:', error);
-        }
-      };
 
       return(
         <div className="animal-background">
@@ -62,15 +30,16 @@ const Reptiles = () =>{
             <button onClick={() => setShowForm(true)}>Add Reptile</button>
                 {showForm && (
                   <AddAnimalForm
-                    animalType="Reptiles"
+                    animalType={animalType}
                     specificFields={reptileSpecificFields}
-                    onSubmit={handleFormSubmit}
+                    animals={reptiles}
+                    setAnimals={setReptiles}
                   />
                 )}
                 
             <div className="animal-row">
                 {reptiles.map(reptile => (
-                  <Listbox key={reptile.id}  animal={reptile} animals={reptiles} setAnimals={setReptiles} animalType={'reptiles'}/>))}
+                  <Listbox key={reptile.id}  animal={reptile} animals={reptiles} setAnimals={setReptiles} animalType={animalType}/>))}
             </div>
         </div>
       );
