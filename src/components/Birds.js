@@ -8,18 +8,18 @@ const Birds = () => {
     const [showForm, setShowForm] = useState(false);
 
     const birdSpecificFields = {
-        canMimicSound: '',
-        nocturnal: ''
-      };
+      canMimicSound: '',
+      nocturnal: ''
+    };
 
-      useEffect(() => {
-        fetch('http://localhost:8080/birds')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                setBirds(data);
-            })
-            .catch(error => console.error('Error fetching birds:', error));
+    useEffect(() => {
+      fetch('http://localhost:8080/birds')
+          .then(response => response.json())
+          .then(data => {
+              console.log(data);
+              setBirds(data);
+          })
+          .catch(error => console.error('Error fetching birds:', error));
     }, []);
 
 const handleFormSubmit = async (formData) => {
