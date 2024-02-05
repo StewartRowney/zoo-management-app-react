@@ -2,26 +2,23 @@ import { useEffect, useState} from "react"
 import Listbox from "../components/Listbox";
 import "./Animals.css";
 import AddAnimalForm from "./AddAnimalForm";
+import getAllItems from "../apis/getApis";
 
 
 const Amphibians = () => {
   const [amphibians, setAmphibians] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const animalType='amphibians'
 
   const amphibiansSpecificFields = {
-    isPoisonous: '',
-    makesNoise: ''
+    makesNoise:'',
+    isPoisonous:'' 
   };
 
-  useEffect(() => {
-      fetch('http://localhost:8080/amphibians')
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          setAmphibians(data)})
-        .catch(error => console.error('Error fetching amphibians:', error));
-    }, []);
 
+  useEffect(() => {
+    getAllItems(animalType, setAmphibians)
+  }, []);
 
   return(
     <div className="animal-background">
@@ -32,7 +29,7 @@ const Amphibians = () => {
         <button onClick={() => setShowForm(true)}>Add Amphibian</button>
                 {showForm && (
                   <AddAnimalForm
-                    animalType="amphibians"
+                    animalType={animalType}
                     specificFields={amphibiansSpecificFields}
                     animals={amphibians}
                     setAnimals={setAmphibians}
