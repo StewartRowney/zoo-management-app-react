@@ -7,15 +7,15 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
 
   const [formData, setFormData] = useState({
     zoo: {
-        id: '', 
+        id:'', 
       },
-    name: '',
-    speciesName: '',
-    birthDate: '',
-    habitat: '',
-    behaviour: '',
-    foodType: '',
-    extraInformation: '',
+    name:'',
+    speciesName:'',
+    birthDate:'',
+    habitat:'',
+    behaviour:'',
+    foodType:'',
+    extraInformation:'',
     ...specificFields,
   });
 
@@ -30,7 +30,7 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]:value,
     }));
   };
 
@@ -38,15 +38,15 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
     addItem(animalType, animals, formData, setAnimals)
     setFormData({
         zoo: {
-            id: '', 
+            id:'', 
           },
-        name: '',
-        speciesName: '',
-        birthDate: '',
-        habitat: '',
-        behaviour: '',
-        foodType: '',
-        extraInformation: '',
+        name:'',
+        speciesName:'',
+        birthDate:'',
+        habitat:'',
+        behaviour:'',
+        foodType:'',
+        extraInformation:'',
         ...specificFields,
     });
   };
@@ -98,11 +98,12 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
         {Object.keys(specificFields).map((fieldName) => (
           <div key={fieldName}>
             <label>{capitalizeFirstLetter(fieldName)}:</label>
-                <select name={fieldName} value={formData[fieldName]} onChange={handleInputChange}>
-                <option value="">Select...</option>
-                <option value="true">True</option>
-                <option value="false">False</option>
-                </select>
+            <input
+  type="checkbox"
+  name={fieldName}
+  checked={formData[fieldName] || false}  // Use formData[fieldName] or false
+  onChange={(e) => handleInputChange({ target: { name: fieldName, value: e.target.checked } })}
+/>
           </div>
         ))}
         
