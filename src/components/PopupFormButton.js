@@ -6,7 +6,7 @@ import './PopupFormButton.css'
 const PopupFormButton = ({popupBtnMessage, handleFormSubmit}) => {
 
     return (
-        <Popup trigger={<button> {popupBtnMessage} </button>}
+        <Popup trigger={<button className="button"> {popupBtnMessage} </button>}
             modal
             nested
             position='right center' >
