@@ -13,35 +13,6 @@ const Amphibians = () => {
     makesNoise: ''
   };
 
-  const handleFormSubmit = async (formData) => {
-    try {
-      const response = await fetch('http://localhost:8080/amphibians', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Failed to submit form: ${response.status} ${response.statusText}`);
-      }
-  
-      const updatedDataResponse = await fetch('http://localhost:8080/amphibians');
-      if (!updatedDataResponse.ok) {
-        throw new Error(`Failed to fetch updated data: ${updatedDataResponse.status} ${updatedDataResponse.statusText}`);
-      }
-  
-      const updatedData = await updatedDataResponse.json();
-      setAmphibians(updatedData); 
-  
-      console.log('Form submitted successfully');
-      setShowForm(false); 
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    }
-  };  
-
   useEffect(() => {
       fetch('http://localhost:8080/amphibians')
         .then(response => response.json())
@@ -61,9 +32,10 @@ const Amphibians = () => {
         <button onClick={() => setShowForm(true)}>Add Amphibian</button>
                 {showForm && (
                   <AddAnimalForm
-                    animalType="Amphibians"
+                    animalType="amphibians"
                     specificFields={amphibiansSpecificFields}
-                    onSubmit={handleFormSubmit}
+                    animals={amphibians}
+                    setAnimals={setAmphibians}
                   />
                 )}
 
