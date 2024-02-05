@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Listbox.css";
+import deleteItem from "../apis/deleteApi";
 import ZooFormComponentSimpleUpdate from "./ZooFormComponentSimpleUpdate";
 import Popup from "reactjs-popup";
 import { handleFormSubmit } from './Zoos';
@@ -18,32 +19,19 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
     return titleCaseString;
   };
 
-  const deleteItem = () => {
-    fetch('http://localhost:8080/' + animalType + '/' + animal.id, { method: 'DELETE' })
-      .then(() => {
-        console.log(animal.name + " deleted");
-        setAnimals(animals.filter(item => item !== animal));
-      })
-      .catch(error => console.error('Error deleting ' + animal.name + ':', error));
+  const deleteAnimal = () => {
+    deleteItem(animalType, animals, animal, setAnimals)
   };
 
   const updateItem = () => {
-
-
-    //show popup
-    //pre-populate the fields with appropiate data
-    //save button becomes update button 
-
-
-
-
+    console.log("updated");
   };
 
   return (
     <div className={`box ${isExtended ? 'extended' : ''}`} onClick={toggleBox}>
       <h5 className="listbox-title">{animal.name}</h5>
       {isExtended && (
-        <div className="extended-content">
+        <div className="extended-content"> 
           {Object.entries(animal)
             .filter(([key]) => key !== 'id')
             .filter(([key]) => key !== 'zoo')
@@ -52,7 +40,7 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
             ))}
 
           <PopupFormButton
-            popupBtnMessage = {"Update Zoo"} 
+            popupBtnMessage = {"Update Zoo"}
             >
           </PopupFormButton>
           <button onClick={deleteItem}>Delete</button>
