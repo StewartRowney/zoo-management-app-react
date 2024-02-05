@@ -2,25 +2,21 @@ import { useEffect, useState } from "react";
 import Listbox from "../components/Listbox";
 import "./Animals.css"
 import AddAnimalForm from "./AddAnimalForm";
+import getAllItems from "../apis/getApis";
 
 const Birds = () => {
     const [birds, setBirds] = useState([]);
     const [showForm, setShowForm] = useState(false);
+    const animalType = 'birds'
 
     const birdSpecificFields = {
       canMimicSound: '',
       nocturnal: ''
     };
 
-      useEffect(() => {
-        fetch('http://localhost:8080/birds')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                setBirds(data);
-            })
-            .catch(error => console.error('Error fetching birds:', error));
-    }, []); //check this
+    useEffect(() => {
+      getAllItems(animalType, setBirds)
+    }, []);
     
     return (      
             <div className="animal-background">
@@ -30,7 +26,7 @@ const Birds = () => {
                 <button onClick={() => setShowForm(true)}>Add Bird</button>
                 {showForm && (
                   <AddAnimalForm
-                    animalType="birds"
+                    animalType={animalType}
                     specificFields={birdSpecificFields}
                     animals={birds}
                     setAnimals={setBirds}
