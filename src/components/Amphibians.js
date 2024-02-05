@@ -11,8 +11,8 @@ const Amphibians = () => {
   const animalType='amphibians'
 
   const amphibiansSpecificFields = {
-    makesNoise:'',
-    isPoisonous:'' 
+    isPoisonous:'',
+    makesNoise: '' 
   };
 
 

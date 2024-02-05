@@ -2,7 +2,7 @@ const addItem = (type, collection, item, setCollection) => {
     const response = fetch('http://localhost:8080/' + type, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type':'application/json',
         },
         body: JSON.stringify(item),
       })
