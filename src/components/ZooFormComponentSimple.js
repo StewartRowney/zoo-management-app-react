@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const ZooFormComponentSimple = ({onSubmit}) => {
+const ZooFormComponentSimple = (onSubmit) => {
 
     const [inputs, setInputs] = useState({
         name: '',
@@ -11,7 +11,7 @@ const ZooFormComponentSimple = ({onSubmit}) => {
         dateOpened: '',
       });
 
-      const [isFormValid, setIsFormValid] = useState(false);
+    const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     const isValid = 
@@ -34,10 +34,6 @@ const ZooFormComponentSimple = ({onSubmit}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         onSubmit(inputs)
-
-        setTimeout(() => {
-        alert("Zoo submitted");
-        }, 2000);
 
         setInputs({
             name: '',

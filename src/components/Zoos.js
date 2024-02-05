@@ -2,9 +2,7 @@ import { useEffect, useState } from "react"
 import './Zoo.css';
 import './Animals.css';
 import Listbox from "./Listbox";
-import ZooFormComponentSimple from "./ZooFormComponentSimple";
-import Popup from "reactjs-popup";
-import 'reactjs-popup/dist/index.css';
+import PopupFormButton from "./PopupFormButton";
 
 const Zoos = () => {
   const [zoos, setZoos] = useState([]);
@@ -48,6 +46,7 @@ const Zoos = () => {
       console.error('Error submitting form:', error);
     }
   };
+  
 
   return (
 
@@ -55,48 +54,18 @@ const Zoos = () => {
       <div className="animal-header">
         <h1 className="animal-h1">Zoos</h1>
       </div>
-
-
       <div className="zoo-row">
         {zoos.map(zoo => (
           <Listbox key={zoo.id} animal={zoo} animals={zoos} setAnimals={setZoos} animalType={'zoos'} />
         ))}
       </div>
-
-      <Popup trigger={<button> Click to add a zoo </button>}
-        modal
-        nested
-        position='right center' >
-
-        {close => (
-          <div className="modal">
-            <button className="close" onClick={close}>
-              &times;
-            </button>
-
-            <ZooFormComponentSimple
-              animalType="zoos"
-              onSubmit={handleFormSubmit}
-            />
-
-            <button
-              className="button"
-              onClick={() => {
-                console.log('modal closed ');
-                close();
-              }}
-            >
-              Cancel
-            </button>
-
-          </div>
-        )}
-      </Popup >
-
+      <br></br>
+      <PopupFormButton
+        popupBtnMessage = {"Add Zoo"}
+        handleFormSubmit = {handleFormSubmit}
+        >
+        </PopupFormButton>
     </div>
-
-
-
   );
 }
 
