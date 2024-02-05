@@ -12,45 +12,16 @@ const Birds = () => {
       nocturnal: ''
     };
 
-    useEffect(() => {
-      fetch('http://localhost:8080/birds')
-          .then(response => response.json())
-          .then(data => {
-              console.log(data);
-              setBirds(data);
-          })
-          .catch(error => console.error('Error fetching birds:', error));
-    }, []);
-
-const handleFormSubmit = async (formData) => {
-  try {
-    const response = await fetch('http://localhost:8080/birds', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to submit form: ${response.status} ${response.statusText}`);
-    }
-
-    const updatedDataResponse = await fetch('http://localhost:8080/birds');
-    if (!updatedDataResponse.ok) {
-      throw new Error(`Failed to fetch updated data: ${updatedDataResponse.status} ${updatedDataResponse.statusText}`);
-    }
-
-    const updatedData = await updatedDataResponse.json();
-    setBirds(updatedData); 
-
-    console.log('Form submitted successfully');
-    setShowForm(false); 
-  } catch (error) {
-    console.error('Error submitting form:', error);
-  }
-};  
-
+      useEffect(() => {
+        fetch('http://localhost:8080/birds')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setBirds(data);
+            })
+            .catch(error => console.error('Error fetching birds:', error));
+    }, []); //check this
+    
     return (      
             <div className="animal-background">
                 <div className="animal-header">
@@ -59,9 +30,10 @@ const handleFormSubmit = async (formData) => {
                 <button onClick={() => setShowForm(true)}>Add Bird</button>
                 {showForm && (
                   <AddAnimalForm
-                    animalType="Birds"
+                    animalType="birds"
                     specificFields={birdSpecificFields}
-                    onSubmit={handleFormSubmit}
+                    animals={birds}
+                    setAnimals={setBirds}
                   />
                 )}
                 <div className="animal-row">

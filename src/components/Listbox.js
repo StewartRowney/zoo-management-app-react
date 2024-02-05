@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Listbox.css";
+import deleteItem from "../apis/deleteApi";
 
 const Listbox = ({ animal, animals, setAnimals, animalType }) => {
   const [isExtended, setIsExtended] = useState(false);
@@ -14,12 +15,8 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
     return titleCaseString;
   };
 
-  const deleteItem = () => {
-    fetch('http://localhost:8080/' + animalType + '/' + animal.id, {method: 'DELETE'})
-        .then(() => {
-          console.log(animal.name + " deleted");
-          setAnimals(animals.filter(item => item !== animal));})
-        .catch(error => console.error('Error deleting ' + animal.name + ':', error));
+  const deleteAnimal = () => {
+    deleteItem(animalType, animals, animal, setAnimals)
   };
 
   const updateItem = () => {
@@ -39,7 +36,7 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
           ))}
           <div className="buttons">
             <button className="button" onClick={updateItem}>Update</button>
-            <button className="button" onClick={deleteItem}>Delete</button>
+            <button className="button" onClick={deleteAnimal}>Delete</button>
           </div>
         </div>
       )}

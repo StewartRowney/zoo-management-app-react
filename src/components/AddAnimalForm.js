@@ -1,8 +1,9 @@
 import React, { useState , useEffect} from 'react';
 import ZooDropdown from './ZooDropdown';
+import addItem from '../apis/addApis';
 
 
-const AddAnimalForm = ({ animalType, onSubmit, specificFields }) => {
+const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
 
 
 
@@ -35,8 +36,10 @@ const AddAnimalForm = ({ animalType, onSubmit, specificFields }) => {
     }));
   };
 
+
+
   const handleSubmit = () => {
-    onSubmit(formData);
+      addItem(animalType, animals, formData, setAnimals)
     setFormData({
         zoo: {
             id: '', 
