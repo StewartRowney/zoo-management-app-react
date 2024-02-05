@@ -3,6 +3,7 @@ import facebook from "../media/facebook-02.svg";
 import insta from "../media/instagram.svg";
 import twitter from "../media/new-twitter.svg";
 import github from "../media/github.svg";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
@@ -15,7 +16,9 @@ const Home = () => {
               for your Zoos in the UK and World.
             </p>
             <h1 className='home-h1'>BUG BUSTERS ZOO</h1>
+            <Link to={"/ourstory"}>
             <button className="home-button">Click to see our story</button>
+            </Link>
           </div>
           <div className="socials">
             <div>
