@@ -23,7 +23,7 @@ const Insects = () => {
       <div className="animal-header">
         <h1 className="animal-h1">Insects</h1>
       </div>
-      <button onClick={() => setShowForm(true)}>Add Bird</button>
+      <button onClick={() => setShowForm(true)}>Add Insects</button>
           {showForm && (
             <AddAnimalForm
               animalType={animalType}

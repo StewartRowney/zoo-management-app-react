@@ -56,7 +56,7 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
         ...prevData,
       zoo: {
         ...prevData.zoo,
-        id: selectedZooId,
+        id:selectedZooId,
       },
     }));
   };
@@ -96,16 +96,25 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
         <input type="text" name="extraInformation" value={formData.extraInformation} onChange={handleInputChange} />
 
         {Object.keys(specificFields).map((fieldName) => (
-          <div key={fieldName}>
-            <label>{capitalizeFirstLetter(fieldName)}:</label>
-            <input
-  type="checkbox"
-  name={fieldName}
-  checked={formData[fieldName] || false}  // Use formData[fieldName] or false
-  onChange={(e) => handleInputChange({ target: { name: fieldName, value: e.target.checked } })}
-/>
-          </div>
-        ))}
+  <div key={fieldName}>
+    {fieldName === 'numberOfLegs' ? (
+      <>
+        <label>{capitalizeFirstLetter(fieldName)}:</label>
+        <input type="text" name={fieldName} value={formData[fieldName]} onChange={handleInputChange} />
+      </>
+    ) : (
+      <>
+        <label>{capitalizeFirstLetter(fieldName)}:</label>
+        <input
+          type="checkbox"
+          name={fieldName}
+          checked={formData[fieldName]}
+          onChange={(e) => handleInputChange({ target: { name: fieldName, value: e.target.checked } })}
+        />
+      </>
+    )}
+  </div>
+))}
         
         <ZooDropdown selectedZoo={formData.zoo.id} onZooChange={handleZooChange} />
 
