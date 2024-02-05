@@ -11,11 +11,7 @@ const addItem = (type, collection, item, setCollection) => {
               console.log('Successfully added ' + data.name);
               setCollection(...collection, data);
           })
-          .catch(error => console.error('Error adding: ' + type + '  ', error));
-  
-      if (!response.ok) {
-        throw new Error(`Failed to submit form: ${response.status} ${response.statusText}`);
-      }
+      .catch(error => console.error('Error adding: ' + type + '  ', error));
   };
 
   export default addItem;

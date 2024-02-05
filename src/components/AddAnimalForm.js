@@ -5,8 +5,6 @@ import addItem from '../apis/addApis';
 
 const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
 
-
-
   const [formData, setFormData] = useState({
     zoo: {
         id: '', 
@@ -36,10 +34,8 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
     }));
   };
 
-
-
   const handleSubmit = () => {
-      addItem(animalType, animals, formData, setAnimals)
+    addItem(animalType, animals, formData, setAnimals)
     setFormData({
         zoo: {
             id: '', 
@@ -85,7 +81,7 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
         <input type="text" name="speciesName" value={formData.speciesName} onChange={handleInputChange} />
 
         <label>Birth Date:</label>
-        <input type="text" name="birthDate" value={formData.birthDate} onChange={handleInputChange} />
+        <input type="date" name="birthDate" value={formData.birthDate} onChange={handleInputChange} />
 
         <label>Habitat:</label>
         <input type="text" name="habitat" value={formData.habitat} onChange={handleInputChange} />
