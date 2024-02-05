@@ -34,6 +34,11 @@ const ZooFormComponentSimple = ({onSubmit}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         onSubmit(inputs)
+
+        setTimeout(() => {
+        alert("Zoo submitted");
+        }, 2000);
+
         setInputs({
             name: '',
             location: '',
@@ -42,7 +47,7 @@ const ZooFormComponentSimple = ({onSubmit}) => {
             price: '',
             dateOpened: '',
           });
-        alert("Zoo submitted");
+
     }
 
     return (
@@ -103,7 +108,7 @@ const ZooFormComponentSimple = ({onSubmit}) => {
             <label>Enter the average ticket price of your Zoo:
             <br></br>
                 <input
-                    type="number"
+                    type="text"
                     name="price"
                     value={inputs.price || ""}
                     onChange={handleChange}
@@ -123,7 +128,7 @@ const ZooFormComponentSimple = ({onSubmit}) => {
             </div>
             <br></br>
             <button type="submit" disabled={!isFormValid} onClick={handleSubmit}>
-          Submit
+          Save
         </button>
         </form>
     )

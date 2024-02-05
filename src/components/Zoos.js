@@ -3,15 +3,15 @@ import './Zoo.css';
 import './Animals.css';
 import Listbox from "./Listbox";
 import ZooFormComponentSimple from "./ZooFormComponentSimple";
+import Popup from "reactjs-popup";
+import 'reactjs-popup/dist/index.css';
 
 const Zoos = () => {
   const [zoos, setZoos] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [buttonText, setButtonText] = useState('Add Zoo');
   const changeFormStateAndButtonText = () => {
     setShowForm((prevShowForm) => !prevShowForm);
-    setButtonText(buttonText === 'Add Zoo' ? 'Changed My Mind' : 'Add Zoo');
-};
+  };
 
   useEffect(() => {
     fetch('http://localhost:8080/zoos')
@@ -56,20 +56,45 @@ const Zoos = () => {
         <h1 className="animal-h1">Zoos</h1>
       </div>
 
-      
+
       <div className="zoo-row">
         {zoos.map(zoo => (
           <Listbox key={zoo.id} animal={zoo} animals={zoos} setAnimals={setZoos} animalType={'zoos'} />
         ))}
       </div>
-      <button onClick={() => {changeFormStateAndButtonText()}}>{buttonText}</button>
-      {showForm && (
-        <ZooFormComponentSimple
-          animalType="zoos"
-          onSubmit={handleFormSubmit}
-        />
-      )}
+
+      <Popup trigger={<button> Click to add a zoo </button>}
+        modal
+        nested
+        position='right center' >
+
+        {close => (
+          <div className="modal">
+            <button className="close" onClick={close}>
+              &times;
+            </button>
+
+            <ZooFormComponentSimple
+              animalType="zoos"
+              onSubmit={handleFormSubmit}
+            />
+
+            <button
+              className="button"
+              onClick={() => {
+                console.log('modal closed ');
+                close();
+              }}
+            >
+              Cancel
+            </button>
+
+          </div>
+        )}
+      </Popup >
+
     </div>
+
 
 
   );
