@@ -8,9 +8,9 @@ const Birds = () => {
     const [showForm, setShowForm] = useState(false);
 
     const birdSpecificFields = {
-        canMimicSound: '',
-        nocturnal: ''
-      };
+      canMimicSound: '',
+      nocturnal: ''
+    };
 
       useEffect(() => {
         fetch('http://localhost:8080/birds')

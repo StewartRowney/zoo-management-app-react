@@ -34,8 +34,10 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
           .map(([key, value]) => (
             <p key={key}>{capitalizeFirstLetter(key)}: {value === true ? 'True' : value === false ? 'False' : value}</p>
           ))}
-          <button onClick={updateItem}>Update</button>
-          <button onClick={deleteAnimal}>Delete</button>
+          <div className="buttons">
+            <button className="button" onClick={updateItem}>Update</button>
+            <button className="button" onClick={deleteAnimal}>Delete</button>
+          </div>
         </div>
       )}
     </div>
