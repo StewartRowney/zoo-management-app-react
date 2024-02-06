@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import addItem from "../apis/addApis";
 
-const ZooFormComponentSimple = ({ isUpdating, zoo, animalType, collection, setCollection }) => {
+const ZooFormComponentSimple = ({isUpdating, zoo, animalType, collection, setCollection, closePopup }) => {
 
     const initialInputs = {
         name: '',
@@ -32,14 +32,16 @@ const ZooFormComponentSimple = ({ isUpdating, zoo, animalType, collection, setCo
         event.preventDefault();
         addItem(animalType, inputs)
         .then(fetchedItems => {
-            if (fetchedItems)
-                setCollection(...collection, fetchedItems);
-            else
-                console.error("Unexpected result returned from getNames: ", fetchedItems);
+            if (fetchedItems) {
+            setCollection(prevCollection => [...prevCollection, fetchedItems]);
+            closePopup();
+            }
+            else {
+                console.error("Unexpected result returned from addItems: ", fetchedItems);
+            }
         })
-        .catch(e => {console.error("Error calling getNames: ", e)});
+        .catch(e => {console.error("Error calling addItems: ", e)});
 
-        setInputs(initialInputs);
     };
 
     return (

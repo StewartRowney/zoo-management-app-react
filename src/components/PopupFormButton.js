@@ -2,8 +2,10 @@ import Popup from "reactjs-popup";
 import ZooFormComponentSimple from "./ZooFormComponentSimple";
 import 'reactjs-popup/dist/index.css';
 import './PopupFormButton.css'
+import useState from "react";
 
 const PopupFormButton = ({ popupBtnMessage, animalType, collection, setCollection }) => {
+
 
     return (
         <Popup trigger={<button className="button"> {popupBtnMessage} </button>}
@@ -17,9 +19,10 @@ const PopupFormButton = ({ popupBtnMessage, animalType, collection, setCollectio
                         &times;
                     </button>
                     <ZooFormComponentSimple
-                    animalType = {animalType}
-                    collection = {collection}
-                    setCollection = {setCollection}
+                        animalType={animalType}
+                        collection={collection}
+                        setCollection={setCollection}
+                        closePopup={close}
                     />
                     <button
                         className="button"
