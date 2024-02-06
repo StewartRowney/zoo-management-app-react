@@ -63,9 +63,7 @@ const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields }
 
   const capitalizeFirstLetter = (string) => {
     const spacedString = string.replace(/([a-z])([A-Z])/g, '$1 $2');
-  
     const titleCaseString = spacedString.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  
     return titleCaseString;
   };
 

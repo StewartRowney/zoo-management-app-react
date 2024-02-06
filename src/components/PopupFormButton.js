@@ -7,12 +7,14 @@ import AddAnimalForm from "./AddAnimalForm";
 const PopupFormButton = ({ animalType, collection, setCollection, specificFields }) => {
 
     const formatTitle = (string) => {
-        const spacedString = string.replace(/([a-z])([A-Z])/g, '$1 $2');
-        const titleCaseString = spacedString.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        if (titleCaseString.slice(-1) === 's') {
-            return titleCaseString.substring(0, titleCaseString.length - 1);
+        if (typeof string === 'string') {
+            const spacedString = string.replace(/([a-z])([A-Z])/g, '$1 $2');
+            const titleCaseString = spacedString.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+            if (titleCaseString.endsWith('s')) {
+                return titleCaseString.substring(0, titleCaseString.length - 1);
+            }
+            return titleCaseString;
         }
-        return titleCaseString;
     };
 
     const title = 'Add ' + formatTitle(animalType);
