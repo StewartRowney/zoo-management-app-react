@@ -4,10 +4,21 @@ import 'reactjs-popup/dist/index.css';
 import './PopupFormButton.css'
 import AddAnimalForm from "./AddAnimalForm";
 
-const PopupFormButton = ({ popupBtnMessage, animalType, collection, setCollection, specificFields }) => {
+const PopupFormButton = ({ animalType, collection, setCollection, specificFields }) => {
+
+    const formatTitle = (string) => {
+        const spacedString = string.replace(/([a-z])([A-Z])/g, '$1 $2');
+        const titleCaseString = spacedString.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        if (titleCaseString.slice(-1) === 's') {
+            return titleCaseString.substring(0, titleCaseString.length - 1);
+        }
+        return titleCaseString;
+    };
+
+    const title = 'Add ' + formatTitle(animalType);
 
     return (
-        <Popup trigger={<button className="button"> {popupBtnMessage} </button>}
+        <Popup trigger={<button className="button"> {title} </button>}
             modal
             nested
             position='right center' >
@@ -23,23 +34,16 @@ const PopupFormButton = ({ popupBtnMessage, animalType, collection, setCollectio
                             animalType = {animalType}
                             collection = {collection}
                             setCollection = {setCollection}
+                            title={title}
                         /> : 
                         <AddAnimalForm
                             animalType={animalType}
                             specificFields={specificFields}
                             animals={collection}
                             setAnimals={setCollection}
+                            title={title}
                         />}
                     </div>
-                    <button
-                        className="button"
-                        onClick={() => {
-                            console.log('modal closed ');
-                            close();
-                        }}
-                    >
-                        Cancel
-                    </button>
                 </div>
             )}
         </Popup >

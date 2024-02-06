@@ -3,7 +3,7 @@ import ZooDropdown from './ZooDropdown';
 import addItem from '../apis/addApis';
 
 
-const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
+const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields }) => {
 
   const [formData, setFormData] = useState({
     zoo: {
@@ -72,7 +72,7 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
 
   return (
     <div className="form-modal">
-      <h2>{`Add ${animalType}`}</h2>
+      <h2>{title}</h2>
       <form>
         <label>Name:</label>
         <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
