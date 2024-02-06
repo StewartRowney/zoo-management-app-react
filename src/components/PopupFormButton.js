@@ -2,8 +2,7 @@ import Popup from "reactjs-popup";
 import { useEffect, useState} from "react"
 import ZooFormComponentSimple from "./ZooFormComponentSimple";
 import 'reactjs-popup/dist/index.css';
-import './PopupFormButton.css'
-import useState from "react";
+import './PopupFormButton.css';
 import AddAnimalForm from "./AddAnimalForm";
 
 const PopupFormButton = ({ animalType, collection, setCollection, specificFields, animalItem }) => {
