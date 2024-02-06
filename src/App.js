@@ -7,6 +7,7 @@ import ZoosPage from "./pages/ZoosPage";
 import AnimalPage from "./pages/AnimalPage";
 import ReptilePage from './pages/ReptilePage';
 import AmphibianPage from './pages/AmphibianPage';
+import OurStoryPage from './pages/OurStoryPage';
 import BirdsPage from './pages/BirdPage';
 import FishPage from './pages/FishPage';
 import MammalsPage from './pages/MammalPage';
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="animals" element={<AnimalPage />}/>
         <Route path="animals/reptiles" element={<ReptilePage />}/>
         <Route path="animals/amphibians" element={<AmphibianPage/>}/>
+        <Route path="ourstory" element={<OurStoryPage/>}/>
         <Route path="animals/fishes" element={<FishPage/>}/>
         <Route path="animals/mammals" element={<MammalsPage/>}/>
         <Route path="animals/insects" element={<InsectsPage/>}/>
