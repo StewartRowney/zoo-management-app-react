@@ -10,9 +10,16 @@ const Zoos = () => {
   const [zoos, setZoos] = useState([]);
 
   useEffect(() => {
-    getAllItems(
-      animalType, setZoos
-      )}, []);
+    getAllItems(animalType)
+    .then(fetchedItems => {
+      if (fetchedItems)
+          setZoos(fetchedItems);
+      else
+          console.error("Unexpected result returned from getNames: ", fetchedItems);
+  })
+  .catch(e => {console.error("Error calling getNames: ", e)}); 
+  }, []);
+
 
   return (
 
@@ -21,18 +28,16 @@ const Zoos = () => {
         <h1 className="animal-h1">Zoos</h1>
       </div>
       <div className="zoo-row">
-        {zoos.map(zoo => (
-          <Listbox key={zoo.id} animal={zoo} animals={zoos} setAnimals={setZoos} animalType={animalType} />
-        ))}
+        {zoos.length !== 0 ? (zoos.map(zoo => <Listbox key={zoo.id} animal={zoo} animals={zoos} setAnimals={setZoos} animalType={animalType} />)) : <> </>}
       </div>
       <br></br>
       <PopupFormButton
-        popupBtnMessage = {"Add Zoo"}
-        animalType = {animalType}
-        collection = {zoos}
-        setCollection = {setZoos}
-        >
-        </PopupFormButton>
+        popupBtnMessage={"Add Zoo"}
+        animalType={animalType}
+        collection={zoos}
+        setCollection={setZoos}
+      >
+      </PopupFormButton>
     </div>
   );
 }

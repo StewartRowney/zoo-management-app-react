@@ -1,5 +1,5 @@
-const addItem = (type, collection, item, setCollection) => {
-    const response = fetch('http://localhost:8080/' + type, {
+const addItem = (type, item) => {
+    return fetch('http://localhost:8080/' + type, {
         method: 'POST',
         headers: {
           'Content-Type':'application/json',
@@ -9,9 +9,9 @@ const addItem = (type, collection, item, setCollection) => {
       .then(response => response.json())
           .then(data => {
               console.log('Successfully added ' + data.name);
-              setCollection(...collection, data);
+              return data
           })
-      .catch(error => console.error('Error adding: ' + type + '  ', error));
+    .catch(error => console.error('Error fetching: ' + type, error));
   };
 
   export default addItem;

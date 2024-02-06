@@ -23,7 +23,7 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
   };
 
   const updateItem = () => {
-    console.log("updated");
+    
   };
 
   return (
