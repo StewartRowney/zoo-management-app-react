@@ -1,14 +1,28 @@
-import Birds from "../components/Birds";
-import SidebarComponent from "../components/Sidebar";
-import "./Page.css"
+import { useEffect, useState } from "react";
+import Listbox from "../components/Listbox";
 
-const BirdsPage = () => {
-  return(
-    <div className="page">
-      <Birds/>
-      <SidebarComponent/>      
+const Birds = () => {
+  const [birds, setBirds] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/birds')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setBirds(data);
+      })
+      .catch(error => console.error('Error fetching birds:', error));
+  }, []);
+
+  return (
+    <div>
+      <h1>Birds</h1>
+      <br/><button>Add Bird</button>
+      {birds.map(bird => (
+        <Listbox key={bird.id} title={bird.name} animal={bird} />
+      ))}
     </div>
   );
 }
 
-export default BirdsPage;
+export default Birds;
