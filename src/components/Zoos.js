@@ -10,12 +10,9 @@ const Zoos = () => {
   const [zoos, setZoos] = useState([]);
 
   useEffect(() => {
-    getAllItems(
-      animalType, setZoos
-      )}, []);
+    getAllItems(animalType, setZoos)}, []);
 
   return (
-
     <div className="animal-background">
       <div className="animal-header">
         <h1 className="animal-h1">Zoos</h1>
