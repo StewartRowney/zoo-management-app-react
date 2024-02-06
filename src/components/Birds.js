@@ -34,7 +34,7 @@ const Birds = () => {
                 )}
                 <div className="animal-row">
                     {birds.map(bird => (
-                        <Listbox key={bird.id} animal={bird} animals={birds} setAnimals={setBirds} animalType={'birds'}/>
+                        <Listbox key={bird.id} animal={bird} animals={birds} setAnimals={setBirds} animalType={animalType}/>
                     ))}
                 </div>
 

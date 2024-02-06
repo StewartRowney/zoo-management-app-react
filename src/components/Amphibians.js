@@ -11,8 +11,8 @@ const Amphibians = () => {
   const animalType='amphibians'
 
   const amphibiansSpecificFields = {
-    makesNoise:'',
-    isPoisonous:'' 
+    isPoisonous:'',
+    makesNoise: '' 
   };
 
 
@@ -37,7 +37,7 @@ const Amphibians = () => {
                 )}
 
         <div className="animal-row">
-            {amphibians.map(amphibian => (<Listbox key={amphibian.id} animal={amphibian} animals={amphibians} setAnimals={setAmphibians} animalType='amphibian'/>))}
+            {amphibians.map(amphibian => (<Listbox key={amphibian.id} animal={amphibian} animals={amphibians} setAnimals={setAmphibians} animalType={animalType}/>))}
         </div>
     </div>
   );
