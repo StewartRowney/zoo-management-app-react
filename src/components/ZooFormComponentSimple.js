@@ -37,10 +37,10 @@ const ZooFormComponentSimple = ({isUpdating, zoo, animalType, collection, setCol
             closePopup();
             }
             else {
-                console.error("Unexpected result returned from addItems: ", fetchedItems);
+                console.error("Unexpected result returned from addZoo: ", fetchedItems);
             }
         })
-        .catch(e => {console.error("Error calling addItems: ", e)});
+        .catch(e => {console.error("Error calling addZoo: ", e)});
 
     };
 
