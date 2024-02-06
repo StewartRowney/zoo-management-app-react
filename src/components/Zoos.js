@@ -3,50 +3,16 @@ import './Zoo.css';
 import './Animals.css';
 import Listbox from "./Listbox";
 import PopupFormButton from "./PopupFormButton";
+import getAllItems from "../apis/getApis";
 
 const Zoos = () => {
+  const animalType = 'zoos';
   const [zoos, setZoos] = useState([]);
-  const [showForm, setShowForm] = useState(false);
-  const changeFormStateAndButtonText = () => {
-    setShowForm((prevShowForm) => !prevShowForm);
-  };
 
   useEffect(() => {
-    fetch('http://localhost:8080/zoos')
-      .then(response => response.json())
-      .then(data => setZoos(data))
-      .catch(error => console.error('Error fetching zoos:', error));
-  }, []);
-
-  const handleFormSubmit = async (formData) => {
-    try {
-      const response = await fetch('http://localhost:8080/zoos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to submit zoo form: ${response.status} ${response.statusText}`);
-      }
-
-      const updatedDataResponse = await fetch('http://localhost:8080/zoos');
-      if (!updatedDataResponse.ok) {
-        throw new Error(`Failed to fetch updated zoo data: ${updatedDataResponse.status} ${updatedDataResponse.statusText}`);
-      }
-
-      const updatedData = await updatedDataResponse.json();
-      setZoos(updatedData);
-
-      console.log('Form submitted successfully');
-      setShowForm(false);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    }
-  };
-  
+    getAllItems(
+      animalType, setZoos
+      )}, []);
 
   return (
 
@@ -56,13 +22,15 @@ const Zoos = () => {
       </div>
       <div className="zoo-row">
         {zoos.map(zoo => (
-          <Listbox key={zoo.id} animal={zoo} animals={zoos} setAnimals={setZoos} animalType={'zoos'} />
+          <Listbox key={zoo.id} animal={zoo} animals={zoos} setAnimals={setZoos} animalType={animalType} />
         ))}
       </div>
       <br></br>
       <PopupFormButton
         popupBtnMessage = {"Add Zoo"}
-        handleFormSubmit = {handleFormSubmit}
+        animalType = {animalType}
+        collection = {zoos}
+        setCollection = {setZoos}
         >
         </PopupFormButton>
     </div>

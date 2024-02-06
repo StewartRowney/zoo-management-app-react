@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import addItem from "../apis/addApis";
 
-const ZooFormComponentSimple = (onSubmit) => {
+const ZooFormComponentSimple = ({animalType, collection, setCollection}) => {
 
     const [inputs, setInputs] = useState({
         name: '',
@@ -21,7 +22,6 @@ const ZooFormComponentSimple = (onSubmit) => {
     && inputs.capacity !== ''
     && inputs.price !== ''
     && inputs.dateOpened !== '';
-    
     setIsFormValid(isValid);
   }, [inputs]);
 
@@ -31,10 +31,8 @@ const ZooFormComponentSimple = (onSubmit) => {
         setInputs(values => ({ ...values, [name]: value }))
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        onSubmit(inputs)
-
+    const handleSubmit = () => {
+        addItem(animalType, collection, inputs, setCollection)
         setInputs({
             name: '',
             location: '',
@@ -42,9 +40,8 @@ const ZooFormComponentSimple = (onSubmit) => {
             capacity: '',
             price: '',
             dateOpened: '',
-          });
-
-    }
+        });
+      };
 
     return (
         <form>
@@ -123,7 +120,7 @@ const ZooFormComponentSimple = (onSubmit) => {
             </label>
             </div>
             <br></br>
-            <button type="submit" disabled={!isFormValid} onClick={handleSubmit}>
+            <button className='button' type="submit" disabled={!isFormValid} onClick={handleSubmit}>
           Save
         </button>
         </form>
