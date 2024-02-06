@@ -10,7 +10,7 @@ const Mammals = () => {
   const animalType="mammals";
 
   const mammalSpecificFields = {
-    hasFurs: '',
+    hasFur: '',
     hasFins: '',
     hasHooves: ''
   };
