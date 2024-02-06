@@ -3,6 +3,7 @@ import { useEffect, useState} from "react"
 import ZooFormComponentSimple from "./ZooFormComponentSimple";
 import 'reactjs-popup/dist/index.css';
 import './PopupFormButton.css'
+import useState from "react";
 import AddAnimalForm from "./AddAnimalForm";
 
 const PopupFormButton = ({ animalType, collection, setCollection, specificFields, animalItem }) => {
@@ -40,6 +41,7 @@ const PopupFormButton = ({ animalType, collection, setCollection, specificFields
                     <button className="close" onClick={close}>
                         &times;
                     </button>
+
                     <div>
                         {animalType === 'zoos' ? 
                         <ZooFormComponentSimple
@@ -47,6 +49,7 @@ const PopupFormButton = ({ animalType, collection, setCollection, specificFields
                             collection = {collection}
                             setCollection = {setCollection}
                             title={title}
+                            closePopup={close}
                         /> : 
                         <AddAnimalForm
                             animalType={animalType}
@@ -55,6 +58,7 @@ const PopupFormButton = ({ animalType, collection, setCollection, specificFields
                             setAnimals={setCollection}
                             title={title}
                             animalItem={animalItem}
+                            closePopup={close}
                         />}
                     </div>
                 </div>

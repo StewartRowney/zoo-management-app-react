@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./Listbox.css";
 import deleteItem from "../apis/deleteApi";
-import Popup from "reactjs-popup";
-import { handleFormSubmit } from './Zoos';
 import PopupFormButton from "./PopupFormButton";
 
 const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) => {
@@ -19,11 +17,16 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
   };
 
   const deleteAnimal = () => {
-    deleteItem(animalType, animals, animal, setAnimals)
+    deleteItem(animalType, animal)
+    .then(fetchedItems => {
+      if (fetchedItems) {
+        setAnimals(animals.filter(i => i !== animal));
+      }
+  })
   };
 
   const updateItem = () => {
-    console.log("updated");
+    
   };
 
   return (
