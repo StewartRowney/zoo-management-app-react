@@ -1,40 +1,30 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState} from "react"
 import './Zoo.css';
-import './Animals.css';
-import Listbox from "./Listbox";
-import PopupFormButton from "./PopupFormButton";
-import getAllItems from "../apis/getApis";
+import SidebarComponent from "./Sidebar";
 
 const Zoos = () => {
-  const animalType = 'zoos';
-  const [zoos, setZoos] = useState([]);
+    const [zoos, setZoos] = useState([]);
 
-  useEffect(() => {
-    getAllItems(
-      animalType, setZoos
-      )}, []);
-
-  return (
-
-    <div className="animal-background">
-      <div className="animal-header">
-        <h1 className="animal-h1">Zoos</h1>
+    useEffect(() => {
+      fetch('http://localhost:8080/zoos')
+        .then(response => response.json())
+        .then(data => setZoos(data))
+        .catch(error => console.error('Error fetching zoos:', error));
+    }, []);
+  
+    return (
+      <div style={{display:"flex", flexDirection:"row"}}>
+        <div>
+          <h2>Zoos</h2>
+          <ul>
+            {zoos.map(zoo => (
+              <li key={zoo.id}>{zoo.name}</li>
+            ))}
+          </ul>
+        </div>
+        <SidebarComponent/>
       </div>
-      <div className="zoo-row">
-        {zoos.map(zoo => (
-          <Listbox key={zoo.id} animal={zoo} animals={zoos} setAnimals={setZoos} animalType={animalType} />
-        ))}
-      </div>
-      <br></br>
-      <PopupFormButton
-        popupBtnMessage = {"Add Zoo"}
-        animalType = {animalType}
-        collection = {zoos}
-        setCollection = {setZoos}
-        >
-        </PopupFormButton>
-    </div>
-  );
-}
-
-export default Zoos;
+    );
+  }
+  
+  export default Zoos;
