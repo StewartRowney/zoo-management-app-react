@@ -1,12 +1,11 @@
 import Popup from "reactjs-popup";
+import { useEffect, useState} from "react"
 import ZooFormComponentSimple from "./ZooFormComponentSimple";
 import 'reactjs-popup/dist/index.css';
-import './PopupFormButton.css'
-import useState from "react";
+import './PopupFormButton.css';
 import AddAnimalForm from "./AddAnimalForm";
 
-
-const PopupFormButton = ({ animalType, collection, setCollection, specificFields }) => {
+const PopupFormButton = ({ animalType, collection, setCollection, specificFields, animalItem }) => {
 
     const formatTitle = (string) => {
         if (typeof string === 'string') {
@@ -19,8 +18,16 @@ const PopupFormButton = ({ animalType, collection, setCollection, specificFields
         }
     };
 
-    const title = 'Add ' + formatTitle(animalType);
+    const[title, setTitle] = useState();
 
+
+    useEffect(() => {
+        if(animalItem)
+        setTitle('Update ' + formatTitle(animalType))
+    else
+        setTitle('Add ' + formatTitle(animalType))
+    },[]);
+ 
 
     return (
         <Popup trigger={<button className="button"> {title} </button>}
@@ -49,6 +56,7 @@ const PopupFormButton = ({ animalType, collection, setCollection, specificFields
                             animals={collection}
                             setAnimals={setCollection}
                             title={title}
+                            animalItem={animalItem}
                             closePopup={close}
                         />}
                     </div>

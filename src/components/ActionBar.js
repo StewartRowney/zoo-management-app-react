@@ -1,6 +1,6 @@
 import PopupFormButton from "./PopupFormButton";
 
-const ActionBar = ({animalType, specificFields, animals, setAnimals}) => {
+const ActionBar = ({animalType, specificFields, animals, setAnimals, update}) => {
 
     return (
         <div>

@@ -3,7 +3,7 @@ import "./Listbox.css";
 import deleteItem from "../apis/deleteApi";
 import PopupFormButton from "./PopupFormButton";
 
-const Listbox = ({ animal, animals, setAnimals, animalType }) => {
+const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) => {
   const [isExtended, setIsExtended] = useState(false);
 
   const toggleBox = () => {
@@ -41,10 +41,13 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
               <p key={key}>{capitalizeFirstLetter(key)}: {value === true ? 'True' : value === false ? 'False' : value}</p>
             ))}
           <div className="buttons">
-            <PopupFormButton
-              popupBtnMessage={"Update Zoo"}
-            > 
-            </PopupFormButton>
+          <PopupFormButton
+                animalType = {animalType}
+                collection = {animals}
+                setCollection = {setAnimals}
+                specificFields={specificFields}
+                animalItem={animal}
+                />
             <button className="button" onClick={deleteAnimal}>Delete</button>
           </div>
         </div>

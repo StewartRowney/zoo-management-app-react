@@ -3,7 +3,10 @@ import ZooDropdown from './ZooDropdown';
 import addItem from '../apis/addApis';
 
 
-const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields }) => {
+const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields, animalItem }) => {
+
+
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const [formData, setFormData] = useState({
     zoo: {
@@ -19,8 +22,24 @@ const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields }
     ...specificFields,
   });
 
-  const [isFormValid, setIsFormValid] = useState(false);
-
+  useEffect(() => {
+    if(animalItem){
+    setFormData({
+      zoo: {
+        id:'', 
+      },
+    name:animalItem.name,
+    speciesName:animalItem.speciesName,
+    birthDate:animalItem.birthDate,
+    habitat:animalItem.habitat,
+    behaviour:animalItem.behaviour,
+    foodType:animalItem.foodType,
+    extraInformation:animalItem.extraInformation,
+    ...specificFields,
+    })
+      } 
+    },[]);
+  
   useEffect(() => {
     const isValid = formData.name !== '' && formData.zoo.id !== '';
     setIsFormValid(isValid);
