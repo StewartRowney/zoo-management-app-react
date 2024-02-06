@@ -13,9 +13,7 @@ const ZooFormComponentSimple = ({title, animalType, collection, setCollection, c
     };
 
     const [inputs, setInputs] = useState(initialInputs);
-
     const [isFormValid, setIsFormValid] = useState(false);
-
 
     useEffect(() => {
         const isValid =

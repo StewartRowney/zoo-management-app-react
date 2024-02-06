@@ -3,7 +3,7 @@ import ZooDropdown from './ZooDropdown';
 import addItem from '../apis/addApis';
 
 
-const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields, animalItem }) => {
+const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields, animalItem, closePopup }) => {
 
 
   const [isFormValid, setIsFormValid] = useState(false);
@@ -54,8 +54,19 @@ const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields, 
   };
 
   const handleSubmit = () => {
-    addItem(animalType, animals, formData, setAnimals)
-    setFormData({
+    addItem(animalType, formData)
+        .then(fetchedItems => {
+            if (fetchedItems) {
+            setAnimals(prevCollection => [...prevCollection, fetchedItems]);
+            closePopup();
+            }
+            else {
+                console.error("Unexpected result returned from ", title, ": ", fetchedItems);
+            }
+        })
+        .catch(e => {console.error("Error calling add ", title, ": ", e)});
+    
+        setFormData({
         zoo: {
             id:'', 
           },
