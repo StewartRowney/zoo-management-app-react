@@ -16,7 +16,14 @@ const Mammals = () => {
   };
 
   useEffect(() => {
-    getAllItems(animalType, setMammals)
+    getAllItems(animalType)
+    .then(fetchedItems => {
+      if (fetchedItems)
+        setMammals(fetchedItems);
+      else
+        console.error("Unexpected result returned from getMammals: ", fetchedItems);
+  })
+  .catch(e => {console.error("Error calling getMammals: ", e)}); 
   }, []);
 
 

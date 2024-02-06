@@ -15,7 +15,14 @@ const Insects = () => {
   };
 
   useEffect(() => {
-    getAllItems(animalType, setInsects)
+    getAllItems(animalType)
+    .then(fetchedItems => {
+      if (fetchedItems)
+        setInsects(fetchedItems);
+      else
+        console.error("Unexpected result returned from getInsects: ", fetchedItems);
+  })
+  .catch(e => {console.error("Error calling getInsects: ", e)}); 
   }, []);
 
   return (

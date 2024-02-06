@@ -38,6 +38,7 @@
     margin: 2vw;
     display: inline-block;
     padding: 1vw;
+    cursor: pointer;
 }
 
 .animal-image {

@@ -17,7 +17,14 @@ const Amphibians = () => {
 
 
   useEffect(() => {
-    getAllItems(animalType, setAmphibians)
+    getAllItems(animalType)
+    .then(fetchedItems => {
+      if (fetchedItems)
+        setAmphibians(fetchedItems);
+      else
+        console.error("Unexpected result returned from getAmphibians: ", fetchedItems);
+  })
+  .catch(e => {console.error("Error calling getAmphibians: ", e)}); 
   }, []);
 
   return(

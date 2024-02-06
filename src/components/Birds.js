@@ -17,7 +17,14 @@ const Birds = () => {
     };
 
     useEffect(() => {
-      getAllItems(animalType, setBirds)
+      getAllItems(animalType)
+      .then(fetchedItems => {
+        if (fetchedItems)
+          setBirds(fetchedItems);
+        else
+          console.error("Unexpected result returned from getBirds: ", fetchedItems);
+    })
+    .catch(e => {console.error("Error calling getBirds: ", e)}); 
     }, []);
 
     const handleSearchTermChange = (e) => {

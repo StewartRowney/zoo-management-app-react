@@ -23,21 +23,6 @@ const ZooFormComponentSimple = ({ isUpdating, zoo, animalType, collection, setCo
         setIsFormValid(isValid);
     }, [inputs]);
 
-    // useEffect(() => {
-    //     if (isUpdating && zoo) {
-    //         setInputs({
-    //             name: zoo.name || '',
-    //             location: zoo.location || '',
-    //             description: zoo.description || '',
-    //             capacity: animal.capacity || '',
-    //             price: animal.price || '',
-    //             dateOpened: animal.dateOpened || '',
-    //         });
-    //     } else {
-    //         setInputs(initialInputs);
-    //     }
-    // }, [isUpdating, animal]);
-
     const handleChange = (event) => {
         const {name, value} = event.target;
         setInputs(prevInputs => ({ ...prevInputs, [name]: value }))

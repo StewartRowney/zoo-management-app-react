@@ -13,11 +13,11 @@ const Zoos = () => {
     getAllItems(animalType)
     .then(fetchedItems => {
       if (fetchedItems)
-          setZoos(fetchedItems);
+        setZoos(fetchedItems);
       else
-          console.error("Unexpected result returned from getNames: ", fetchedItems);
+        console.error("Unexpected result returned from getZoos: ", fetchedItems);
   })
-  .catch(e => {console.error("Error calling getNames: ", e)}); 
+  .catch(e => {console.error("Error calling getZoos: ", e)}); 
   }, []);
 
 

@@ -18,8 +18,15 @@ const Reptiles = () =>{
     };
 
     useEffect(() => {
-        getAllItems(animalType, setReptiles)
-      }, []);
+      getAllItems(animalType)
+      .then(fetchedItems => {
+        if (fetchedItems)
+          setReptiles(fetchedItems);
+        else
+          console.error("Unexpected result returned from getReptiles: ", fetchedItems);
+    })
+    .catch(e => {console.error("Error calling getReptiles: ", e)}); 
+    }, []);
 
       return(
         <div className="animal-background">
