@@ -4,6 +4,7 @@ import deleteItem from "../apis/deleteApi";
 import Popup from "reactjs-popup";
 import { handleFormSubmit } from './Zoos';
 import PopupFormButton from "./PopupFormButton";
+import { Link } from "react-router-dom";
 
 const Listbox = ({ animal, animals, setAnimals, animalType }) => {
   const [isExtended, setIsExtended] = useState(false);
@@ -26,6 +27,10 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
     console.log("updated");
   };
 
+  const id = () => {
+    let pageId= animal.id
+  };
+
   return (
     <div className={`box ${isExtended ? 'extended' : ''}`} onClick={toggleBox}>
       <h5 className="listbox-title">{animal.name}</h5>
@@ -37,17 +42,27 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
             .map(([key, value]) => (
               <p key={key}>{capitalizeFirstLetter(key)}: {value === true ? 'True' : value === false ? 'False' : value}</p>
             ))}
+            
           <div className="buttons">
             <PopupFormButton
               popupBtnMessage={"Update Zoo"}
             >
             </PopupFormButton>
             <button className="button" onClick={deleteAnimal}>Delete</button>
-          </div>
+            
+              { 
+                  animalType === 'zoos' ? 
+                  <Link to ={"/zoos/pageId"}>
+                 <button className="button"> Information</button>
+                 </Link>
+                 :
+                 <></>
+              }
+          </div>     
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
 export default Listbox;

@@ -32,7 +32,7 @@ export default function App() {
         <Route path="animals/mammals" element={<MammalsPage/>}/>
         <Route path="animals/insects" element={<InsectsPage/>}/>
         <Route path="animals/birds" element={<BirdsPage/>}/>
-        <Route path="gz" element={<GenericZoosPage/>}/>
+        <Route path="zoos/:pageId" element={<GenericZoosPage/>}/>
         <Route path="*" element={<NoPage />} />
       </Routes>
   </div>
