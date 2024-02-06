@@ -16,7 +16,14 @@ const Fishes = () => {
   };
 
   useEffect(() => {
-    getAllItems(animalType, setFishes)
+    getAllItems(animalType)
+    .then(fetchedItems => {
+      if (fetchedItems)
+        setFishes(fetchedItems);
+      else
+        console.error("Unexpected result returned from getFish: ", fetchedItems);
+  })
+  .catch(e => {console.error("Error calling getFish: ", e)}); 
   }, []);
 
   const handleSearchTermChange = (e) => {
