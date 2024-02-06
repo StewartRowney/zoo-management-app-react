@@ -34,7 +34,6 @@ const Zoos = () => {
         animalType={animalType}
         collection={zoos}
         setCollection={setZoos}
-        animalItem={animal}
       >
       </PopupFormButton>
     </div>
