@@ -19,25 +19,25 @@ const Animals = () => {
               <img src={amphibian} alt="Amphibian" className="animal-image"></img>
               <h2 className="animal-category-heading">Amphibians</h2>
             </Link>
-            <Link className="animal-category" to={"/animals/mammals"}>
+            <Link className="animal-category" to={""}>
               <img src={mammal} alt="Mammal" className="animal-image"></img>
               <h2 className="animal-category-heading">Mammals</h2>
             </Link>
-            <Link className="animal-category" to={"/animals/reptiles"}>
+            <Link className="animal-category" to={"/"}>
               <img src={reptile} alt="Reptile" className="animal-image"></img>
               <h2 className="animal-category-heading">Reptiles</h2>
             </Link>
         </div>
         <div className="animal-row">
-            <Link className="animal-category" to={"/animals/birds"}>
+            <Link className="animal-category" to={"/"}>
               <img src={bird} alt="Bird" className="animal-image"></img>
               <h2 className="animal-category-heading">Birds</h2>
             </Link>
-            <Link className="animal-category" to={"/animals/insects"}>
+            <Link className="animal-category" to={"/"}>
               <img src={insect} alt="Insect" className="animal-image"></img>
               <h2 className="animal-category-heading">Insects</h2>
             </Link>
-            <Link className="animal-category" to={"/animals/fishes"}>
+            <Link className="animal-category" to={"/"}>
               <img src={fish} alt="Fish" className="animal-image"></img>
               <h2 className="animal-category-heading">Fish</h2>
             </Link>
