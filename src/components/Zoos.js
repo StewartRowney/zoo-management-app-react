@@ -20,9 +20,7 @@ const Zoos = () => {
   .catch(e => {console.error("Error calling getZoos: ", e)}); 
   }, []);
 
-
   return (
-
     <div className="animal-background">
       <div className="animal-header">
         <h1 className="animal-h1">Zoos</h1>

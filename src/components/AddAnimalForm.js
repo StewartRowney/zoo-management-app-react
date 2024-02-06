@@ -3,7 +3,7 @@ import ZooDropdown from './ZooDropdown';
 import addItem from '../apis/addApis';
 
 
-const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
+const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields }) => {
 
   const [formData, setFormData] = useState({
     zoo: {
@@ -63,16 +63,14 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
 
   const capitalizeFirstLetter = (string) => {
     const spacedString = string.replace(/([a-z])([A-Z])/g, '$1 $2');
-  
     const titleCaseString = spacedString.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  
     return titleCaseString;
   };
 
 
   return (
     <div className="form-modal">
-      <h2>{`Add ${animalType}`}</h2>
+      <h2>{title}</h2>
       <form>
         <label>Name:</label>
         <input type="text" name="name" value={formData.name} onChange={handleInputChange} />

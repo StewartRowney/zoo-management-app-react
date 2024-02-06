@@ -43,7 +43,7 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
           <div className="buttons">
             <PopupFormButton
               popupBtnMessage={"Update Zoo"}
-            >
+            > 
             </PopupFormButton>
             <button className="button" onClick={deleteAnimal}>Delete</button>
           </div>

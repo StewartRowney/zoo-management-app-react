@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import addItem from "../apis/addApis";
 
-const ZooFormComponentSimple = ({isUpdating, zoo, animalType, collection, setCollection, closePopup }) => {
+const ZooFormComponentSimple = ({title, animalType, collection, setCollection, closePopup}) => {
 
     const initialInputs = {
         name: '',
@@ -46,6 +46,7 @@ const ZooFormComponentSimple = ({isUpdating, zoo, animalType, collection, setCol
 
     return (
         <form>
+            <h2>{title}</h2>
             <div>
                 <label>Enter the name of you Zoo:
                     <br></br>
