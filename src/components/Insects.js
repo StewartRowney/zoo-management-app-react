@@ -7,6 +7,7 @@ import getAllItems from "../apis/getApis";
 const Insects = () => {
   const [insects, setInsects] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const animalType = 'insects';
 
   const insectSpecificFields = {
@@ -18,11 +19,28 @@ const Insects = () => {
     getAllItems(animalType, setInsects)
   }, []);
 
+  const handleSearchTermChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredAnimals = insects.filter((insect) =>
+  insect.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
+
   return (
     <div className="animal-background">
       <div className="animal-header">
         <h1 className="animal-h1">Insects</h1>
       </div>
+
+      <input
+        type="text"
+        placeholder="Search by name..."
+        value={searchTerm}
+        onChange={handleSearchTermChange}
+        className="search-bar"
+      />
       <button onClick={() => setShowForm(true)}>Add Insects</button>
           {showForm && (
             <AddAnimalForm
@@ -33,7 +51,7 @@ const Insects = () => {
             />
           )}
       <div className="animal-row">
-        {insects.map(insect => (
+        {filteredAnimals.map(insect => (
           <Listbox key={insect.id} animal={insect} animals={insects} setAnimals={setInsects} animalType={animalType}/>
         ))}
       </div>
