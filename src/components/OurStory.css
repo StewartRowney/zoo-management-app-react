@@ -1,0 +1,29 @@
+.title-h2 {
+    color: #0B6623;
+    font-family: "Jost-SemiBold", Helvetica, sans-serif;
+    font-size: 2vw;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+    text-align:center;
+}
+
+.title-h3 {
+    color: #0B6623;
+    font-family: "Jost-SemiBold", Helvetica, sans-serif;
+    font-size: 1.3vw;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    width: fit-content;
+    text-align:center;
+}
+
+.tab {
+    text-indent: 20px;
+  }
+
+.big {
+    line-height: 1.8;
+  }
