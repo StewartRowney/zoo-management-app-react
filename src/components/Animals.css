@@ -66,3 +66,19 @@ a:visited {
 a:active { 
   text-decoration: none; 
 }
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; 
+}
+.search-bar {
+  width: 200px; 
+  padding: 8px;
+  margin-right: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}

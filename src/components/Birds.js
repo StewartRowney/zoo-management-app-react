@@ -24,7 +24,7 @@ const Birds = () => {
       setSearchTerm(e.target.value);
     };
   
-    const filteredBirds = birds.filter((bird) =>
+    const filteredAnimals = birds.filter((bird) =>
       bird.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     
@@ -38,6 +38,7 @@ const Birds = () => {
         placeholder="Search by name..."
         value={searchTerm}
         onChange={handleSearchTermChange}
+        className="search-bar"
       />
                 <button onClick={() => setShowForm(true)}>Add Bird</button>
                 {showForm && (
@@ -49,7 +50,7 @@ const Birds = () => {
                   />
                 )}
                 <div className="animal-row">
-                    {filteredBirds.map(bird => (
+                    {filteredAnimals.map(bird => (
                         <Listbox key={bird.id} animal={bird} animals={birds} setAnimals={setBirds} animalType={animalType}/>
                     ))}
                 </div>

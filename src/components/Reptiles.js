@@ -9,6 +9,7 @@ const Reptiles = () =>{
 
     const [reptiles, setReptiles] = useState([]);
     const [showForm, setShowForm] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
     const animalType = 'reptiles';
 
     const reptileSpecificFields = {
@@ -21,12 +22,26 @@ const Reptiles = () =>{
         getAllItems(animalType, setReptiles)
       }, []);
 
+      const handleSearchTermChange = (e) => {
+        setSearchTerm(e.target.value);
+      };
+    
+      const filteredAnimals = reptiles.filter((reptile) =>
+      reptile.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
       return(
         <div className="animal-background">
             <div className="animal-header">
                 <h1 className="animal-h1">Reptiles</h1>
             </div>
-
+            <input
+        type="text"
+        placeholder="Search by name..."
+        value={searchTerm}
+        onChange={handleSearchTermChange}
+        className="search-bar"
+      />
             <button onClick={() => setShowForm(true)}>Add Reptile</button>
                 {showForm && (
                   <AddAnimalForm
@@ -38,7 +53,7 @@ const Reptiles = () =>{
                 )}
                 
             <div className="animal-row">
-                {reptiles.map(reptile => (
+                {filteredAnimals.map(reptile => (
                   <Listbox key={reptile.id}  animal={reptile} animals={reptiles} setAnimals={setReptiles} animalType={animalType}/>))}
             </div>
         </div>
