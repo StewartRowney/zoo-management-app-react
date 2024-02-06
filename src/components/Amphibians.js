@@ -3,11 +3,11 @@ import Listbox from "../components/Listbox";
 import "./Animals.css";
 import AddAnimalForm from "./AddAnimalForm";
 import getAllItems from "../apis/getApis";
+import ActionBar from "./ActionBar";
 
 
 const Amphibians = () => {
   const [amphibians, setAmphibians] = useState([]);
-  const [showForm, setShowForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const animalType='amphibians'
 
@@ -41,16 +41,13 @@ const Amphibians = () => {
         onChange={handleSearchTermChange}
         className="search-bar"
       />
-        <button onClick={() => setShowForm(true)}>Add Amphibian</button>
-                {showForm && (
-                  <AddAnimalForm
-                    animalType={animalType}
-                    specificFields={amphibiansSpecificFields}
-                    animals={amphibians}
-                    setAnimals={setAmphibians}
-                  />
-                )}
-
+        
+        <ActionBar
+        animalType={animalType}
+        specificFields={amphibiansSpecificFields}
+        animals={amphibians}
+        setAnimals={setAmphibians}
+        />
         <div className="animal-row">
             {filteredAnimals.map(amphibian => (<Listbox key={amphibian.id} animal={amphibian} animals={amphibians} setAnimals={setAmphibians} animalType={animalType}/>))}
         </div>
