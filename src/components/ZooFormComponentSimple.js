@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import addItem from "../apis/addApis";
 
-const ZooFormComponentSimple = ({title, animalType, collection, setCollection, closePopup}) => {
+const ZooFormComponentSimple = ({title, animalType, animalItem, setCollection, closePopup}) => {
 
     const initialInputs = {
         name: '',
@@ -14,6 +14,19 @@ const ZooFormComponentSimple = ({title, animalType, collection, setCollection, c
 
     const [inputs, setInputs] = useState(initialInputs);
     const [isFormValid, setIsFormValid] = useState(false);
+
+    useEffect(() => {
+        if(animalItem){
+        setInputs({
+            name: animalItem.name,
+            location: animalItem.location,
+            description: animalItem.description,
+            capacity: animalItem.capacity,
+            price: animalItem.price,
+            dateOpened: animalItem.dateOpened,
+        })
+          } 
+        },[]);
 
     useEffect(() => {
         const isValid =
@@ -74,7 +87,7 @@ const ZooFormComponentSimple = ({title, animalType, collection, setCollection, c
                     <br></br>
                     <textarea
                         name="description"
-                        placeholder='Enter comment...'
+                        placeholder='Enter description...'
                         maxLength='1000'
                         minLength='100'
                         rows={4}

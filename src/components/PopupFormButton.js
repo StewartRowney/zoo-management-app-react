@@ -49,6 +49,7 @@ const PopupFormButton = ({ animalType, collection, setCollection, specificFields
                             setCollection = {setCollection}
                             title={title}
                             closePopup={close}
+                            animalItem={animalItem}
                         /> : 
                         <AddAnimalForm
                             animalType={animalType}
