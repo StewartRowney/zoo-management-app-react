@@ -12,6 +12,7 @@ import BirdsPage from './pages/BirdPage';
 import FishPage from './pages/FishPage';
 import MammalsPage from './pages/MammalPage';
 import InsectsPage from './pages/InsectPage';
+import GenericZoosPage from './pages/GenericZoosPage';
 
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="animals/mammals" element={<MammalsPage/>}/>
         <Route path="animals/insects" element={<InsectsPage/>}/>
         <Route path="animals/birds" element={<BirdsPage/>}/>
+        <Route path="gz" element={<GenericZoosPage/>}/>
         <Route path="*" element={<NoPage />} />
       </Routes>
   </div>
