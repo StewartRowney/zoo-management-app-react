@@ -28,7 +28,7 @@ const Zoos = () => {
         <h1 className="animal-h1">Zoos</h1>
       </div>
       <div className="zoo-row">
-        {zoos.length !== 0 ? (zoos.map(zoo => <Listbox key={zoo.id} animal={zoo} animals={zoos} setAnimals={setZoos} animalType={animalType} />)) : <> </>}
+        {zoos.length !== 0 ? (zoos.map(zoo => <Listbox key={zoo.id} animal={zoo} animals={zoos} setAnimals={setZoos} animalType={animalType} />)) : <p>No zoos available.</p>}
       </div>
       <br></br>
       <PopupFormButton
