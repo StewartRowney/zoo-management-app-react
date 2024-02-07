@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import './Zoo.css';
 import './GenericZoos.css';
 import "./OurStory.css";
+import { Button } from '@mui/material';
 
 const GenericZoos = () =>{
 
@@ -49,9 +50,11 @@ const GenericZoos = () =>{
               <p><b>Price :</b>{zoo.price}</p>
               <p><b>Date Opened :</b> {zoo.dateOpened}</p>
               </div>
-              
-              <h1 className="title-h2 align big"> Available Animals</h1>
               <div className="animal-row">
+              <Button onClick={getAllItems}>See all Animals</Button>
+              {animalsInZoo.map(animalWithinZoo => (
+                        <Listbox key={animalWithinZoo.id} animal={animalWithinZoo} animals={animalsInZoo} setAnimals={setAnimalsInZoo}/>
+                    ))}
               
               </div>  
               </div>
