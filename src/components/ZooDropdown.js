@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import getAllItems from '../apis/getApis';
 
 const ZooDropdown = ({ selectedZoo, onZooChange }) => {
   const [zoos, setZoos] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/zoos')
-      .then(response => response.json())
-      .then(data => setZoos(data))
-      .catch(error => console.error('Error fetching zoos:', error));
+    getAllItems('zoos')
+    .then(fetchedItems => {
+      if (fetchedItems)
+        setZoos(fetchedItems);
+      else
+        console.error("Unexpected result returned from getZoos: ", fetchedItems);
+  })
+  .catch(e => {console.error("Error calling getZoos: ", e)}); 
   }, []);
 
   return (
