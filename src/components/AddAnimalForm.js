@@ -22,25 +22,43 @@ const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields, 
     ...specificFields,
   });
 
-const updatedSpecificfields = animalItem.specificFields;
 
-  useEffect(() => {
-    if(animalItem){
+useEffect(() => {
+  if (animalItem) {
+    const updatedFields = {};
+
+    Object.entries(animalItem).forEach(([key, value]) => {
+      if (key === 'zoo') {
+        updatedFields[key] = { id: value.id };
+      } else if (typeof value !== 'object') {
+        updatedFields[key] = value;
+      }
+    });
+
     setFormData({
-      zoo: {
-        id:animalItem.zoo.id, 
-      },
-    name:animalItem.name,
-    speciesName:animalItem.speciesName,
-    birthDate:animalItem.birthDate,
-    habitat:animalItem.habitat,
-    behaviour:animalItem.behaviour,
-    foodType:animalItem.foodType,
-    extraInformation:animalItem.extraInformation,
-    updatedSpecificfields
-    })
-      } 
-    },[animalItem, specificFields]);
+      ...updatedFields,
+    });
+  }
+}, [animalItem]);
+
+
+  // useEffect(() => {
+  //   if(animalItem){
+  //   setFormData({
+  //     zoo: {
+  //       id:animalItem.zoo.id, 
+  //     },
+  //   name:animalItem.name,
+  //   speciesName:animalItem.speciesName,
+  //   birthDate:animalItem.birthDate,
+  //   habitat:animalItem.habitat,
+  //   behaviour:animalItem.behaviour,
+  //   foodType:animalItem.foodType,
+  //   extraInformation:animalItem.extraInformation,
+  //   updatedSpecificfields
+  //   })
+  //     } 
+  //   },[animalItem, specificFields]);
   
   useEffect(() => {
     const isValid = formData.name !== '' && formData.zoo.id !== '';
