@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Listbox.css";
 import deleteItem from "../apis/deleteApi";
 import PopupFormButton from "./PopupFormButton";
+import ZooDeleteButton from "./ZooDeleteButton";
 
 const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) => {
   const [isExtended, setIsExtended] = useState(false);
@@ -16,14 +17,13 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
     return titleCaseString;
   };
 
-  const deleteAnimal = () => {
+  const sendDelete = () => {
     deleteItem(animalType, animal)
-    .then(fetchedItems => {
+      .then(fetchedItems => {
       if (fetchedItems) {
         setAnimals(animals.filter(i => i !== animal));
-      }
-  })
-  };
+      }});
+  }
 
   const updateItem = () => {
     
@@ -41,14 +41,25 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
               <p key={key}>{capitalizeFirstLetter(key)}: {value === true ? 'True' : value === false ? 'False' : value}</p>
             ))}
           <div className="buttons">
-          <PopupFormButton
-                animalType = {animalType}
-                collection = {animals}
-                setCollection = {setAnimals}
-                specificFields={specificFields}
-                animalItem={animal}
+            <PopupFormButton
+              animalType = {animalType}
+              collection = {animals}
+              setCollection = {setAnimals}
+              specificFields={specificFields}
+              animalItem={animal}
+              />
+
+            {
+              (animalType === 'zoos') ?
+                <ZooDeleteButton
+                zoo={animal}
+                itemType={animalType}
+                zoos={animals}
+                setZoos={setAnimals}
                 />
-            <button className="button" onClick={deleteAnimal}>Delete</button>
+              :
+                <button className="button" onClick={sendDelete}>Delete</button>
+            }
           </div>
         </div>
       )}
