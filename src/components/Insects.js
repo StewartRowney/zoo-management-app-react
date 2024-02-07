@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Listbox from "../components/Listbox";
 import "./Animals.css"
-import AddAnimalForm from "./AddAnimalForm";
+import ActionBar from "./ActionBar";
 import getAllItems from "../apis/getApis";
 
 const Insects = () => {
@@ -26,9 +26,6 @@ const Insects = () => {
   .catch(e => {console.error("Error calling getInsects: ", e)}); 
   }, []);
 
-  const handleSearchTermChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
 
   const filteredAnimals = insects.filter((insect) =>
   insect.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -41,25 +38,17 @@ const Insects = () => {
         <h1 className="animal-h1">Insects</h1>
       </div>
 
-      <input
-        type="text"
-        placeholder="Search by name..."
-        value={searchTerm}
-        onChange={handleSearchTermChange}
-        className="search-bar"
-      />
-      <button onClick={() => setShowForm(true)}>Add Insects</button>
-          {showForm && (
-            <AddAnimalForm
-              animalType={animalType}
-              specificFields={insectSpecificFields}
-              setAnimals={setInsects}
-              animals={insects}
-            />
-          )}
+      <ActionBar
+        animalType={animalType}
+        specificFields={insectSpecificFields}
+        animals={insects}
+        setAnimals={setInsects}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        />
       <div className="animal-row">
         {filteredAnimals.map(insect => (
-          <Listbox key={insect.id} animal={insect} animals={insects} setAnimals={setInsects} animalType={animalType}/>
+          <Listbox key={insect.id} animal={insect} animals={insects} setAnimals={setInsects} animalType={animalType} specificFields={insectSpecificFields}/>
         ))}
       </div>
     </div>

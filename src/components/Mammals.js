@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import Listbox from "../components/Listbox";
 import "./Animals.css"
-import AddAnimalForm from "./AddAnimalForm";
 import getAllItems from "../apis/getApis";
+import ActionBar from "./ActionBar";
 
 const Mammals = () => {
   const [mammals, setMammals] = useState([]);
-  const [showForm, setShowForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const animalType="mammals";
 
@@ -27,10 +26,6 @@ const Mammals = () => {
   .catch(e => {console.error("Error calling getMammals: ", e)}); 
   }, []);
 
-  const handleSearchTermChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
   const filteredAnimals = mammals.filter((mammal) =>
   mammal.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -40,27 +35,18 @@ const Mammals = () => {
       <div className="animal-header">
         <h1 className="animal-h1">Mammals</h1>
       </div>
-      <input
-        type="text"
-        placeholder="Search by name..."
-        value={searchTerm}
-        onChange={handleSearchTermChange}
-        className="search-bar"
-      />
-
-      <button onClick={() => setShowForm(true)}>Add Mammal</button>
-                {showForm && (
-                  <AddAnimalForm
-                    animalType={animalType}
-                    specificFields={mammalSpecificFields}
-                    animals={mammals}
-                    setAnimals={setMammals}
-                  />
-                )}
+      <ActionBar
+        animalType={animalType}
+        specificFields={mammalSpecificFields}
+        animals={mammals}
+        setAnimals={setMammals}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        />
 
       <div className="animal-row">
         {filteredAnimals.map(mammal => (
-          <Listbox key={mammal.id} animal={mammal} animals={mammals} setAnimals={setMammals} animalType={animalType}/>
+          <Listbox key={mammal.id} animal={mammal} animals={mammals} setAnimals={setMammals} animalType={animalType} specificFields={mammalSpecificFields}/>
         ))}
       </div>
     </div>

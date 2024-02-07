@@ -1,6 +1,12 @@
 import PopupFormButton from "./PopupFormButton";
+import "./Animals.css";
 
-const ActionBar = ({animalType, specificFields, animals, setAnimals, update}) => {
+
+const ActionBar = ({animalType, specificFields, animals, setAnimals, update, searchTerm, setSearchTerm}) => {
+
+    const handleSearchTermChange = (e) => {
+        setSearchTerm(e.target.value);
+      };
 
     return (
         <div>
@@ -10,6 +16,13 @@ const ActionBar = ({animalType, specificFields, animals, setAnimals, update}) =>
                 setCollection = {setAnimals}
                 specificFields={specificFields}
                 />
+                <input
+        type="text"
+        placeholder="Search by name..."
+        value={searchTerm}
+        onChange={handleSearchTermChange}
+        className="search-bar"
+      />
         </div>
     );
 }
