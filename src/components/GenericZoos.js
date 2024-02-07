@@ -39,6 +39,11 @@ const GenericZoos = () =>{
               <p><b>Price :</b>{zoo.price}</p>
               <p><b>Date Opened :</b> {zoo.dateOpened}</p>
               </div>
+              
+              <h1 className="title-h2 align big"> Available Animals</h1>
+              <div className="animal-row">
+              
+              </div>  
               </div>
           </div>
     </div>
