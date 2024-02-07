@@ -22,11 +22,13 @@ const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields, 
     ...specificFields,
   });
 
+const updatedSpecificfields = animalItem.specificFields;
+
   useEffect(() => {
     if(animalItem){
     setFormData({
       zoo: {
-        id:'', 
+        id:animalItem.zoo.id, 
       },
     name:animalItem.name,
     speciesName:animalItem.speciesName,
@@ -35,10 +37,10 @@ const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields, 
     behaviour:animalItem.behaviour,
     foodType:animalItem.foodType,
     extraInformation:animalItem.extraInformation,
-    ...specificFields,
+    updatedSpecificfields
     })
       } 
-    },[]);
+    },[animalItem, specificFields]);
   
   useEffect(() => {
     const isValid = formData.name !== '' && formData.zoo.id !== '';
