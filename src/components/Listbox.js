@@ -52,7 +52,7 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
             
               { 
                   animalType === 'zoos' ? 
-                  <Link to ={"/zoos/pageId"}>
+                  <Link to ={"/zoos/" + animal.id }>
                  <button className="button"> Information</button>
                  </Link>
                  :
