@@ -11,6 +11,16 @@ import "./OurStory.css";
 const GenericZoos = () =>{
 
     const [zoo, setZoo] = useState([]);
+    const [animalsInZoo, setAnimalsInZoo] = useState([]);
+
+    getAllItems('animals/zoo/' + zoo.id)
+        .then(fetchedItems => {
+            if (fetchedItems) {
+                setAnimalsInZoo(fetchedItems);
+            }
+        })
+
+
     const { pageId } = useParams();
     const animalType = 'zoo';
 
