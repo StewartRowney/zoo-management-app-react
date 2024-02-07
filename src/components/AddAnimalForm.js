@@ -164,7 +164,7 @@ const AddAnimalForm = ({ title, animalType, animals, setAnimals, specificFields,
 }
 
         <ZooDropdown selectedZoo={formData.zoo.id} onZooChange={handleZooChange} />
-
+<br></br>
         <button className='button' type="submit" disabled={!isFormValid} onClick={handleSubmit}>
           Save
         </button>
