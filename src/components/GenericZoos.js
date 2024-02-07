@@ -8,22 +8,18 @@ import './Zoo.css';
 import './GenericZoos.css';
 import "./OurStory.css";
 import { Button } from '@mui/material';
+import Reptiles from './Reptiles';
 
 const GenericZoos = () =>{
 
     const [zoo, setZoo] = useState([]);
     const [animalsInZoo, setAnimalsInZoo] = useState([]);
 
-    getAllItems('animals/zoo/' + zoo.id)
-        .then(fetchedItems => {
-            if (fetchedItems) {
-                setAnimalsInZoo(fetchedItems);
-            }
-        })
+
 
 
     const { pageId } = useParams();
-    const animalType = 'zoo';
+    
 
     useEffect ( ()=> {
         console.log(pageId);
@@ -35,6 +31,30 @@ const GenericZoos = () =>{
         })
         .catch(error => console.error('Error fetching: ' + error));
     },[]);
+
+    const linkToSend = 'animals/zoo/' + zoo.id
+
+    const getThemAnimals = () => {
+    getAllItems(linkToSend)
+    .then(fetchedItems => {
+        if (fetchedItems) {
+            setAnimalsInZoo(fetchedItems);
+        }
+    })
+}
+
+const determineAnimalType = (uniqueAnimalItem) => {
+    for (const [key] of Object.entries(uniqueAnimalItem)) {
+      if (key === 'isPoisonous') {
+        return 'mammals';
+      } else if (key === 'canFly') {
+        return 'birds';
+      } else {
+        return 'reptiles';
+      }
+    }
+  };
+
 
     return(
 
@@ -51,10 +71,10 @@ const GenericZoos = () =>{
               <p><b>Date Opened :</b> {zoo.dateOpened}</p>
               </div>
               <div className="animal-row">
-              <Button onClick={getAllItems}>See all Animals</Button>
+              <Button onClick={getThemAnimals}>See all Animals</Button>
               {animalsInZoo.map(animalWithinZoo => (
-                        <Listbox key={animalWithinZoo.id} animal={animalWithinZoo} animals={animalsInZoo} setAnimals={setAnimalsInZoo}/>
-                    ))}
+                <Listbox key={animalWithinZoo.id} animal={animalWithinZoo} animals={animalsInZoo} setAnimals={setAnimalsInZoo} animalType={determineAnimalType(animalWithinZoo)} />
+              ))}
               
               </div>  
               </div>
