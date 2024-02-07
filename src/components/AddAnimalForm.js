@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react';
 import ZooDropdown from './ZooDropdown';
 import addItem from '../apis/addApis';
+import updateItem from '../apis/updateApi';
 
 
 const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields, animalItem, closePopup }) => {
@@ -26,7 +27,6 @@ const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields, 
 useEffect(() => {
   if (animalItem) {
     const updatedFields = {};
-
     Object.entries(animalItem).forEach(([key, value]) => {
       if (key === 'zoo') {
         updatedFields[key] = { id: value.id };
@@ -74,6 +74,21 @@ useEffect(() => {
   };
 
   const handleSubmit = () => {
+    if(animalItem){
+      updateItem(animalType, formData)
+      .then(fetchedItems => {
+          if (fetchedItems) {
+            const newAnimals = animals.filter(animal => animal.id !== animalItem.id);
+            setAnimals(newAnimals => [...newAnimals, fetchedItems]);
+            closePopup();
+            }
+            else {
+                console.error("Unexpected result returned from ", title, ": ", fetchedItems);
+            }
+        })
+        .catch(e => {console.error("Error calling update ", title, ": ", e)});
+  }
+    else {
     addItem(animalType, formData)
         .then(fetchedItems => {
             if (fetchedItems) {
@@ -99,6 +114,7 @@ useEffect(() => {
         extraInformation:'',
         ...specificFields,
     });
+  }
   };
 
   const handleZooChange = (selectedZooId) => {
