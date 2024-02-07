@@ -1,0 +1,17 @@
+.form-box input,
+textarea {
+  
+  width: 40%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+  
+  border: 0;
+  border-radius: 5px;
+  font-size: 1vw;
+  font-family: 'Gill Sans', sans-serif;
+}
+
+.form-box textarea {
+  height: 5vw;
+  width: 100%;
+}

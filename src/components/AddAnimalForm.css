@@ -1,0 +1,47 @@
+.form-box input,
+textarea {
+  display: flex;
+  width: 80%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+  margin: 0.25rem;
+  border: 0;
+  border-radius: 5px;
+  font-size: 1vw;
+  font-family: 'Gill Sans', sans-serif;
+}
+
+.form-box checkbox,
+ {
+
+}
+
+.form-box textarea {
+    flex: 1;
+  height: 5vw;
+  width: 100%;
+}
+
+.button {
+    appearance: none;
+    background-color: #E1FAE8;
+    border: 1px solid #0B6623;
+    border-radius: 1vw;
+    box-sizing: border-box;
+    color: #0B6623;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 1vw;
+    margin: 1vw;
+    font-weight: 600;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding: 0.5vw;
+}

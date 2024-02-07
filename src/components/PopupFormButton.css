@@ -1,13 +1,39 @@
-.modal > .close {
-    cursor: pointer;
-    position: absolute;
-    display: block;
-    padding: 2px 5px;
-    line-height: 20px;
-    right: -10px;
-    top: -10px;
-    font-size: 24px;
-    background: #ffffff;
-    border-radius: 18px;
-    border: 1px solid #cfcece;
-  }
+.modal>.close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 25px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
+
+.modal>.close:hover,
+.close:focus {
+color: grey
+}
+
+.myPopUp-content {
+  display:block;
+  align-items: center;
+  justify-content: left;
+  background-color: #0B6623;
+  border: 20px;
+  border-radius: 20px;
+  padding: 14px;
+  font-size: 16px;
+  color: white;
+  box-shadow: 0px 6px 18px -5px #0B6623;
+  width: 50vw;
+  height: 40vw; 
+ 
+}
+
+
+.myPopUp-arrow {
+  color: rgb(255, 255, 255);
+}

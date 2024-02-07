@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import addItem from "../apis/addApis";
 import updateItem from "../apis/updateApi";
+import './ZooFormComponentSimple.css'
 
 const ZooFormComponentSimple = ({ title, animalType, animalItem, setCollection, closePopup, collection }) => {
 
@@ -85,9 +86,10 @@ const ZooFormComponentSimple = ({ title, animalType, animalItem, setCollection, 
     };
 
     return (
-        <form>
+        <form className='form-box'>
             <h2>{title}</h2>
             <div>
+            <br></br>
                 <label>Enter the name of you Zoo:
                     <br></br>
                     <input
