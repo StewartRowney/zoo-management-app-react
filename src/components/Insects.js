@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Listbox from "../components/Listbox";
 import "./Animals.css"
-import AddAnimalForm from "./AddAnimalForm";
+import ActionBar from "./ActionBar";
 import getAllItems from "../apis/getApis";
 
 const Insects = () => {
   const [insects, setInsects] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const animalType = 'insects';
 
   const insectSpecificFields = {
@@ -15,26 +16,39 @@ const Insects = () => {
   };
 
   useEffect(() => {
-    getAllItems(animalType, setInsects)
+    getAllItems(animalType)
+    .then(fetchedItems => {
+      if (fetchedItems)
+        setInsects(fetchedItems);
+      else
+        console.error("Unexpected result returned from getInsects: ", fetchedItems);
+  })
+  .catch(e => {console.error("Error calling getInsects: ", e)}); 
   }, []);
+
+
+  const filteredAnimals = insects.filter((insect) =>
+  insect.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
 
   return (
     <div className="animal-background">
       <div className="animal-header">
         <h1 className="animal-h1">Insects</h1>
       </div>
-      <button onClick={() => setShowForm(true)}>Add Insects</button>
-          {showForm && (
-            <AddAnimalForm
-              animalType={animalType}
-              specificFields={insectSpecificFields}
-              setAnimals={setInsects}
-              animals={insects}
-            />
-          )}
+
+      <ActionBar
+        animalType={animalType}
+        specificFields={insectSpecificFields}
+        animals={insects}
+        setAnimals={setInsects}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        />
       <div className="animal-row">
-        {insects.map(insect => (
-          <Listbox key={insect.id} animal={insect} animals={insects} setAnimals={setInsects} animalType={animalType}/>
+        {filteredAnimals.map(insect => (
+          <Listbox key={insect.id} animal={insect} animals={insects} setAnimals={setInsects} animalType={animalType} specificFields={insectSpecificFields}/>
         ))}
       </div>
     </div>

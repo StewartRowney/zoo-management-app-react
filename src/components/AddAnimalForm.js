@@ -1,9 +1,13 @@
 import React, { useState , useEffect} from 'react';
 import ZooDropdown from './ZooDropdown';
 import addItem from '../apis/addApis';
+import updateItem from '../apis/updateApi';
 
 
-const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
+const AddAnimalForm = ({title, animalType, animals, setAnimals, specificFields, animalItem, closePopup }) => {
+
+
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const [formData, setFormData] = useState({
     zoo: {
@@ -19,8 +23,43 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
     ...specificFields,
   });
 
-  const [isFormValid, setIsFormValid] = useState(false);
 
+useEffect(() => {
+  if (animalItem) {
+    const updatedFields = {};
+    Object.entries(animalItem).forEach(([key, value]) => {
+      if (key === 'zoo') {
+        updatedFields[key] = { id: value.id };
+      } else if (typeof value !== 'object') {
+        updatedFields[key] = value;
+      }
+    });
+
+    setFormData({
+      ...updatedFields,
+    });
+  }
+}, [animalItem]);
+
+
+  // useEffect(() => {
+  //   if(animalItem){
+  //   setFormData({
+  //     zoo: {
+  //       id:animalItem.zoo.id, 
+  //     },
+  //   name:animalItem.name,
+  //   speciesName:animalItem.speciesName,
+  //   birthDate:animalItem.birthDate,
+  //   habitat:animalItem.habitat,
+  //   behaviour:animalItem.behaviour,
+  //   foodType:animalItem.foodType,
+  //   extraInformation:animalItem.extraInformation,
+  //   updatedSpecificfields
+  //   })
+  //     } 
+  //   },[animalItem, specificFields]);
+  
   useEffect(() => {
     const isValid = formData.name !== '' && formData.zoo.id !== '';
     setIsFormValid(isValid);
@@ -35,8 +74,34 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
   };
 
   const handleSubmit = () => {
-    addItem(animalType, animals, formData, setAnimals)
-    setFormData({
+    if(animalItem){
+      updateItem(animalType, formData)
+      .then(fetchedItems => {
+          if (fetchedItems) {
+            const newAnimals = animals.filter(animal => animal.id !== animalItem.id);
+            setAnimals(newAnimals => [...newAnimals, fetchedItems]);
+            closePopup();
+            }
+            else {
+                console.error("Unexpected result returned from ", title, ": ", fetchedItems);
+            }
+        })
+        .catch(e => {console.error("Error calling update ", title, ": ", e)});
+  }
+    else {
+    addItem(animalType, formData)
+        .then(fetchedItems => {
+            if (fetchedItems) {
+            setAnimals(prevCollection => [...prevCollection, fetchedItems]);
+            closePopup();
+            }
+            else {
+                console.error("Unexpected result returned from ", title, ": ", fetchedItems);
+            }
+        })
+        .catch(e => {console.error("Error calling add ", title, ": ", e)});
+    
+        setFormData({
         zoo: {
             id:'', 
           },
@@ -49,6 +114,7 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
         extraInformation:'',
         ...specificFields,
     });
+  }
   };
 
   const handleZooChange = (selectedZooId) => {
@@ -63,16 +129,14 @@ const AddAnimalForm = ({ animalType, animals, setAnimals, specificFields }) => {
 
   const capitalizeFirstLetter = (string) => {
     const spacedString = string.replace(/([a-z])([A-Z])/g, '$1 $2');
-  
     const titleCaseString = spacedString.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  
     return titleCaseString;
   };
 
 
   return (
     <div className="form-modal">
-      <h2>{`Add ${animalType}`}</h2>
+      <h2>{title}</h2>
       <form>
         <label>Name:</label>
         <input type="text" name="name" value={formData.name} onChange={handleInputChange} />

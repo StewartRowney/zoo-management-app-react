@@ -1,6 +1,6 @@
-const addItem = (type, item) => {
+const updateItem = (type, item) => {
     return fetch('http://localhost:8080/' + type, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type':'application/json',
         },
@@ -8,10 +8,10 @@ const addItem = (type, item) => {
         })
         .then(response => response.json())
         .then(data => {
-              console.log('Successfully added ' + data.name);
+              console.log('Successfully updated ' + data.name);
               return data
         })
-        .catch(error => console.error('Error fetching: ' + type, error));
+        .catch(error => console.error('Error updating: ' + type, error));
   };
 
-  export default addItem;
+  export default updateItem;

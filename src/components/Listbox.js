@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import "./Listbox.css";
 import deleteItem from "../apis/deleteApi";
-import Popup from "reactjs-popup";
-import { handleFormSubmit } from './Zoos';
 import PopupFormButton from "./PopupFormButton";
 import { Link } from "react-router-dom";
 
-const Listbox = ({ animal, animals, setAnimals, animalType }) => {
+const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) => {
   const [isExtended, setIsExtended] = useState(false);
 
   const toggleBox = () => {
@@ -20,11 +18,16 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
   };
 
   const deleteAnimal = () => {
-    deleteItem(animalType, animals, animal, setAnimals)
+    deleteItem(animalType, animal)
+    .then(fetchedItems => {
+      if (fetchedItems) {
+        setAnimals(animals.filter(i => i !== animal));
+      }
+  })
   };
 
   const updateItem = () => {
-    console.log("updated");
+    
   };
 
   const id = () => {
@@ -44,10 +47,13 @@ const Listbox = ({ animal, animals, setAnimals, animalType }) => {
             ))}
             
           <div className="buttons">
-            <PopupFormButton
-              popupBtnMessage={"Update Zoo"}
-            >
-            </PopupFormButton>
+          <PopupFormButton
+                animalType = {animalType}
+                collection = {animals}
+                setCollection = {setAnimals}
+                specificFields={specificFields}
+                animalItem={animal}
+                />
             <button className="button" onClick={deleteAnimal}>Delete</button>
             
               { 

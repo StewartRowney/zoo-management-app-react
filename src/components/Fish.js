@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import Listbox from "../components/Listbox";
 import "./Animals.css"
-import AddAnimalForm from "./AddAnimalForm";
+import ActionBar from "./ActionBar";
 import getAllItems from "../apis/getApis";
 
 const Fishes = () => {
   const [fishes, setFishes] = useState([]);
-  const [showForm, setShowForm] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const animalType = "fish";
 
   const fishSpecificFields = {
@@ -14,28 +14,39 @@ const Fishes = () => {
     canDischargeElectricity: ''
   };
 
-
   useEffect(() => {
-    getAllItems(animalType, setFishes)
+    getAllItems(animalType)
+    .then(fetchedItems => {
+      if (fetchedItems)
+        setFishes(fetchedItems);
+      else
+        console.error("Unexpected result returned from getFish: ", fetchedItems);
+  })
+  .catch(e => {console.error("Error calling getFish: ", e)}); 
   }, []);
+
+
+
+  const filteredAnimals = fishes.filter((fish) =>
+  fish.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="animal-background">
       <div className="animal-header">
         <h1 className="animal-h1">Fishes</h1>
       </div>
-      <button onClick={() => setShowForm(true)}>Add Fish</button>
-                {showForm && (
-                  <AddAnimalForm
-                    animalType={animalType}
-                    specificFields={fishSpecificFields}
-                    animals={fishes}
-                    setAnimals={setFishes}
-                  />
-                )}
+      <ActionBar
+        animalType={animalType}
+        specificFields={fishSpecificFields}
+        animals={fishes}
+        setAnimals={setFishes}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        />
       <div className="animal-row">
-        {fishes.map(fish => (
-          <Listbox key={fish.id} animal={fish} animals={fishes} setAnimals={setFishes} animalType={animalType}/>
+        {filteredAnimals.map(fish => (
+          <Listbox key={fish.id} animal={fish} animals={fishes} setAnimals={setFishes} animalType={animalType} specificFields={fishSpecificFields}/>
         ))}
       </div>
     </div>
