@@ -12,7 +12,10 @@ export const amphibiansSpecificFields = {
 const Amphibians = () => {
   const [amphibians, setAmphibians] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const animalType='amphibians'
+  const animalType='amphibians';
+  const [isPoisonousF, setisPoisonousF] = useState(false); 
+  const [makesNoiseF, setmakesNoiseF] = useState(false);
+
 
   const amphibiansSpecificFields = {
     isPoisonous:'',
@@ -35,7 +38,9 @@ const Amphibians = () => {
 
   const filteredAnimals = amphibians.filter((amphibian) =>
     amphibian.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  )
+  .filter((amphibian) => !isPoisonousF || amphibian.isPoisonous)
+ .filter((amphibian) => !makesNoiseF || amphibian.makesNoise);
 
   return(
     <div className="animal-background">
@@ -52,6 +57,30 @@ const Amphibians = () => {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         />
+
+<div className="filter-container">
+  <p>
+    <strong>Filter Search: </strong>
+  </p>
+
+  <label className="filter-label">
+    <input
+      type="checkbox"
+      checked={isPoisonousF}
+      onChange={() => setisPoisonousF(!isPoisonousF)}
+    />
+    Is Poisonous
+  </label>
+
+  <label className="filter-label">
+    <input
+      type="checkbox"
+      checked={makesNoiseF}
+      onChange={() => setmakesNoiseF(!makesNoiseF)}
+    />
+    Makes Noise
+  </label>
+</div>
         <div className="animal-row">
             {filteredAnimals.map(amphibian => (<Listbox key={amphibian.id} animal={amphibian} animals={amphibians} setAnimals={setAmphibians} animalType={animalType} specificFields={amphibiansSpecificFields}/>))}
         </div>
