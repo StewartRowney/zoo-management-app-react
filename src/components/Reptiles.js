@@ -4,6 +4,11 @@ import Listbox from "../components/Listbox";
 import ActionBar from "./ActionBar";
 import getAllItems from "../apis/getApis";
 
+export const reptileSpecificFields = {
+  hasShell: '',
+  hasLegs: '',
+  isColdBlooded: ''
+};
 
 const Reptiles = () =>{
 
@@ -11,11 +16,7 @@ const Reptiles = () =>{
     const [searchTerm, setSearchTerm] = useState("");
     const animalType = 'reptiles';
 
-    const reptileSpecificFields = {
-      hasShell: '',
-      hasLegs: '',
-      isColdBlooded: ''
-    };
+
 
     useEffect(() => {
       getAllItems(animalType)

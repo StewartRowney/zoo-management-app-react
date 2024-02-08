@@ -4,6 +4,11 @@ import "./Animals.css"
 import ActionBar from "./ActionBar";
 import getAllItems from "../apis/getApis";
 
+export const fishSpecificFields = {
+  isBioluminiscent: '',
+  canDischargeElectricity: ''
+};
+
 const Fishes = () => {
   const [fishes, setFishes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");

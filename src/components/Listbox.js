@@ -3,6 +3,7 @@ import "./Listbox.css";
 import deleteItem from "../apis/deleteApi";
 import PopupFormButton from "./PopupFormButton";
 import ZooDeleteButton from "./ZooDeleteButton";
+import { Link } from "react-router-dom";
 
 const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) => {
   const [isExtended, setIsExtended] = useState(false);
@@ -25,6 +26,14 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
       }});
   }
 
+  const updateItem = () => {
+    
+  };
+
+  const id = () => {
+    let pageId= animal.id
+  };
+
   return (
     <div className={`box ${isExtended ? 'extended' : ''}`} onClick={toggleBox}>
       <h5 className="listbox-title">{animal.name}</h5>
@@ -36,6 +45,7 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
             .map(([key, value]) => (
               <p key={key}>{capitalizeFirstLetter(key)}: {value === true ? 'True' : value === false ? 'False' : value}</p>
             ))}
+            
           <div className="buttons">
             <PopupFormButton
               animalType = {animalType}
@@ -57,10 +67,19 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
                 <button className="button" onClick={sendDelete}>Delete</button>
             }
           </div>
-        </div>
+            
+              { 
+                  animalType === 'zoos' ? 
+                  <Link to ={"/zoos/" + animal.id }>
+                 <button className="button"> Information</button>
+                 </Link>
+                 :
+                 <></>
+              }
+          </div>     
       )}
     </div>
-  );
-};
+  )
+}
 
 export default Listbox;

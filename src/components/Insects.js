@@ -4,6 +4,11 @@ import "./Animals.css"
 import ActionBar from "./ActionBar";
 import getAllItems from "../apis/getApis";
 
+export const insectSpecificFields = {
+  hasWings: '',
+  numberOfLegs: 0
+};
+
 const Insects = () => {
   const [insects, setInsects] = useState([]);
   const [showForm, setShowForm] = useState(false);

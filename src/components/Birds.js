@@ -4,16 +4,18 @@ import "./Animals.css"
 import getAllItems from "../apis/getApis";
 import ActionBar from "./ActionBar";
 
+export const birdSpecificFields = {
+  canMimicSound: '',
+  isNocturnal: '',
+  canFly: ''
+};
+
+
 const Birds = () => {
     const [birds, setBirds] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const animalType = 'birds'
 
-    const birdSpecificFields = {
-      canMimicSound: '',
-      isNocturnal: '',
-      canFly: ''
-    };
 
     useEffect(() => {
       getAllItems(animalType)

@@ -4,14 +4,31 @@ import BusinessIcon from '@mui/icons-material/Business';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import PetsIcon from '@mui/icons-material/Pets';
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState , useEffect} from "react";
+import getAllItems from "../apis/getApis";
 
 function SidebarComponent() {
+  const { collapseSidebar } = useProSidebar();
+  const [zoos, setZoos] = useState([]);
+
   const [collapsed, setCollapsed] = useState(false)
 
   const handleToggleSidebar = () => {
     setCollapsed(!collapsed);
   };
+
+
+
+  useEffect(() => {
+    getAllItems('zoos')
+    .then(fetchedItems => {
+      if (fetchedItems)
+        setZoos(fetchedItems);
+      else
+        console.error("Unexpected result returned from getZoos: ", fetchedItems);
+  })
+  .catch(e => {console.error("Error calling getZoos: ", e)}); 
+  }, []);
 
   return (
     <div id="app">
@@ -26,18 +43,21 @@ function SidebarComponent() {
             <h2>Admin</h2>
           </MenuItem>
           <MenuItem component={<Link to="/" className="link" />} icon={<HomeOutlinedIcon />}>Home</MenuItem>
-          <SubMenu component={<Link to="/zoos" className="link" />} icon={<BusinessIcon />} label='Zoos'>
-            <MenuItem> Cheshire Zoo </MenuItem>
-            <MenuItem> Edinburgh Zoo </MenuItem>
-            <MenuItem> London Zoo </MenuItem>
+          <SubMenu icon={<BusinessIcon />} label='Zoos'>
+            <MenuItem component={<Link to="/zoos" className="link" />}> <strong>All Zoos</strong> </MenuItem>
+            <div>
+            {zoos.map(zoo => 
+             <MenuItem component={<Link to={`/zoos/${zoo.id}`} className="link">{zoo.name}</Link>} key={zoo.id}> {zoo.name} </MenuItem>)}
+            </div>
             </SubMenu>
-          <SubMenu component={<Link to="/animals" className="link" />} icon={<PetsIcon />} label='Animals'>
-            <MenuItem> Amphibians </MenuItem>
-            <MenuItem> Birds </MenuItem>
-            <MenuItem> Fish </MenuItem>
-            <MenuItem> Insects </MenuItem>
-            <MenuItem> Mammals </MenuItem>
-            <MenuItem> Reptiles </MenuItem>
+          <SubMenu icon={<PetsIcon />} label='Animals'>
+          <MenuItem component={<Link to="/animals/" className="link" />} > <strong>All Animals</strong></MenuItem>
+            <MenuItem component={<Link to="/animals/amphibians" className="link" />}  > Amphibians </MenuItem>
+            <MenuItem component={<Link to="/animals/birds" className="link" />}  >Birds </MenuItem>
+            <MenuItem component={<Link to="/animals/fishes" className="link" />}  > Fish </MenuItem>
+            <MenuItem component={<Link to="/animals/insects" className="link" />}   > Insects </MenuItem>
+            <MenuItem component={<Link to="/animals/mammals" className="link" />}   >Mammals </MenuItem>
+            <MenuItem component={<Link to="/animals/reptiles" className="link" />}   > Reptiles </MenuItem>
             </SubMenu>
         </Menu>
       </Sidebar>
