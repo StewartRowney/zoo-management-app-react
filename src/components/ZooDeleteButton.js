@@ -33,22 +33,22 @@ const ZooDeleteButton = ({zoo, itemType, zoos, setZoos}) => {
             sendDelete();
         }
     };
-    
+
     const sendDelete = () => {
         deleteItem(itemType, zoo)
-          .then(fetchedItems => {
+            .then(fetchedItems => {
             if (fetchedItems) {
                 setZoos(zoos.filter(i => i !== zoo));
             }
         });
     }
-    
+
     const deleteZooWithAnimals = () => {
 
         const ids = animals.map(animal => animal.id)
 
         deleteItems('animals', ids)
-          .then(animalsDeleted => {
+            .then(animalsDeleted => {
             if (animalsDeleted) {
                 sendDelete();
             }

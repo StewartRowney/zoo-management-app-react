@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import './Zoo.css';
 import './Animals.css';
 import Listbox from "./Listbox";
-import PopupFormButton from "./PopupFormButton";
 import getAllItems from "../apis/getApis";
 import ActionBar from "./ActionBar";
 

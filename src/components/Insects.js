@@ -11,7 +11,6 @@ export const insectSpecificFields = {
 
 const Insects = () => {
   const [insects, setInsects] = useState([]);
-  const [showForm, setShowForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const animalType = 'insects';
 

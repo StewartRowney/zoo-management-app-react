@@ -9,14 +9,11 @@ import getAllItems from "../apis/getApis";
 
 function SidebarComponent() {
   const [zoos, setZoos] = useState([]);
-
   const [collapsed, setCollapsed] = useState(false)
 
   const handleToggleSidebar = () => {
     setCollapsed(!collapsed);
   };
-
-
 
   useEffect(() => {
     getAllItems('zoos')

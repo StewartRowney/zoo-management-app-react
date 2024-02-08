@@ -1,5 +1,4 @@
 import "./Animals.css";
-import AnimalButton from "./AnimalButton";
 import amphibian from "../media/amphibian.jpg"
 import mammal from "../media/mammal.jpg"
 import reptile from "../media/reptile.jpg"

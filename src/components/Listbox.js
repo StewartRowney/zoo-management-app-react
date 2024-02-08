@@ -26,14 +26,6 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
       }});
   }
 
-  const updateItem = () => {
-    
-  };
-
-  const id = () => {
-    let pageId= animal.id
-  };
-
   return (
     <div className={`box ${isExtended ? 'extended' : ''}`} onClick={toggleBox}>
       <h5 className="listbox-title">{animal.name}</h5>
@@ -66,17 +58,16 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
               :
                 <button className="button" onClick={sendDelete}>Delete</button>
             }
-          </div>
-            
-              { 
-                  animalType === 'zoos' ? 
-                  <Link to ={"/zoos/" + animal.id }>
-                 <button className="button"> Information</button>
-                 </Link>
-                 :
-                 <></>
+            { 
+                animalType === 'zoos' ? 
+                <Link to ={"/zoos/" + animal.id }>
+                <button className="button"> Information</button>
+                </Link>
+                :
+                <></>
               }
-          </div>     
+          </div>
+        </div>     
       )}
     </div>
   )
