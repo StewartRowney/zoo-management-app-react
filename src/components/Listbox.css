@@ -16,6 +16,12 @@
   margin-right: auto;
 }
 
+.listbox-title{
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  font-size: 1vw;
+}
+
 .extended {
   height: auto; 
   display: flex;
@@ -27,11 +33,10 @@
   font-size: 1vw;  
   padding-bottom: 1vw; /* Add padding to match the main box */
   color: #0B6623;
+  padding-left: 1vw;
+  padding-right: 1vw;
 }
 
-.listbox-title {
-  font-size: 1vw;
-}
 
 .buttons {
   margin-left: auto;
@@ -86,4 +91,8 @@
 .button:active {
   background-color: #E1FAE8;
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.delete-button-div {
+  display: inline-block;
 }

@@ -17,7 +17,7 @@ const ZooDropdown = ({ selectedZoo, onZooChange }) => {
 
   return (
     <div>
-      <label>Zoo:</label>
+      <label>Zoo: </label>
       <select
         name="zooId"
         value={selectedZoo}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Listbox.css";
 import deleteItem from "../apis/deleteApi";
 import PopupFormButton from "./PopupFormButton";
+import ZooDeleteButton from "./ZooDeleteButton";
 import { Link } from "react-router-dom";
 
 const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) => {
@@ -17,14 +18,13 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
     return titleCaseString;
   };
 
-  const deleteAnimal = () => {
+  const sendDelete = () => {
     deleteItem(animalType, animal)
-    .then(fetchedItems => {
+      .then(fetchedItems => {
       if (fetchedItems) {
         setAnimals(animals.filter(i => i !== animal));
-      }
-  })
-  };
+      }});
+  }
 
   const updateItem = () => {
     
@@ -47,6 +47,26 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
             ))}
             
           <div className="buttons">
+            <PopupFormButton
+              animalType = {animalType}
+              collection = {animals}
+              setCollection = {setAnimals}
+              specificFields={specificFields}
+              animalItem={animal}
+              />
+
+            {
+              (animalType === 'zoos') ?
+                <ZooDeleteButton
+                zoo={animal}
+                itemType={animalType}
+                zoos={animals}
+                setZoos={setAnimals}
+                />
+              :
+                <button className="button" onClick={sendDelete}>Delete</button>
+            }
+          </div>
           <PopupFormButton
                 animalType = {animalType}
                 collection = {animals}
@@ -65,7 +85,6 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
                  <></>
               }
           </div>     
-        </div>
       )}
     </div>
   )
