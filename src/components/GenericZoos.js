@@ -8,82 +8,100 @@ import './Zoo.css';
 import './GenericZoos.css';
 import "./OurStory.css";
 import { Button } from '@mui/material';
-import Reptiles from './Reptiles';
+import { reptileSpecificFields } from './Reptiles';
 import { birdSpecificFields } from './Birds';
+import { amphibiansSpecificFields } from './Amphibians';
+import { fishSpecificFields } from './Fish';
+import { insectSpecificFields } from './Insects';
+import { mammalSpecificFields } from './Mammals';
 
 const GenericZoos = () =>{
 
     const [zoo, setZoo] = useState([]);
     const [animalsInZoo, setAnimalsInZoo] = useState([]);
 
-
-
-
     const { pageId } = useParams();
     
 
     useEffect ( ()=> {
-        console.log(pageId);
-        fetch('http://localhost:8080/zoos/' + pageId)
-        .then(response => response.json())
-        .then(data => {
-                console.log(data);
-                setZoo(data);
-        })
-        .catch(error => console.error('Error fetching: ' + error));
+      getZooInfo();
+      getThemAnimals();
     },[]);
+    
 
-    const linkToSend = 'animals/zoo/' + zoo.id
+    const getZooInfo = () => {
+    const linkToFetchZooInfo =  'zoos/' + pageId
+      getAllItems(linkToFetchZooInfo)
+      .then(fetchedItems => {
+        if (fetchedItems) {
+          setZoo(fetchedItems)
+        }
+      })
+      .catch(error => console.error('Error fetching zoo data: ' + error));
+    }
 
     const getThemAnimals = () => {
+    const linkToSend = 'animals/zoo/' + pageId
     getAllItems(linkToSend)
     .then(fetchedItems => {
         if (fetchedItems) {
             setAnimalsInZoo(fetchedItems);
         }
     })
+    .catch(error => console.error('Error fetching animals in Zoo: ' + error));
 }
+
+useEffect ( ()=> {
+  getZooInfo();
+  getThemAnimals();
+},[]);
 
 const determineAnimalType = (uniqueAnimalItem) => {
   for (const key in uniqueAnimalItem) {
-    if (key === 'isPoisonous' && uniqueAnimalItem[key]) {
+    if (key === 'makesNoise' ) {
       return 'amphibians';
-    } else if (key === 'canFly' && uniqueAnimalItem[key]) {
+    } else if (key === 'canFly') {
       return 'birds';
     }
-    else if (key === 'isBioluminiscent' && uniqueAnimalItem[key]) {
+    else if (key === 'canDischargeElectricity') {
       return 'fish';
     }
-    else if (key === 'numberOfLegs' && uniqueAnimalItem[key]) {
+    else if (key === 'numberOfLegs' ) {
       return 'insects';
     }
-    else if (key === 'hasFur' && uniqueAnimalItem[key]) {
+    else if (key === 'hasFur' ) {
       return 'mammals';
     }
+    else if (key === 'hasLegs') {
+      return 'reptiles';
+    }
   }
-  return 'reptiles';
+  return 'undefined';
 };
 
 
 const determineSpecificFields = (uniqueAnimalItem) => {
 
   for (const key in uniqueAnimalItem) {
-    if (key === 'isPoisonous' && uniqueAnimalItem[key]) {
-      return 'insects';
-    } else if (key === 'canFly' && uniqueAnimalItem[key]) {
+    if (key === 'isPoisonous' ) {
+      return mammalSpecificFields;
+    } else if (key === 'canFly') {
       return birdSpecificFields; 
     }
-    else if (key === 'isBioluminiscent' && uniqueAnimalItem[key]) {
-      return 'fish';
+    else if (key === 'isBioluminiscent') {
+      return fishSpecificFields
     }
-    else if (key === 'numberOfLegs' && uniqueAnimalItem[key]) {
-      return 'insects';
+    else if (key === 'numberOfLegs') {
+      return insectSpecificFields
     }
-    else if (key === 'hasFur' && uniqueAnimalItem[key]) {
-      return 'mammals';
+    else if (key === 'hasFur' ) {
+      return mammalSpecificFields
+    }
+    else if (key === 'hasLegs') {
+      return reptileSpecificFields;
     }
   }
-  return 'reptiles';
+  return undefined ;
 };
 
 
@@ -102,11 +120,10 @@ const determineSpecificFields = (uniqueAnimalItem) => {
               <p><b>Date Opened :</b> {zoo.dateOpened}</p>
               </div>
               <div className="animal-row">
-              <Button onClick={getThemAnimals}>See all Animals</Button>
+              {/* <Button onClick={getThemAnimals}>See all Animals</Button> */}
               {animalsInZoo.map(animalWithinZoo => (
                 <Listbox key={animalWithinZoo.id} animal={animalWithinZoo} animals={animalsInZoo} setAnimals={setAnimalsInZoo} animalType={determineAnimalType(animalWithinZoo)} specificFields={determineSpecificFields(animalWithinZoo)} />
               ))}
-              
               </div>  
               </div>
           </div>

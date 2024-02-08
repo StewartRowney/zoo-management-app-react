@@ -4,6 +4,12 @@ import "./Animals.css"
 import getAllItems from "../apis/getApis";
 import ActionBar from "./ActionBar";
 
+export const mammalSpecificFields = {
+  hasFur: '',
+  hasFins: '',
+  hasHooves: ''
+};
+
 const Mammals = () => {
   const [mammals, setMammals] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
