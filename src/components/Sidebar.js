@@ -10,7 +10,7 @@ function SidebarComponent() {
 
   return (
     <div id="app">
-      <Sidebar rtl={true} style={{height:"100vh"}}>
+      <Sidebar rtl={true} style={{height:"100%"}}>
         <Menu>
           <MenuItem
             icon={<MenuOutlinedIcon />}

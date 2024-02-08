@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import getAllItems from '../apis/getApis';
+import './ZooDropdown.css'
 
 const ZooDropdown = ({ selectedZoo, onZooChange }) => {
   const [zoos, setZoos] = useState([]);
@@ -23,7 +24,7 @@ const ZooDropdown = ({ selectedZoo, onZooChange }) => {
         value={selectedZoo}
         onChange={(e) => onZooChange(e.target.value)}
       >
-        <option value="">Select a Zoo</option>
+        <option value="" disabled selected>Select a Zoo</option>
         {zoos.map((zoo) => (
           <option key={zoo.id} value={zoo.id}>
             {zoo.name}
