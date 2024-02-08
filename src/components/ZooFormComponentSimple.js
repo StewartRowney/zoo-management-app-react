@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import addItem from "../apis/addApis";
+import updateItem from "../apis/updateApi";
 
-const ZooFormComponentSimple = ({title, animalType, collection, setCollection, closePopup}) => {
+const ZooFormComponentSimple = ({ title, animalType, animalItem, setCollection, closePopup, collection }) => {
 
     const initialInputs = {
         name: '',
@@ -16,29 +17,70 @@ const ZooFormComponentSimple = ({title, animalType, collection, setCollection, c
     const [isFormValid, setIsFormValid] = useState(false);
 
     useEffect(() => {
+        if (animalItem) {
+            setInputs({
+                name: animalItem.name,
+                location: animalItem.location,
+                description: animalItem.description,
+                capacity: animalItem.capacity,
+                price: animalItem.price,
+                dateOpened: animalItem.dateOpened,
+            })
+        }
+    }, []);
+
+    useEffect(() => {
         const isValid =
-        Object.values(inputs).every(value => value !== '');
+            Object.values(inputs).every(value => value !== '');
         setIsFormValid(isValid);
     }, [inputs]);
 
     const handleChange = (event) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         setInputs(prevInputs => ({ ...prevInputs, [name]: value }))
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        addItem(animalType, inputs)
-        .then(fetchedItems => {
-            if (fetchedItems) {
-            setCollection(prevCollection => [...prevCollection, fetchedItems]);
-            closePopup();
+
+
+        if (!animalItem) {
+            addItem(animalType, inputs)
+                .then(fetchedItems => {
+                    if (fetchedItems) {
+                        setCollection(prevCollection => [...prevCollection, fetchedItems]);
+                        closePopup();
+                    }
+                    else {
+                        console.error("Unexpected result returned from addZoo: ", fetchedItems);
+                    }
+                })
+                .catch(e => { console.error("Error calling addZoo: ", e) });
+
+        } else {
+
+            inputs.id = animalItem.id;
+            
+            if (inputs.id != null) {
+                updateItem(animalType, inputs)
+                    .then(fetchedItems => {
+                        if (fetchedItems) {
+
+                            const updatedZoo = collection.filter(zoo => zoo.id !== animalItem.id);
+
+                            console.log("Filtered out " + updatedZoo)
+                            setCollection(updatedZoo)
+
+                            setCollection(prevCollection => [...prevCollection, fetchedItems]);
+                            closePopup();
+                        }
+                        else {
+                            console.error("Unexpected result returned from updateZoo: ", fetchedItems);
+                        }
+                    })
+                    .catch(e => { console.error("Error calling updateZZoo: ", e) });
             }
-            else {
-                console.error("Unexpected result returned from addZoo: ", fetchedItems);
-            }
-        })
-        .catch(e => {console.error("Error calling addZoo: ", e)});
+        }
 
     };
 
@@ -74,7 +116,7 @@ const ZooFormComponentSimple = ({title, animalType, collection, setCollection, c
                     <br></br>
                     <textarea
                         name="description"
-                        placeholder='Enter comment...'
+                        placeholder='Enter description...'
                         maxLength='1000'
                         minLength='100'
                         rows={4}

@@ -4,10 +4,12 @@ import './Animals.css';
 import Listbox from "./Listbox";
 import PopupFormButton from "./PopupFormButton";
 import getAllItems from "../apis/getApis";
+import ActionBar from "./ActionBar";
 
 const Zoos = () => {
   const animalType = 'zoos';
   const [zoos, setZoos] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     getAllItems(animalType)
@@ -20,22 +22,26 @@ const Zoos = () => {
     .catch(e => {console.error("Error calling getZoos: ", e)}); 
   }, []);
 
+  const filteredAnimals = zoos.filter((zoo) =>
+  zoo.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
   return (
     <div className="animal-background">
       <div className="animal-header">
         <h1 className="animal-h1">Zoos</h1>
       </div>
-      <div className="zoo-row">
-        {zoos.length !== 0 ? (zoos.map(zoo => <Listbox key={zoo.id} animal={zoo} animals={zoos} setAnimals={setZoos} animalType={animalType} />)) : <p>No zoos available.</p>}
-      </div>
-      <br></br>
-      <PopupFormButton
-        popupBtnMessage={"Add Zoo"}
+      <ActionBar
         animalType={animalType}
-        collection={zoos}
-        setCollection={setZoos}
-      >
-      </PopupFormButton>
+        animals={zoos}
+        setAnimals={setZoos}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        />
+      <div className="zoo-row">
+        {zoos.length !== 0 ? (filteredAnimals.map(zoo => <Listbox key={zoo.id} animal={zoo} animals={zoos} setAnimals={setZoos} animalType={animalType} />)) : <p>No zoos available.</p>}
+      </div>
+ 
     </div>
   );
 }

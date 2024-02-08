@@ -1,7 +1,6 @@
 import { useEffect, useState} from "react"
 import Listbox from "../components/Listbox";
 import "./Animals.css";
-import AddAnimalForm from "./AddAnimalForm";
 import getAllItems from "../apis/getApis";
 import ActionBar from "./ActionBar";
 
@@ -28,9 +27,7 @@ const Amphibians = () => {
   .catch(e => {console.error("Error calling getAmphibians: ", e)}); 
   }, []);
 
-  const handleSearchTermChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
+
 
   const filteredAnimals = amphibians.filter((amphibian) =>
     amphibian.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -41,19 +38,15 @@ const Amphibians = () => {
         <div className="animal-header">
             <h1 className="animal-h1">Amphibians</h1>
         </div>
-        <input
-        type="text"
-        placeholder="Search by name..."
-        value={searchTerm}
-        onChange={handleSearchTermChange}
-        className="search-bar"
-      />
+        
         
         <ActionBar
         animalType={animalType}
         specificFields={amphibiansSpecificFields}
         animals={amphibians}
         setAnimals={setAmphibians}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
         />
         <div className="animal-row">
             {filteredAnimals.map(amphibian => (<Listbox key={amphibian.id} animal={amphibian} animals={amphibians} setAnimals={setAmphibians} animalType={animalType} specificFields={amphibiansSpecificFields}/>))}

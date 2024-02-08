@@ -5,7 +5,7 @@ import 'reactjs-popup/dist/index.css';
 import './PopupFormButton.css';
 import AddAnimalForm from "./AddAnimalForm";
 
-const PopupFormButton = ({ animalType, collection, setCollection, specificFields, animalItem }) => {
+const PopupFormButton = ({ animalType, collection, setCollection, specificFields, animalItem}) => {
 
     const formatTitle = (string) => {
         if (typeof string === 'string') {
@@ -49,6 +49,7 @@ const PopupFormButton = ({ animalType, collection, setCollection, specificFields
                             setCollection = {setCollection}
                             title={title}
                             closePopup={close}
+                            animalItem={animalItem}
                         /> : 
                         <AddAnimalForm
                             animalType={animalType}
