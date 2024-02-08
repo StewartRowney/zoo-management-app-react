@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import Listbox from "../components/Listbox";
 import "./Animals.css"
-import AddAnimalForm from "./AddAnimalForm";
+import ActionBar from "./ActionBar";
 import getAllItems from "../apis/getApis";
 
 const Fishes = () => {
   const [fishes, setFishes] = useState([]);
-  const [showForm, setShowForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const animalType = "fish";
 
@@ -26,9 +25,7 @@ const Fishes = () => {
   .catch(e => {console.error("Error calling getFish: ", e)}); 
   }, []);
 
-  const handleSearchTermChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
+
 
   const filteredAnimals = fishes.filter((fish) =>
   fish.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -39,25 +36,17 @@ const Fishes = () => {
       <div className="animal-header">
         <h1 className="animal-h1">Fishes</h1>
       </div>
-      <input
-        type="text"
-        placeholder="Search by name..."
-        value={searchTerm}
-        onChange={handleSearchTermChange}
-        className="search-bar"
-      />
-      <button onClick={() => setShowForm(true)}>Add Fish</button>
-                {showForm && (
-                  <AddAnimalForm
-                    animalType={animalType}
-                    specificFields={fishSpecificFields}
-                    animals={fishes}
-                    setAnimals={setFishes}
-                  />
-                )}
+      <ActionBar
+        animalType={animalType}
+        specificFields={fishSpecificFields}
+        animals={fishes}
+        setAnimals={setFishes}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        />
       <div className="animal-row">
         {filteredAnimals.map(fish => (
-          <Listbox key={fish.id} animal={fish} animals={fishes} setAnimals={setFishes} animalType={animalType}/>
+          <Listbox key={fish.id} animal={fish} animals={fishes} setAnimals={setFishes} animalType={animalType} specificFields={fishSpecificFields}/>
         ))}
       </div>
     </div>

@@ -1,14 +1,13 @@
 import "./Animals.css"
 import { useEffect, useState} from "react";
 import Listbox from "../components/Listbox";
-import AddAnimalForm from "./AddAnimalForm";
+import ActionBar from "./ActionBar";
 import getAllItems from "../apis/getApis";
 
 
 const Reptiles = () =>{
 
     const [reptiles, setReptiles] = useState([]);
-    const [showForm, setShowForm] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const animalType = 'reptiles';
 
@@ -29,9 +28,6 @@ const Reptiles = () =>{
     .catch(e => {console.error("Error calling getReptiles: ", e)}); 
     }, []);
 
-      const handleSearchTermChange = (e) => {
-        setSearchTerm(e.target.value);
-      };
     
       const filteredAnimals = reptiles.filter((reptile) =>
       reptile.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -42,26 +38,18 @@ const Reptiles = () =>{
             <div className="animal-header">
                 <h1 className="animal-h1">Reptiles</h1>
             </div>
-            <input
-        type="text"
-        placeholder="Search by name..."
-        value={searchTerm}
-        onChange={handleSearchTermChange}
-        className="search-bar"
-      />
-            <button onClick={() => setShowForm(true)}>Add Reptile</button>
-                {showForm && (
-                  <AddAnimalForm
-                    animalType={animalType}
-                    specificFields={reptileSpecificFields}
-                    animals={reptiles}
-                    setAnimals={setReptiles}
-                  />
-                )}
+              <ActionBar
+        animalType={animalType}
+        specificFields={reptileSpecificFields}
+        animals={reptiles}
+        setAnimals={setReptiles}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        />
                 
             <div className="animal-row">
                 {filteredAnimals.map(reptile => (
-                  <Listbox key={reptile.id}  animal={reptile} animals={reptiles} setAnimals={setReptiles} animalType={animalType}/>))}
+                  <Listbox key={reptile.id}  animal={reptile} animals={reptiles} setAnimals={setReptiles} animalType={animalType} specificFields={reptileSpecificFields}/>))}
             </div>
         </div>
       );
