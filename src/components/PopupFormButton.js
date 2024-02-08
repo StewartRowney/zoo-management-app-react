@@ -1,11 +1,11 @@
 import Popup from "reactjs-popup";
-import { useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 import ZooFormComponentSimple from "./ZooFormComponentSimple";
 import 'reactjs-popup/dist/index.css';
 import './PopupFormButton.css';
 import AddAnimalForm from "./AddAnimalForm";
 
-const PopupFormButton = ({ animalType, collection, setCollection, specificFields, animalItem}) => {
+const PopupFormButton = ({ animalType, collection, setCollection, specificFields, animalItem }) => {
 
     const formatTitle = (string) => {
         if (typeof string === 'string') {
@@ -18,22 +18,25 @@ const PopupFormButton = ({ animalType, collection, setCollection, specificFields
         }
     };
 
-    const[title, setTitle] = useState();
+    const [title, setTitle] = useState();
 
 
     useEffect(() => {
-        if(animalItem)
-        setTitle('Update ' + formatTitle(animalType))
-    else
-        setTitle('Add ' + formatTitle(animalType))
-    },[]);
- 
+        if (animalItem)
+            setTitle('Update ' + formatTitle(animalType))
+        else
+            setTitle('Add ' + formatTitle(animalType))
+    }, []);
+
 
     return (
         <Popup trigger={<button className="button"> {title} </button>}
             modal
             nested
-            position='right center' >
+            position='right center'
+            className="myPopUp"
+        >
+        
 
             {close => (
                 <div className="modal">
@@ -41,26 +44,34 @@ const PopupFormButton = ({ animalType, collection, setCollection, specificFields
                         &times;
                     </button>
 
-                    <div>
-                        {animalType === 'zoos' ? 
-                        <ZooFormComponentSimple
-                            animalType = {animalType}
-                            collection = {collection}
-                            setCollection = {setCollection}
-                            title={title}
-                            closePopup={close}
-                            animalItem={animalItem}
-                        /> : 
-                        <AddAnimalForm
-                            animalType={animalType}
-                            specificFields={specificFields}
-                            animals={collection}
-                            setAnimals={setCollection}
-                            title={title}
-                            animalItem={animalItem}
-                            closePopup={close}
-                        />}
+                    <div className="content-wrapper">
+                    
+                        <div className="form-container">
+                            
+                            {animalType === 'zoos' ? (
+                                <ZooFormComponentSimple
+                                    animalType={animalType}
+                                    collection={collection}
+                                    setCollection={setCollection}
+                                    title={title}
+                                    closePopup={close}
+                                    animalItem={animalItem}
+                                />
+                            ) : (
+                                <AddAnimalForm
+                                    animalType={animalType}
+                                    specificFields={specificFields}
+                                    animals={collection}
+                                    setAnimals={setCollection}
+                                    title={title}
+                                    animalItem={animalItem}
+                                    closePopup={close}
+                                />
+                            )}
+                        </div>
                     </div>
+
+
                 </div>
             )}
         </Popup >
