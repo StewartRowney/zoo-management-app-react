@@ -14,9 +14,14 @@ textarea {
 input[type="checkbox"] {
   display: inline-block;
   vertical-align: top;
-  
+  height: 1.2vw;
+  width:2vw
 }
 
+.checkbox-container{
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
+}
 
 .form-box textarea {
     flex: 1;
