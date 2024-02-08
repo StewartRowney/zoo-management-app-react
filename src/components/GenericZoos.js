@@ -9,8 +9,7 @@ import './GenericZoos.css';
 import "./OurStory.css";
 import { Button } from '@mui/material';
 import Reptiles from './Reptiles';
-import Amphibians from './Amphibians'; 
-import Birds from './Birds';
+import { birdSpecificFields } from './Birds';
 
 const GenericZoos = () =>{
 
@@ -65,15 +64,14 @@ const determineAnimalType = (uniqueAnimalItem) => {
   return 'reptiles';
 };
 
-const isThisRight = Birds.birdSpecificFields;
 
 const determineSpecificFields = (uniqueAnimalItem) => {
 
   for (const key in uniqueAnimalItem) {
     if (key === 'isPoisonous' && uniqueAnimalItem[key]) {
-      return Amphibians.amphibianSpecificFields;
+      return 'insects';
     } else if (key === 'canFly' && uniqueAnimalItem[key]) {
-      return Birds.birdSpecificFields; 
+      return birdSpecificFields; 
     }
     else if (key === 'isBioluminiscent' && uniqueAnimalItem[key]) {
       return 'fish';
