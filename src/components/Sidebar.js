@@ -8,7 +8,6 @@ import { useState , useEffect} from "react";
 import getAllItems from "../apis/getApis";
 
 function SidebarComponent() {
-  const { collapseSidebar } = useProSidebar();
   const [zoos, setZoos] = useState([]);
 
   const [collapsed, setCollapsed] = useState(false)
