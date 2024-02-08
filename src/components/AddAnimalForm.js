@@ -142,7 +142,7 @@ const AddAnimalForm = ({ title, animalType, animals, setAnimals, specificFields,
 
 {
   Object.keys(specificFields).map((fieldName) => (
-    <div key={fieldName}>
+    <div className='checkbox-container' key={fieldName}>
       {fieldName === 'numberOfLegs' ? (
         <>
           <label>{capitalizeFirstLetter(fieldName)}:</label>
