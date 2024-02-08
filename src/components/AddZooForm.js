@@ -2,8 +2,6 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { Controller, useForm } from "react-hook-form";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { useEffect, useState } from "react";
-// import NumberFormat from 'react-number-format';
-// import { FormControl, Input } from "@mui/material";
 
 const AddZooForm = () => {
 
@@ -83,28 +81,6 @@ const AddZooForm = () => {
                         message: "invalid price format"
                       }
                     })} />
-
-
-                {/* <Controller
-                    control={control}
-                    name="price"
-                    {...register('price', {
-                        required: 'This is required'
-                    })}
-                    render={({ field: { onChange, value } }) => (
-                        <Input as={NumberFormat}
-                            thousandSeparator=','
-                            decimalSeparator='.'
-                            prefix={'$'}
-                            value={value}
-                            onChange={onChange}
-                            onValueChange={(values) => {
-                                const { formattedValue, value } = values;
-                                setPriceState(value);
-                            }}
-                        />
-                    )}
-                /> */}
             </div>
             <div>
                 <br></br>
