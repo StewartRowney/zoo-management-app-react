@@ -59,7 +59,7 @@ const ZooDeleteButton = ({zoo, itemType, zoos, setZoos}) => {
     }
 
     return (
-        <div>
+        <div className="delete-button-div">
             <PopUpConfirmationButton
             methodOnConfirm = {deleteItemEvent}
             buttonName = 'Delete'

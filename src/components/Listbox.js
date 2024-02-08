@@ -25,10 +25,6 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
       }});
   }
 
-  const updateItem = () => {
-    
-  };
-
   return (
     <div className={`box ${isExtended ? 'extended' : ''}`} onClick={toggleBox}>
       <h5 className="listbox-title">{animal.name}</h5>
