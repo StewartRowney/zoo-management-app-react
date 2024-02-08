@@ -8,10 +8,7 @@ import updateItem from '../apis/updateApi';
 
 const AddAnimalForm = ({ title, animalType, animals, setAnimals, specificFields, animalItem, closePopup }) => {
 
-
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  const [formData, setFormData] = useState({
+  const initialInputs = {
     zoo: {
       id: '',
     },
@@ -23,24 +20,28 @@ const AddAnimalForm = ({ title, animalType, animals, setAnimals, specificFields,
     foodType: '',
     extraInformation: '',
     ...specificFields,
-  });
-  
-useEffect(() => {
-  if (animalItem) {
-    const updatedFields = {};
-    Object.entries(animalItem).forEach(([key, value]) => {
-      if (key === 'zoo') {
-        updatedFields[key] = { id: value.id };
-      } else if (typeof value !== 'object') {
-        updatedFields[key] = value;
-      }
-    });
+  };
 
-    setFormData({
-      ...updatedFields,
-    });
-  }
-}, [animalItem]);
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const [formData, setFormData] = useState(initialInputs);
+
+  useEffect(() => {
+    if (animalItem) {
+      const updatedFields = {};
+      Object.entries(animalItem).forEach(([key, value]) => {
+        if (key === 'zoo') {
+          updatedFields[key] = { id: value.id };
+        } else if (typeof value !== 'object') {
+          updatedFields[key] = value;
+        }
+      });
+
+      setFormData({
+        ...updatedFields,
+      });
+    }
+  }, [animalItem]);
 
 
   // useEffect(() => {
@@ -60,7 +61,7 @@ useEffect(() => {
   //   })
   //     } 
   //   },[animalItem, specificFields]);
-  
+
 
   useEffect(() => {
     const isValid = formData.name !== '' && formData.zoo.id !== '';
@@ -70,53 +71,42 @@ useEffect(() => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
+      ...prevData, [name]: value,
     }));
   };
 
-  const handleSubmit = () => {
-    if(animalItem){
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (animalItem) {
       updateItem(animalType, formData)
-      .then(fetchedItems => {
+        .then(fetchedItems => {
           if (fetchedItems) {
             const newAnimals = animals.filter(animal => animal.id !== animalItem.id);
-            setAnimals(newAnimals => [...newAnimals, fetchedItems]);
-            closePopup();
-            }
-            else {
-                console.error("Unexpected result returned from ", title, ": ", fetchedItems);
-            }
-        })
-        .catch(e => {console.error("Error calling update ", title, ": ", e)});
-  }
-    else {
-    addItem(animalType, formData)
-      .then(fetchedItems => {
-        if (fetchedItems) {
-          setAnimals(prevCollection => [...prevCollection, fetchedItems]);
-          closePopup();
-        }
-        else {
-          console.error("Unexpected result returned from ", title, ": ", fetchedItems);
-        }
-      })
-      .catch(e => { console.error("Error calling add ", title, ": ", e) });
 
-    setFormData({
-      zoo: {
-        id: '',
-      },
-      name: '',
-      speciesName: '',
-      birthDate: '',
-      habitat: '',
-      behaviour: '',
-      foodType: '',
-      extraInformation: '',
-      ...specificFields,
-    });
-  }
+            setAnimals(newAnimals);
+            setAnimals(prevCollection => [...prevCollection, fetchedItems]);
+            closePopup();
+          }
+          else {
+            console.error("Unexpected result returned from ", title, ": ", fetchedItems);
+          }
+        })
+        .catch(e => { console.error("Error calling update ", title, ": ", e) });
+    }
+    else {
+      addItem(animalType, formData)
+        .then(fetchedItems => {
+          if (fetchedItems) {
+            setAnimals(prevCollection => [...prevCollection, fetchedItems]);
+            closePopup();
+          }
+          else {
+            console.error("Unexpected result returned from ", title, ": ", fetchedItems);
+          }
+        })
+        .catch(e => { console.error("Error calling add ", title, ": ", e) });
+    }
   };
 
   const handleZooChange = (selectedZooId) => {
@@ -152,61 +142,61 @@ useEffect(() => {
           <br></br>
         </div>
         <div>
-        <label>Birth Date:</label>
-        <input type="date" name="birthDate" value={formData.birthDate} onChange={handleInputChange} />
-        <br></br>
+          <label>Birth Date:</label>
+          <input type="date" name="birthDate" value={formData.birthDate} onChange={handleInputChange} />
+          <br></br>
         </div >
         <div>
-        <label>Habitat:</label>
-        <input type="text" name="habitat" value={formData.habitat} onChange={handleInputChange} />
-        <br></br>
+          <label>Habitat:</label>
+          <input type="text" name="habitat" value={formData.habitat} onChange={handleInputChange} />
+          <br></br>
         </div>
         <div>
-        <label>Behaviour:</label>
-        <input type="text" name="behaviour" value={formData.behaviour} onChange={handleInputChange} />
-        <br></br>
+          <label>Behaviour:</label>
+          <input type="text" name="behaviour" value={formData.behaviour} onChange={handleInputChange} />
+          <br></br>
         </div>
         <div>
-        <label>Food Type:</label>
-        <input type="text" name="foodType" value={formData.foodType} onChange={handleInputChange} />
-        <br></br>
+          <label>Food Type:</label>
+          <input type="text" name="foodType" value={formData.foodType} onChange={handleInputChange} />
+          <br></br>
         </div>
         <div>
-        <label>Extra Infomation:</label>
-        <input type="text" name="extraInformation" value={formData.extraInformation} onChange={handleInputChange} />
-        <br></br>
+          <label>Extra Infomation:</label>
+          <input type="text" name="extraInformation" value={formData.extraInformation} onChange={handleInputChange} />
+          <br></br>
         </div>
 
-{
-  Object.keys(specificFields).map((fieldName) => (
-    <div className='checkbox-container' key={fieldName}>
-      {fieldName === 'numberOfLegs' ? (
-        <>
-          <label>{capitalizeFirstLetter(fieldName)}:</label>
-          <input type="text" name={fieldName} value={formData[fieldName]} onChange={handleInputChange} />
-        </>
-      ) : (
-        <>
-          <label>{capitalizeFirstLetter(fieldName)}:</label>
-          <input
-            type="checkbox"
-            name={fieldName}
-            checked={formData[fieldName]}
-            onChange={(e) => handleInputChange({ target: { name: fieldName, value: e.target.checked } })}
-            
-          />
-          
-        </>
-        
-      )}
-      
-    </div>
-    
-  ))
-}
-<br></br>
+        {
+          Object.keys(specificFields).map((fieldName) => (
+            <div className='checkbox-container' key={fieldName}>
+              {fieldName === 'numberOfLegs' ? (
+                <>
+                  <label>{capitalizeFirstLetter(fieldName)}:</label>
+                  <input type="text" name={fieldName} value={formData[fieldName]} onChange={handleInputChange} />
+                </>
+              ) : (
+                <>
+                  <label>{capitalizeFirstLetter(fieldName)}:</label>
+                  <input
+                    type="checkbox"
+                    name={fieldName}
+                    checked={formData[fieldName]}
+                    onChange={(e) => handleInputChange({ target: { name: fieldName, value: e.target.checked } })}
+
+                  />
+
+                </>
+
+              )}
+
+            </div>
+
+          ))
+        }
+        <br></br>
         <ZooDropdown selectedZoo={formData.zoo.id} onZooChange={handleZooChange} />
-<br></br>
+        <br></br>
         <button className='button' type="submit" disabled={!isFormValid} onClick={handleSubmit}>
           Save
         </button>
