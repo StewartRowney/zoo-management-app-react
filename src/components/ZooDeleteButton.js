@@ -58,7 +58,6 @@ const ZooDeleteButton = ({zoo, itemType, zoos, setZoos}) => {
         });
     }
 
-
     return (
         <div>
             <PopUpConfirmationButton
