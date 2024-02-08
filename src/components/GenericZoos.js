@@ -14,11 +14,16 @@ import { amphibiansSpecificFields } from './Amphibians';
 import { fishSpecificFields } from './Fish';
 import { insectSpecificFields } from './Insects';
 import { mammalSpecificFields } from './Mammals';
+import deleteItems from '../apis/deleteItemsApi';
+import PopUpConfirmationButton from './PopUpConfirmationButton';
+import './PopupFormButton.css';
 
 const GenericZoos = () =>{
 
     const [zoo, setZoo] = useState([]);
     const [animalsInZoo, setAnimalsInZoo] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    
 
     const { pageId } = useParams();
     
@@ -28,6 +33,7 @@ const GenericZoos = () =>{
       getThemAnimals();
     },[]);
     
+  
 
     const getZooInfo = () => {
     const linkToFetchZooInfo =  'zoos/' + pageId
@@ -55,6 +61,14 @@ useEffect ( ()=> {
   getZooInfo();
   getThemAnimals();
 },[]);
+
+const filteredAnimals = animalsInZoo.filter((animal) =>
+animal.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+const handleSearchTermChange = (e) => {
+  setSearchTerm(e.target.value);
+};
 
 const determineAnimalType = (uniqueAnimalItem) => {
   for (const key in uniqueAnimalItem) {
@@ -84,7 +98,7 @@ const determineSpecificFields = (uniqueAnimalItem) => {
 
   for (const key in uniqueAnimalItem) {
     if (key === 'isPoisonous' ) {
-      return mammalSpecificFields;
+      return amphibiansSpecificFields;
     } else if (key === 'canFly') {
       return birdSpecificFields; 
     }
@@ -104,6 +118,13 @@ const determineSpecificFields = (uniqueAnimalItem) => {
   return undefined ;
 };
 
+const deleteAllAnimals =() => {
+  const animalIds = animalsInZoo.map(animal => animal.id);
+  const deleterLine = 'animals';
+  deleteItems(deleterLine,animalIds);
+ setAnimalsInZoo([]);
+}
+
 
     return(
 
@@ -120,8 +141,21 @@ const determineSpecificFields = (uniqueAnimalItem) => {
               <p><b>Date Opened :</b> {zoo.dateOpened}</p>
               </div>
               <div className="animal-row">
-              {/* <Button onClick={getThemAnimals}>See all Animals</Button> */}
-              {animalsInZoo.map(animalWithinZoo => (
+              <div className="delete-button-div">
+            <PopUpConfirmationButton
+            methodOnConfirm = {deleteAllAnimals}
+            buttonName = 'Delete All Animal'
+            message = {'Are you sure you want to delete ALL ANIMALS?'}
+            />          
+        </div>
+              <input
+        type="text"
+        placeholder="Search by name..."
+        value={searchTerm}
+        onChange={handleSearchTermChange}
+        className="search-bar"
+      />
+              {filteredAnimals.map(animalWithinZoo => (
                 <Listbox key={animalWithinZoo.id} animal={animalWithinZoo} animals={animalsInZoo} setAnimals={setAnimalsInZoo} animalType={determineAnimalType(animalWithinZoo)} specificFields={determineSpecificFields(animalWithinZoo)} />
               ))}
               </div>  

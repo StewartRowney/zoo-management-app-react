@@ -67,14 +67,6 @@ const Listbox = ({ animal, animals, setAnimals, animalType, specificFields }) =>
                 <button className="button" onClick={sendDelete}>Delete</button>
             }
           </div>
-          <PopupFormButton
-                animalType = {animalType}
-                collection = {animals}
-                setCollection = {setAnimals}
-                specificFields={specificFields}
-                animalItem={animal}
-                />
-            <button className="button" onClick={deleteAnimal}>Delete</button>
             
               { 
                   animalType === 'zoos' ? 
