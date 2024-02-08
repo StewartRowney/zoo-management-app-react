@@ -12,9 +12,9 @@
   border: 1px solid #cfcece;
 }
 
-.modal>.close:hover,
-.close:focus {
-color: grey
+.modal>.close:hover
+{
+color: grey;
 }
 
 .modal{
@@ -33,7 +33,7 @@ color: grey
   color: white;
   box-shadow: 0px 6px 18px -5px #0B6623;
   width: 50vw;
-  height: 42vw;
+  height: 40vw;
   overflow: overlay;
 }
 
@@ -55,13 +55,13 @@ color: grey
 }
 
 .warning-icon{
-  height: 100px;
-  width: 100px;
+  height: 7vw;
+  width: 7vw;
   padding: 2vw;
 }
 
 
-.confirmationButton, .cancellationButton {
+.confirmationButton, .cancellationButton{
   appearance: none;
   background-color: #E1FAE8;
   border: 1px solid #0B6623;
@@ -84,6 +84,16 @@ color: grey
   white-space: nowrap;
   padding: 0.4vw;
   align-items: center;
+
+}
+
+.confirmationButton:hover, .cancellationButton:hover {
+  background-color: #94d3a2;
+}
+
+.confirmationButton:focus, .cancellationButton:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
 }
 
 *::-webkit-scrollbar {

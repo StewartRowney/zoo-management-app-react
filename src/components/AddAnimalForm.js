@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ZooDropdown from './ZooDropdown';
 import addItem from '../apis/addApis';
 import './AddAnimalForm.css'
+import updateItem from '../apis/updateApi';
+
 
 
 const AddAnimalForm = ({ title, animalType, animals, setAnimals, specificFields, animalItem, closePopup }) => {
@@ -22,24 +24,43 @@ const AddAnimalForm = ({ title, animalType, animals, setAnimals, specificFields,
     extraInformation: '',
     ...specificFields,
   });
+  
+useEffect(() => {
+  if (animalItem) {
+    const updatedFields = {};
+    Object.entries(animalItem).forEach(([key, value]) => {
+      if (key === 'zoo') {
+        updatedFields[key] = { id: value.id };
+      } else if (typeof value !== 'object') {
+        updatedFields[key] = value;
+      }
+    });
 
-  useEffect(() => {
-    if (animalItem) {
-      setFormData({
-        zoo: {
-          id: '',
-        },
-        name: animalItem.name,
-        speciesName: animalItem.speciesName,
-        birthDate: animalItem.birthDate,
-        habitat: animalItem.habitat,
-        behaviour: animalItem.behaviour,
-        foodType: animalItem.foodType,
-        extraInformation: animalItem.extraInformation,
-        ...specificFields,
-      })
-    }
-  }, []);
+    setFormData({
+      ...updatedFields,
+    });
+  }
+}, [animalItem]);
+
+
+  // useEffect(() => {
+  //   if(animalItem){
+  //   setFormData({
+  //     zoo: {
+  //       id:animalItem.zoo.id, 
+  //     },
+  //   name:animalItem.name,
+  //   speciesName:animalItem.speciesName,
+  //   birthDate:animalItem.birthDate,
+  //   habitat:animalItem.habitat,
+  //   behaviour:animalItem.behaviour,
+  //   foodType:animalItem.foodType,
+  //   extraInformation:animalItem.extraInformation,
+  //   updatedSpecificfields
+  //   })
+  //     } 
+  //   },[animalItem, specificFields]);
+  
 
   useEffect(() => {
     const isValid = formData.name !== '' && formData.zoo.id !== '';
@@ -55,6 +76,21 @@ const AddAnimalForm = ({ title, animalType, animals, setAnimals, specificFields,
   };
 
   const handleSubmit = () => {
+    if(animalItem){
+      updateItem(animalType, formData)
+      .then(fetchedItems => {
+          if (fetchedItems) {
+            const newAnimals = animals.filter(animal => animal.id !== animalItem.id);
+            setAnimals(newAnimals => [...newAnimals, fetchedItems]);
+            closePopup();
+            }
+            else {
+                console.error("Unexpected result returned from ", title, ": ", fetchedItems);
+            }
+        })
+        .catch(e => {console.error("Error calling update ", title, ": ", e)});
+  }
+    else {
     addItem(animalType, formData)
       .then(fetchedItems => {
         if (fetchedItems) {
@@ -80,6 +116,7 @@ const AddAnimalForm = ({ title, animalType, animals, setAnimals, specificFields,
       extraInformation: '',
       ...specificFields,
     });
+  }
   };
 
   const handleZooChange = (selectedZooId) => {
@@ -151,7 +188,6 @@ const AddAnimalForm = ({ title, animalType, animals, setAnimals, specificFields,
       ) : (
         <>
           <label>{capitalizeFirstLetter(fieldName)}:</label>
-          
           <input
             type="checkbox"
             name={fieldName}
@@ -159,6 +195,7 @@ const AddAnimalForm = ({ title, animalType, animals, setAnimals, specificFields,
             onChange={(e) => handleInputChange({ target: { name: fieldName, value: e.target.checked } })}
             
           />
+          
         </>
         
       )}
