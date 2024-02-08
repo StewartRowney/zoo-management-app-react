@@ -31,7 +31,7 @@ const GenericZoos = () =>{
     useEffect ( ()=> {
       getZooInfo();
       getThemAnimals();
-    },[]);
+    },[pageId]);
     
   
 
@@ -133,12 +133,12 @@ const deleteAllAnimals =() => {
               <h1 className="animal-h1 align big"> {zoo.name} Information</h1>
               <div>
               <div className='extended-content size'>
-              <p><b>Name :</b> {zoo.name}</p>
-              <p><b>Location :</b> {zoo.location}</p>
-              <p><b>Description :</b> {zoo.description}</p>
-              <p><b>Capacity :</b> {zoo.capacity}</p>
-              <p><b>Price :</b>{zoo.price}</p>
-              <p><b>Date Opened :</b> {zoo.dateOpened}</p>
+              <p><b>Name: </b> {zoo.name}</p>
+              <p><b>Location: </b> {zoo.location}</p>
+              <p><b>Description: </b> {zoo.description}</p>
+              <p><b>Capacity: </b> {zoo.capacity}</p>
+              <p><b>Price: </b>${zoo.price}</p>
+              <p><b>Date Opened: </b> {zoo.dateOpened}</p>
               </div>
               <div className="animal-row">
               <div className="delete-button-div">

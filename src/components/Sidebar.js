@@ -11,6 +11,8 @@ function SidebarComponent() {
   const { collapseSidebar } = useProSidebar();
   const [zoos, setZoos] = useState([]);
 
+
+
   useEffect(() => {
     getAllItems('zoos')
     .then(fetchedItems => {
