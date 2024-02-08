@@ -4,6 +4,10 @@ import "./Animals.css";
 import getAllItems from "../apis/getApis";
 import ActionBar from "./ActionBar";
 
+export const amphibiansSpecificFields = {
+  isPoisonous:'',
+  makesNoise: '' 
+};
 
 const Amphibians = () => {
   const [amphibians, setAmphibians] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import getAllItems from '../apis/getApis';
-import './ZooDropdown.css'
+import './ZooDropdown.css';
 
 const ZooDropdown = ({ selectedZoo, onZooChange }) => {
   const [zoos, setZoos] = useState([]);
