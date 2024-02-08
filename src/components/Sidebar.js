@@ -1,4 +1,4 @@
-import { Sidebar, Menu, MenuItem, useProSidebar, SubMenu } from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import BusinessIcon from '@mui/icons-material/Business';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
@@ -8,8 +8,13 @@ import { useState , useEffect} from "react";
 import getAllItems from "../apis/getApis";
 
 function SidebarComponent() {
-  const { collapseSidebar } = useProSidebar();
   const [zoos, setZoos] = useState([]);
+
+  const [collapsed, setCollapsed] = useState(false)
+
+  const handleToggleSidebar = () => {
+    setCollapsed(!collapsed);
+  };
 
 
 
@@ -26,13 +31,11 @@ function SidebarComponent() {
 
   return (
     <div id="app">
-      <Sidebar rtl={true} style={{height:"100%"}}>
+      <Sidebar collapsed={collapsed} rtl={true} style={{height:"100%"}}>
         <Menu>
           <MenuItem
             icon={<MenuOutlinedIcon />}
-            onClick={() => {
-              collapseSidebar();
-            }}
+            onClick={handleToggleSidebar}
             style={{ textAlign: "center" }}
           >
             {" "}
