@@ -14,6 +14,11 @@ const Mammals = () => {
   const [mammals, setMammals] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const animalType="mammals";
+  const [hasFurF, sethasFurF] = useState(false); 
+  const [hasFinsF, sethasFinsF] = useState(false);
+  const [hasHoovesF, sethasHoovesF] = useState(false); 
+
+
 
   const mammalSpecificFields = {
     hasFur: '',
@@ -34,7 +39,10 @@ const Mammals = () => {
 
   const filteredAnimals = mammals.filter((mammal) =>
   mammal.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  )
+  .filter((mammal) => !hasFurF || mammal.hasFur)
+ .filter((mammal) => !hasFinsF || mammal.hasFins)
+ .filter((mammal) => !hasHoovesF || mammal.hasHooves);
 
   return (
     <div className="animal-background">
@@ -49,6 +57,39 @@ const Mammals = () => {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         />
+
+<div className="filter-container">
+  <p>
+    <strong>Filter Search: </strong>
+  </p>
+
+  <label className="filter-label">
+    <input
+      type="checkbox"
+      checked={hasFurF}
+      onChange={() => sethasFurF(!hasFurF)}
+    />
+    Has Fur
+  </label>
+
+  <label className="filter-label">
+    <input
+      type="checkbox"
+      checked={hasFinsF}
+      onChange={() => sethasFinsF(!hasFinsF)}
+    />
+    Has Fins
+  </label>
+
+  <label className="filter-label">
+    <input
+      type="checkbox"
+      checked={hasHoovesF}
+      onChange={() => sethasHoovesF(!hasHoovesF)}
+    />
+    Has Hooves
+  </label>
+</div>
 
       <div className="animal-row">
         {filteredAnimals.map(mammal => (

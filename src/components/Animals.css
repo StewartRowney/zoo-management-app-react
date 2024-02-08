@@ -83,3 +83,13 @@ a:active {
   border-radius: 4px;
   outline: none;
 }
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-label {
+  margin-right: 20px; /* Adjust as needed for spacing between filters */
+}

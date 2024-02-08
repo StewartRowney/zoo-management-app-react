@@ -4,25 +4,23 @@ import BusinessIcon from '@mui/icons-material/Business';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import PetsIcon from '@mui/icons-material/Pets';
 import { Link } from "react-router-dom";
-import { useState , useEffect} from "react";
+import { useState , useEffect, useRef } from "react";
 import getAllItems from "../apis/getApis";
 
 function SidebarComponent() {
   const [zoos, setZoos] = useState([]);
-
   const [collapsed, setCollapsed] = useState(false)
 
   const handleToggleSidebar = () => {
     setCollapsed(!collapsed);
   };
 
-
-
   useEffect(() => {
     getAllItems('zoos')
     .then(fetchedItems => {
-      if (fetchedItems)
+      if (fetchedItems){
         setZoos(fetchedItems);
+      }
       else
         console.error("Unexpected result returned from getZoos: ", fetchedItems);
   })
@@ -45,8 +43,9 @@ function SidebarComponent() {
           <SubMenu icon={<BusinessIcon />} label='Zoos'>
             <MenuItem component={<Link to="/zoos" className="link" />}> <strong>All Zoos</strong> </MenuItem>
             <div>
-            {zoos.map(zoo => 
-             <MenuItem component={<Link to={`/zoos/${zoo.id}`} className="link">{zoo.name}</Link>} key={zoo.id}> {zoo.name} </MenuItem>)}
+            {
+            zoos.map(zoo => 
+             <MenuItem key={zoo.id} component={<Link to={`/zoos/${zoo.id}`} className="link">{zoo.name}</Link>} > {zoo.name} </MenuItem>)}
             </div>
             </SubMenu>
           <SubMenu icon={<PetsIcon />} label='Animals'>

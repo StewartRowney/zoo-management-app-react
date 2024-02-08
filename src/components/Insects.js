@@ -14,6 +14,7 @@ const Insects = () => {
   const [showForm, setShowForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const animalType = 'insects';
+  const [hasWingsF, setHasWingsF] = useState(false);
 
   const insectSpecificFields = {
     hasWings: '',
@@ -22,20 +23,21 @@ const Insects = () => {
 
   useEffect(() => {
     getAllItems(animalType)
-    .then(fetchedItems => {
-      if (fetchedItems)
-        setInsects(fetchedItems);
-      else
-        console.error("Unexpected result returned from getInsects: ", fetchedItems);
-  })
-  .catch(e => {console.error("Error calling getInsects: ", e)}); 
+      .then(fetchedItems => {
+        if (fetchedItems)
+          setInsects(fetchedItems);
+        else
+          console.error("Unexpected result returned from getInsects: ", fetchedItems);
+      })
+      .catch(e => { console.error("Error calling getInsects: ", e) });
   }, []);
 
 
   const filteredAnimals = insects.filter((insect) =>
-  insect.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  
+    insect.name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+    .filter((insect) => !hasWingsF || insect.hasWings);;
+
 
   return (
     <div className="animal-background">
@@ -50,10 +52,24 @@ const Insects = () => {
         setAnimals={setInsects}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
-        />
+      />
+      <div className="filter-container">
+        <p>
+          <strong>Filter Search: </strong>
+        </p>
+
+        <label className="filter-label">
+          <input
+            type="checkbox"
+            checked={hasWingsF}
+            onChange={() => setHasWingsF(!hasWingsF)}
+          />
+          Has Wings
+        </label>
+      </div>
       <div className="animal-row">
         {filteredAnimals.map(insect => (
-          <Listbox key={insect.id} animal={insect} animals={insects} setAnimals={setInsects} animalType={animalType} specificFields={insectSpecificFields}/>
+          <Listbox key={insect.id} animal={insect} animals={insects} setAnimals={setInsects} animalType={animalType} specificFields={insectSpecificFields} />
         ))}
       </div>
     </div>
