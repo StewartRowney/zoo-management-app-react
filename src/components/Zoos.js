@@ -18,8 +18,8 @@ const Zoos = () => {
         setZoos(fetchedItems);
       else
         console.error("Unexpected result returned from getZoos: ", fetchedItems);
-  })
-  .catch(e => {console.error("Error calling getZoos: ", e)}); 
+    })
+    .catch(e => {console.error("Error calling getZoos: ", e)}); 
   }, []);
 
   const filteredAnimals = zoos.filter((zoo) =>

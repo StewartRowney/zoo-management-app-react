@@ -92,3 +92,7 @@
   background-color: #E1FAE8;
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
+
+.delete-button-div {
+  display: inline-block;
+}
