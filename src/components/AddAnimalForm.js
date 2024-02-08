@@ -156,13 +156,18 @@ const AddAnimalForm = ({ title, animalType, animals, setAnimals, specificFields,
             name={fieldName}
             checked={formData[fieldName]}
             onChange={(e) => handleInputChange({ target: { name: fieldName, value: e.target.checked } })}
+            
           />
+          
         </>
+        
       )}
+      
     </div>
+    
   ))
 }
-
+<br></br>
         <ZooDropdown selectedZoo={formData.zoo.id} onZooChange={handleZooChange} />
 <br></br>
         <button className='button' type="submit" disabled={!isFormValid} onClick={handleSubmit}>

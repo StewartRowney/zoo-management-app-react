@@ -11,10 +11,12 @@ textarea {
   font-family: 'Gill Sans', sans-serif;
 }
 
-.form-box checkbox,
- {
-
+input[type="checkbox"] {
+  display: inline-block;
+  vertical-align: top;
+  
 }
+
 
 .form-box textarea {
     flex: 1;
